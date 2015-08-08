@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 public class MainFrame
 {
 	private JFrame mainFrame;
+	private JPanel startPanel;
+	private JPanel emptyPanel;
 
 	public void buildFrame()
 	{
@@ -25,8 +27,8 @@ public class MainFrame
 		JMenuItem aboutHelpMenu = new JMenuItem("About");
 
 		mainFrame = new JFrame("Matta's Best RPG Game");
-		JPanel startPanel = new JPanel();
-		JPanel emptyPanel = new JPanel();
+		startPanel = new JPanel();
+		emptyPanel = new JPanel();
 		JPanel buttonsPanel = new JPanel(new GridLayout(2, 1));
 		JButton newGame = new JButton("New game");
 		JButton loadGame = new JButton("Load game");
@@ -88,6 +90,17 @@ public class MainFrame
 		public void actionPerformed(ActionEvent event)
 		{
 			System.out.println("New game");
+			mainFrame.remove(emptyPanel);
+			mainFrame.remove(startPanel);
+			mainFrame.repaint();
+			System.out.println("panels are not visible anymore");
+
+			JPanel characterCreatorPanelUpper = new JPanel();
+			JPanel characterCreatorPanelLower = new JPanel();
+			characterCreatorPanelUpper.setBackground(Color.yellow);
+			characterCreatorPanelLower.setBackground(Color.green);
+			mainFrame.getContentPane().add(BorderLayout.CENTER, characterCreatorPanelUpper);
+			mainFrame.getContentPane().add(BorderLayout.CENTER, characterCreatorPanelLower);
 		}
 	}
 

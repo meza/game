@@ -20,6 +20,7 @@ public class MainFrame
 		JMenuItem quitGameMenu = new JMenuItem("Quit");
 		JMenuItem settingsOptionsMenu = new JMenuItem("Settings");
 		JMenuItem helpHelpMenu = new JMenuItem("Help");
+		JMenuItem updateHelpMenu = new JMenuItem("Check for update");
 		JMenuItem aboutHelpMenu = new JMenuItem("About");
 
 		JFrame mainFrame = new JFrame("Matta's Best RPG Game");
@@ -42,6 +43,7 @@ public class MainFrame
 		optionsMenu.add(settingsOptionsMenu);
 
 		helpMenu.add(helpHelpMenu);
+		helpMenu.add(updateHelpMenu);
 		helpMenu.add(aboutHelpMenu);
 
 		newGameMenu.addActionListener(new NewGameListener());
@@ -50,6 +52,7 @@ public class MainFrame
 		quitGameMenu.addActionListener(new QuitGameListener());
 		settingsOptionsMenu.addActionListener(new SettingsGameListener());
 		helpHelpMenu.addActionListener(new HelpGameListener());
+		updateHelpMenu.addActionListener(new UpdateGameListener());
 		aboutHelpMenu.addActionListener(new AboutGameListener());
 
 		mainFrame.setJMenuBar(menuBar);
@@ -127,6 +130,14 @@ public class MainFrame
 		}
 	}
 
+	public class UpdateGameListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			System.out.println("Check update");
+		}
+	}
+
 	public class AboutGameListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -134,5 +145,4 @@ public class MainFrame
 			System.out.println("About");
 		}
 	}
-
 }

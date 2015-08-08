@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 
 public class MainFrame
 {
+	JFrame mainFrame;
+
 	public void buildFrame()
 	{
 		JMenuBar menuBar = new JMenuBar();
@@ -22,7 +24,7 @@ public class MainFrame
 		JMenuItem updateHelpMenu = new JMenuItem("Check for update");
 		JMenuItem aboutHelpMenu = new JMenuItem("About");
 
-		JFrame mainFrame = new JFrame("Matta's Best RPG Game");
+		mainFrame = new JFrame("Matta's Best RPG Game");
 		JPanel startPanel = new JPanel();
 		JPanel emptyPanel = new JPanel();
 		JPanel buttonsPanel = new JPanel(new GridLayout(2, 1));
@@ -110,6 +112,7 @@ public class MainFrame
 		public void actionPerformed(ActionEvent event)
 		{
 			System.out.println("Quit game");
+			mainFrame.dispose();
 		}
 	}
 

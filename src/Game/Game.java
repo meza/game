@@ -2,7 +2,7 @@ package Game;
 
 import Frames.MainFrame;
 
-public class Game
+class Game
 {
 	public static void main(String[] args)
 	{
@@ -12,9 +12,9 @@ public class Game
 
 	private void start()
 	{
-		System.out.println("frame elott");
+		System.out.println("before the frame created");
 		MainFrame frame = new MainFrame();
 		frame.buildFrame();
-		System.out.println("frame utan");
+		System.out.println("after the frame created");
 	}
 }

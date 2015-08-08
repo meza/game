@@ -2,7 +2,6 @@ package Frames;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -82,7 +81,7 @@ public class MainFrame
 		mainFrame.setVisible(true);
 	}
 
-	public class NewGameListener implements ActionListener
+	private class NewGameListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
@@ -90,7 +89,7 @@ public class MainFrame
 		}
 	}
 
-	public class LoadGameListener implements ActionListener
+	private class LoadGameListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
@@ -98,7 +97,7 @@ public class MainFrame
 		}
 	}
 
-	public class SaveGameListener implements ActionListener
+	private class SaveGameListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
@@ -106,7 +105,7 @@ public class MainFrame
 		}
 	}
 
-	public class QuitGameListener implements ActionListener
+	private class QuitGameListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
@@ -114,7 +113,7 @@ public class MainFrame
 		}
 	}
 
-	public class SettingsGameListener implements ActionListener
+	private class SettingsGameListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
@@ -122,7 +121,7 @@ public class MainFrame
 		}
 	}
 
-	public class HelpGameListener implements ActionListener
+	private class HelpGameListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
@@ -130,7 +129,7 @@ public class MainFrame
 		}
 	}
 
-	public class UpdateGameListener implements ActionListener
+	private class UpdateGameListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
@@ -138,7 +137,7 @@ public class MainFrame
 		}
 	}
 
-	public class AboutGameListener implements ActionListener
+	private class AboutGameListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{

@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class MainFrame
 {
-	JFrame mainFrame;
+	private JFrame mainFrame;
 
 	public void buildFrame()
 	{
@@ -112,7 +112,25 @@ public class MainFrame
 		public void actionPerformed(ActionEvent event)
 		{
 			System.out.println("Quit game");
-			mainFrame.dispose();
+
+			int result = JOptionPane.showOptionDialog(null,
+					"Are you really want to quit?",
+					"Are you really want to quit?",
+					JOptionPane.OK_CANCEL_OPTION,
+					JOptionPane.INFORMATION_MESSAGE,
+					null,
+					new String[]{"Yes, quit", "No, cancel"},
+					"No, cancel");
+
+			if(result == 0)
+			{
+				System.out.println("Yes, quit");
+				mainFrame.dispose();
+			}//the else is removable
+			else
+			{
+				System.out.println("No, cancel");
+			}
 		}
 	}
 

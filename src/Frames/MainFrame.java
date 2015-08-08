@@ -163,6 +163,8 @@ public class MainFrame
 		public void actionPerformed(ActionEvent event)
 		{
 			System.out.println("About");
+
+			JOptionPane.showMessageDialog(null, "Matta's Best RPG Game\nVersion 0.1", "About", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }

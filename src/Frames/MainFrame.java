@@ -76,7 +76,7 @@ public class MainFrame
 		mainFrame.setLayout(new GridLayout(2, 1));
 		mainFrame.getContentPane().add(BorderLayout.CENTER, emptyPanel);
 		mainFrame.getContentPane().add(BorderLayout.CENTER, startPanel);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		mainFrame.setSize(1200, 800);
 		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		mainFrame.setVisible(true);

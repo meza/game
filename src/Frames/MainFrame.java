@@ -89,11 +89,8 @@ public class MainFrame
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			System.out.println("New game");
-			mainFrame.remove(emptyPanel);
-			mainFrame.remove(startPanel);
-			mainFrame.repaint();
-			System.out.println("panels are not visible anymore");
+			mainFrame.getContentPane().removeAll();
+			mainFrame.setTitle("Matta's Best RPG Game - Select race");
 
 			JPanel characterCreatorPanelUpper = new JPanel();
 			JPanel characterCreatorPanelLower = new JPanel();
@@ -101,6 +98,7 @@ public class MainFrame
 			characterCreatorPanelLower.setBackground(Color.green);
 			mainFrame.getContentPane().add(BorderLayout.CENTER, characterCreatorPanelUpper);
 			mainFrame.getContentPane().add(BorderLayout.CENTER, characterCreatorPanelLower);
+			mainFrame.validate();
 		}
 	}
 
@@ -124,9 +122,8 @@ public class MainFrame
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			System.out.println("Quit game");
-
-			int result = JOptionPane.showOptionDialog(null,
+			int result = JOptionPane.showOptionDialog(
+					null,
 					"Are you really want to quit?",
 					"Are you really want to quit?",
 					JOptionPane.OK_CANCEL_OPTION,
@@ -137,12 +134,7 @@ public class MainFrame
 
 			if(result == 0)
 			{
-				System.out.println("Yes, quit");
 				mainFrame.dispose();
-			}//the else is removable
-			else
-			{
-				System.out.println("No, cancel");
 			}
 		}
 	}
@@ -175,9 +167,11 @@ public class MainFrame
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			System.out.println("About");
-
-			JOptionPane.showMessageDialog(null, "Matta's Best RPG Game\nVersion 0.1", "About", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(
+					null,
+					"Matta's Best RPG Game\nVersion 0.1",
+					"About",
+					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }

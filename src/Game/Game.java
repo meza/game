@@ -12,9 +12,7 @@ class Game
 
 	private void start()
 	{
-		System.out.println("before the frame created");
 		MainFrame frame = new MainFrame();
 		frame.buildFrame();
-		System.out.println("after the frame created");
 	}
 }

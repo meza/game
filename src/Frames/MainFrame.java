@@ -92,20 +92,26 @@ public class MainFrame
 
 			JPanel raceSelectorPanelUpper = new JPanel(new GridLayout(1, 3));
 			JPanel raceSelectorPanelLower = new JPanel(new GridLayout(1, 3));
-			JPanel firstRacePicPanel = new JPanel();
-			JPanel secondRacePicPanel = new JPanel();
-			JPanel thirdRacePicPanel = new JPanel();
-			JPanel firstRaceInfoPanel = new JPanel();
-			JPanel secondRaceInfoPanel = new JPanel();
-			JPanel thirdRaceInfoPanel = new JPanel();
+			JPanel raceImagePanel1 = new JPanel();
+			JPanel raceImagePanel2 = new JPanel();
+			JPanel raceImagePanel3 = new JPanel();
+			JPanel raceInfoPanel1 = new JPanel();
+			JPanel raceInfoPanel2 = new JPanel();
+			JPanel raceInfoPanel3 = new JPanel();
 
-			raceSelectorPanelUpper.add(BorderLayout.CENTER, firstRacePicPanel);
-			raceSelectorPanelUpper.add(BorderLayout.CENTER, secondRacePicPanel);
-			raceSelectorPanelUpper.add(BorderLayout.CENTER, thirdRacePicPanel);
+			raceImagePanel1.setBackground(Color.darkGray);
+			raceImagePanel2.setBackground(Color.darkGray);
+			raceImagePanel3.setBackground(Color.darkGray);
+			raceInfoPanel1.setBackground(Color.darkGray);
+			raceInfoPanel2.setBackground(Color.darkGray);
+			raceInfoPanel3.setBackground(Color.darkGray);
 
-			raceSelectorPanelLower.add(BorderLayout.CENTER, firstRaceInfoPanel);
-			raceSelectorPanelLower.add(BorderLayout.CENTER, secondRaceInfoPanel);
-			raceSelectorPanelLower.add(BorderLayout.CENTER, thirdRaceInfoPanel);
+			raceSelectorPanelUpper.add(BorderLayout.CENTER, raceImagePanel1);
+			raceSelectorPanelUpper.add(BorderLayout.CENTER, raceImagePanel2);
+			raceSelectorPanelUpper.add(BorderLayout.CENTER, raceImagePanel3);
+			raceSelectorPanelLower.add(BorderLayout.CENTER, raceInfoPanel1);
+			raceSelectorPanelLower.add(BorderLayout.CENTER, raceInfoPanel2);
+			raceSelectorPanelLower.add(BorderLayout.CENTER, raceInfoPanel3);
 
 			mainFrame.getContentPane().add(BorderLayout.CENTER, raceSelectorPanelUpper);
 			mainFrame.getContentPane().add(BorderLayout.CENTER, raceSelectorPanelLower);

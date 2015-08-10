@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 public class MainFrame
 {
 	private JFrame mainFrame;
-	private JPanel startPanel;
-	private JPanel emptyPanel;
 
 	public void buildFrame()
 	{
@@ -27,8 +25,8 @@ public class MainFrame
 		JMenuItem aboutHelpMenu = new JMenuItem("About");
 
 		mainFrame = new JFrame("Matta's Best RPG Game");
-		startPanel = new JPanel();
-		emptyPanel = new JPanel();
+		JPanel startPanel = new JPanel();
+		JPanel emptyPanel = new JPanel();
 		JPanel buttonsPanel = new JPanel(new GridLayout(2, 1));
 		JButton newGame = new JButton("New game");
 		JButton loadGame = new JButton("Load game");
@@ -90,14 +88,27 @@ public class MainFrame
 		public void actionPerformed(ActionEvent event)
 		{
 			mainFrame.getContentPane().removeAll();
-			mainFrame.setTitle("Matta's Best RPG Game - Select race");
+			mainFrame.setTitle("Matta's Best RPG Game - Select Race");
 
-			JPanel characterCreatorPanelUpper = new JPanel();
-			JPanel characterCreatorPanelLower = new JPanel();
-			characterCreatorPanelUpper.setBackground(Color.yellow);
-			characterCreatorPanelLower.setBackground(Color.green);
-			mainFrame.getContentPane().add(BorderLayout.CENTER, characterCreatorPanelUpper);
-			mainFrame.getContentPane().add(BorderLayout.CENTER, characterCreatorPanelLower);
+			JPanel raceSelectorPanelUpper = new JPanel(new GridLayout(1, 3));
+			JPanel raceSelectorPanelLower = new JPanel(new GridLayout(1, 3));
+			JPanel firstRacePicPanel = new JPanel();
+			JPanel secondRacePicPanel = new JPanel();
+			JPanel thirdRacePicPanel = new JPanel();
+			JPanel firstRaceInfoPanel = new JPanel();
+			JPanel secondRaceInfoPanel = new JPanel();
+			JPanel thirdRaceInfoPanel = new JPanel();
+
+			raceSelectorPanelUpper.add(BorderLayout.CENTER, firstRacePicPanel);
+			raceSelectorPanelUpper.add(BorderLayout.CENTER, secondRacePicPanel);
+			raceSelectorPanelUpper.add(BorderLayout.CENTER, thirdRacePicPanel);
+
+			raceSelectorPanelLower.add(BorderLayout.CENTER, firstRaceInfoPanel);
+			raceSelectorPanelLower.add(BorderLayout.CENTER, secondRaceInfoPanel);
+			raceSelectorPanelLower.add(BorderLayout.CENTER, thirdRaceInfoPanel);
+
+			mainFrame.getContentPane().add(BorderLayout.CENTER, raceSelectorPanelUpper);
+			mainFrame.getContentPane().add(BorderLayout.CENTER, raceSelectorPanelLower);
 			mainFrame.validate();
 		}
 	}

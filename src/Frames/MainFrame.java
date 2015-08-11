@@ -98,6 +98,12 @@ public class MainFrame
 			JPanel raceInfoPanel1 = new JPanel();
 			JPanel raceInfoPanel2 = new JPanel();
 			JPanel raceInfoPanel3 = new JPanel();
+			JTextArea vampireInfo = new JTextArea(10, 20);
+			JTextArea dwarfInfo = new JTextArea(10, 20);
+			JTextArea elfInfo = new JTextArea(10, 20);
+			String elfText1 = "Elves are slender and beautiful as well as annoying. They live in forests where they ";
+			String elfText2 = "molest small animals and play boring music all night long. They are the perfect choice ";
+			String elfText3 = "for depressed and sociopathic players who feel undervalued and misunderstood.";
 
 			raceImagePanel1.setBackground(Color.darkGray);
 			raceImagePanel2.setBackground(Color.darkGray);
@@ -105,6 +111,36 @@ public class MainFrame
 			raceInfoPanel1.setBackground(Color.darkGray);
 			raceInfoPanel2.setBackground(Color.darkGray);
 			raceInfoPanel3.setBackground(Color.darkGray);
+
+			Font raceInfoFont = new Font("monospace", Font.PLAIN, 15);
+
+			vampireInfo.setText("The vampires 'life' is all about sucking.");
+			vampireInfo.setFont(raceInfoFont);
+			vampireInfo.setBackground(Color.darkGray);
+			vampireInfo.setForeground(Color.white);
+			vampireInfo.setLineWrap(true);
+			elfInfo.setWrapStyleWord(true);
+			vampireInfo.setEditable(false);
+
+			dwarfInfo.setText("Dwarf text.");
+			dwarfInfo.setFont(raceInfoFont);
+			dwarfInfo.setBackground(Color.darkGray);
+			dwarfInfo.setForeground(Color.white);
+			dwarfInfo.setLineWrap(true);
+			elfInfo.setWrapStyleWord(true);
+			dwarfInfo.setEditable(false);
+
+			elfInfo.setText(elfText1 + elfText2 + elfText3);
+			elfInfo.setFont(raceInfoFont);
+			elfInfo.setBackground(Color.darkGray);
+			elfInfo.setForeground(Color.white);
+			elfInfo.setLineWrap(true);
+			elfInfo.setWrapStyleWord(true);
+			elfInfo.setEditable(false);
+
+			raceInfoPanel1.add(vampireInfo);
+			raceInfoPanel2.add(dwarfInfo);
+			raceInfoPanel3.add(elfInfo);
 
 			raceSelectorPanelUpper.add(BorderLayout.CENTER, raceImagePanel1);
 			raceSelectorPanelUpper.add(BorderLayout.CENTER, raceImagePanel2);

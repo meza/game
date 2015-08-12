@@ -1,6 +1,8 @@
 package Frames;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +10,9 @@ import java.awt.event.ActionListener;
 public class MainFrame
 {
 	private JFrame mainFrame;
+	private final Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
+	private final Font menuFont = new Font("Monospaced", Font.BOLD, 15);
+	private final Border buttonBorder = new LineBorder(Color.WHITE, 2, true);
 
 	public void buildFrame()
 	{
@@ -23,30 +28,79 @@ public class MainFrame
 		JMenuItem helpHelpMenu = new JMenuItem("Help");
 		JMenuItem updateHelpMenu = new JMenuItem("Check for update");
 		JMenuItem aboutHelpMenu = new JMenuItem("About");
-
-		mainFrame = new JFrame("Matta's Best RPG Game");
 		JPanel startPanel = new JPanel();
 		JPanel emptyPanel = new JPanel();
 		JPanel buttonsPanel = new JPanel(new GridLayout(2, 1));
 		JButton newGame = new JButton("New game");
 		JButton loadGame = new JButton("Load game");
-		Font font = new Font("Monospaced", Font.BOLD, 20);
+		mainFrame = new JFrame("Matta's Best RPG Game");
 
-		menuBar.add(gameMenu);
-		menuBar.add(optionsMenu);
-		menuBar.add(helpMenu);
+		//add menu items and format them
+		newGameMenu.setBackground(Color.darkGray);
+		newGameMenu.setForeground(Color.white);
+		newGameMenu.setFont(menuFont);
+		newGameMenu.setBorder(buttonBorder);
 
+		loadGameMenu.setBackground(Color.darkGray);
+		loadGameMenu.setForeground(Color.white);
+		loadGameMenu.setFont(menuFont);
+		loadGameMenu.setBorder(buttonBorder);
+
+		saveGameMenu.setBackground(Color.darkGray);
+		saveGameMenu.setForeground(Color.white);
+		saveGameMenu.setFont(menuFont);
+		saveGameMenu.setBorder(buttonBorder);
+
+		quitGameMenu.setBackground(Color.darkGray);
+		quitGameMenu.setForeground(Color.white);
+		quitGameMenu.setFont(menuFont);
+		quitGameMenu.setBorder(buttonBorder);
+
+		settingsOptionsMenu.setBackground(Color.darkGray);
+		settingsOptionsMenu.setForeground(Color.white);
+		settingsOptionsMenu.setFont(menuFont);
+		settingsOptionsMenu.setBorder(buttonBorder);
+
+		helpHelpMenu.setBackground(Color.darkGray);
+		helpHelpMenu.setForeground(Color.white);
+		helpHelpMenu.setFont(menuFont);
+		helpHelpMenu.setBorder(buttonBorder);
+
+		updateHelpMenu.setBackground(Color.darkGray);
+		updateHelpMenu.setForeground(Color.white);
+		updateHelpMenu.setFont(menuFont);
+		updateHelpMenu.setBorder(buttonBorder);
+
+		aboutHelpMenu.setBackground(Color.darkGray);
+		aboutHelpMenu.setForeground(Color.white);
+		aboutHelpMenu.setFont(menuFont);
+		aboutHelpMenu.setBorder(buttonBorder);
+
+		//add menu items to menus and format the menus
 		gameMenu.add(newGameMenu);
 		gameMenu.add(loadGameMenu);
 		gameMenu.add(saveGameMenu);
 		gameMenu.add(quitGameMenu);
+		gameMenu.setForeground(Color.white);
+		gameMenu.setFont(menuFont);
 
 		optionsMenu.add(settingsOptionsMenu);
+		optionsMenu.setForeground(Color.white);
+		optionsMenu.setFont(menuFont);
 
 		helpMenu.add(helpHelpMenu);
 		helpMenu.add(updateHelpMenu);
 		helpMenu.add(aboutHelpMenu);
+		helpMenu.setForeground(Color.white);
+		helpMenu.setFont(menuFont);
 
+		//add menus to menu bar and format the bar
+		menuBar.add(gameMenu);
+		menuBar.add(optionsMenu);
+		menuBar.add(helpMenu);
+		menuBar.setBackground(Color.darkGray);
+
+		//add action listeners to the menu items
 		newGameMenu.addActionListener(new NewGameListener());
 		loadGameMenu.addActionListener(new LoadGameListener());
 		saveGameMenu.addActionListener(new SaveGameListener());
@@ -56,14 +110,22 @@ public class MainFrame
 		updateHelpMenu.addActionListener(new UpdateGameListener());
 		aboutHelpMenu.addActionListener(new AboutGameListener());
 
-		mainFrame.setJMenuBar(menuBar);
+		//format the buttons
+		newGame.setBackground(Color.darkGray);
+		newGame.setForeground(Color.white);
+		newGame.setFont(buttonFont);
+		newGame.setBorder(buttonBorder);
 
-		newGame.setFont(font);
+		loadGame.setBackground(Color.darkGray);
+		loadGame.setForeground(Color.white);
+		loadGame.setFont(buttonFont);
+		loadGame.setBorder(buttonBorder);
+
+		//add action listeners to the buttons
 		newGame.addActionListener(new NewGameListener());
-
-		loadGame.setFont(font);
 		loadGame.addActionListener(new LoadGameListener());
 
+		//format the panels, add buttons
 		emptyPanel.setBackground(Color.darkGray);
 
 		buttonsPanel.setPreferredSize(new Dimension(200, 100));
@@ -74,6 +136,8 @@ public class MainFrame
 		startPanel.add(buttonsPanel);
 		startPanel.setBackground(Color.darkGray);
 
+		//add everything to the frame, format the frame
+		mainFrame.setJMenuBar(menuBar);
 		mainFrame.setLayout(new GridLayout(2, 1));
 		mainFrame.getContentPane().add(BorderLayout.CENTER, emptyPanel);
 		mainFrame.getContentPane().add(BorderLayout.CENTER, startPanel);
@@ -87,9 +151,6 @@ public class MainFrame
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			mainFrame.getContentPane().removeAll();
-			mainFrame.setTitle("Matta's Best RPG Game - Select Race");
-
 			JPanel raceSelectorPanelUpper = new JPanel(new GridLayout(1, 3));
 			JPanel raceSelectorPanelLower = new JPanel(new GridLayout(1, 3));
 			JPanel raceImagePanel1 = new JPanel();
@@ -101,6 +162,11 @@ public class MainFrame
 			JTextArea vampireInfo = new JTextArea();
 			JTextArea dwarfInfo = new JTextArea();
 			JTextArea elfInfo = new JTextArea();
+			JButton selectRace1 = new JButton();
+			JButton selectRace2 = new JButton();
+			JButton selectRace3 = new JButton();
+
+			//add race descriptions
 			String elfText1 = "Elves are slender and beautiful as well as annoying. They live in forests where they ";
 			String elfText2 = "molest small animals and play boring music all night long. They are the perfect choice ";
 			String elfText3 = "for depressed and sociopathic players who feel undervalued and misunderstood.";
@@ -112,51 +178,84 @@ public class MainFrame
 			String vampireText3 = "and sleep while the sun is shining. They are the perfect choice for 'The Nobodies' ";
 			String vampireText4 = "whom think they are 'Somebodies'.";
 
-			raceImagePanel1.setBackground(Color.darkGray);
-			raceImagePanel2.setBackground(Color.darkGray);
-			raceImagePanel3.setBackground(Color.darkGray);
-			raceInfoPanel1.setBackground(Color.darkGray);
-			raceInfoPanel2.setBackground(Color.darkGray);
-			raceInfoPanel3.setBackground(Color.darkGray);
-
-			Font raceInfoFont = new Font("monospace", Font.PLAIN, 15);
+			//format the race descriptions
+			Font infoFont = new Font("Monospaced", Font.BOLD, 20);
 
 			vampireInfo.setText(vampireText1 + vampireText2 + vampireText3 + vampireText4);
-			vampireInfo.setFont(raceInfoFont);
+			vampireInfo.setFont(infoFont);
 			vampireInfo.setBackground(Color.darkGray);
 			vampireInfo.setForeground(Color.white);
 			vampireInfo.setLineWrap(true);
 			vampireInfo.setWrapStyleWord(true);
 			vampireInfo.setEditable(false);
-			vampireInfo.setMinimumSize(new Dimension(200, 250));
-			vampireInfo.setMaximumSize(new Dimension(500, 500));
+			vampireInfo.setMinimumSize(new Dimension(200, 200));
+			vampireInfo.setMaximumSize(new Dimension(400, 400));
 			vampireInfo.setPreferredSize(new Dimension(300, 300));
 
 			dwarfInfo.setText(dwarfText1 + dwarfText2 + dwarfText3);
-			dwarfInfo.setFont(raceInfoFont);
+			dwarfInfo.setFont(infoFont);
 			dwarfInfo.setBackground(Color.darkGray);
 			dwarfInfo.setForeground(Color.white);
 			dwarfInfo.setLineWrap(true);
 			dwarfInfo.setWrapStyleWord(true);
 			dwarfInfo.setEditable(false);
-			dwarfInfo.setMinimumSize(new Dimension(200, 250));
-			dwarfInfo.setMaximumSize(new Dimension(500, 500));
+			dwarfInfo.setMinimumSize(new Dimension(200, 200));
+			dwarfInfo.setMaximumSize(new Dimension(400, 400));
 			dwarfInfo.setPreferredSize(new Dimension(300, 300));
 
 			elfInfo.setText(elfText1 + elfText2 + elfText3);
-			elfInfo.setFont(raceInfoFont);
+			elfInfo.setFont(infoFont);
 			elfInfo.setBackground(Color.darkGray);
 			elfInfo.setForeground(Color.white);
 			elfInfo.setLineWrap(true);
 			elfInfo.setWrapStyleWord(true);
 			elfInfo.setEditable(false);
-			elfInfo.setMinimumSize(new Dimension(200, 250));
-			elfInfo.setMaximumSize(new Dimension(500, 500));
+			elfInfo.setMinimumSize(new Dimension(200, 200));
+			elfInfo.setMaximumSize(new Dimension(400, 400));
 			elfInfo.setPreferredSize(new Dimension(300, 300));
 
+			//format the buttons
+			selectRace1.setText("Select this race");
+			selectRace1.setFont(buttonFont);
+			selectRace1.setBorder(buttonBorder);
+			selectRace1.setBackground(Color.darkGray);
+			selectRace1.setForeground(Color.white);
+
+			selectRace2.setText("Select this race");
+			selectRace2.setFont(buttonFont);
+			selectRace2.setBorder(buttonBorder);
+			selectRace2.setBackground(Color.darkGray);
+			selectRace2.setForeground(Color.white);
+
+			selectRace3.setText("Select this race");
+			selectRace3.setFont(buttonFont);
+			selectRace3.setBorder(buttonBorder);
+			selectRace3.setBackground(Color.darkGray);
+			selectRace3.setForeground(Color.white);
+
+			//add action listeners to the buttons
+			selectRace1.addActionListener(new VampireRaceSelectedListener());
+			selectRace2.addActionListener(new DwarfRaceSelectedListener());
+			selectRace3.addActionListener(new ElfRaceSelectedListener());
+
+			//format the race panels
+			raceImagePanel1.setBackground(Color.darkGray);
+			raceImagePanel2.setBackground(Color.darkGray);
+			raceImagePanel3.setBackground(Color.darkGray);
+			raceInfoPanel1.setBackground(Color.darkGray);
+			raceInfoPanel1.setLayout(new BoxLayout(raceInfoPanel1, BoxLayout.Y_AXIS));
+			raceInfoPanel2.setBackground(Color.darkGray);
+			raceInfoPanel2.setLayout(new BoxLayout(raceInfoPanel2, BoxLayout.Y_AXIS));
+			raceInfoPanel3.setBackground(Color.darkGray);
+			raceInfoPanel3.setLayout(new BoxLayout(raceInfoPanel3, BoxLayout.Y_AXIS));
+
+			//add info and buttons to the panels
 			raceInfoPanel1.add(vampireInfo);
+			raceInfoPanel1.add(selectRace1);
 			raceInfoPanel2.add(dwarfInfo);
+			raceInfoPanel2.add(selectRace2);
 			raceInfoPanel3.add(elfInfo);
+			raceInfoPanel3.add(selectRace3);
 
 			raceSelectorPanelUpper.add(BorderLayout.CENTER, raceImagePanel1);
 			raceSelectorPanelUpper.add(BorderLayout.CENTER, raceImagePanel2);
@@ -165,6 +264,9 @@ public class MainFrame
 			raceSelectorPanelLower.add(BorderLayout.CENTER, raceInfoPanel2);
 			raceSelectorPanelLower.add(BorderLayout.CENTER, raceInfoPanel3);
 
+			//remove previous panels, add new panels
+			mainFrame.getContentPane().removeAll();
+			mainFrame.setTitle("Matta's Best RPG Game - Select Race");
 			mainFrame.getContentPane().add(BorderLayout.CENTER, raceSelectorPanelUpper);
 			mainFrame.getContentPane().add(BorderLayout.CENTER, raceSelectorPanelLower);
 			mainFrame.validate();
@@ -241,6 +343,30 @@ public class MainFrame
 					"Matta's Best RPG Game\nVersion 0.1",
 					"About",
 					JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+	private class VampireRaceSelectedListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			System.out.println("Vampire selected");
+		}
+	}
+
+	private class DwarfRaceSelectedListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			System.out.println("Dwarf selected");
+		}
+	}
+
+	private class ElfRaceSelectedListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			System.out.println("Elf selected");
 		}
 	}
 }

@@ -98,12 +98,19 @@ public class MainFrame
 			JPanel raceInfoPanel1 = new JPanel();
 			JPanel raceInfoPanel2 = new JPanel();
 			JPanel raceInfoPanel3 = new JPanel();
-			JTextArea vampireInfo = new JTextArea(10, 20);
-			JTextArea dwarfInfo = new JTextArea(10, 20);
-			JTextArea elfInfo = new JTextArea(10, 20);
+			JTextArea vampireInfo = new JTextArea();
+			JTextArea dwarfInfo = new JTextArea();
+			JTextArea elfInfo = new JTextArea();
 			String elfText1 = "Elves are slender and beautiful as well as annoying. They live in forests where they ";
 			String elfText2 = "molest small animals and play boring music all night long. They are the perfect choice ";
 			String elfText3 = "for depressed and sociopathic players who feel undervalued and misunderstood.";
+			String dwarfText1 = "Dwarves have bad tempers and worse body odour. They rarely came out of their caves, ";
+			String dwarfText2 = "much to the relief of all other races. They are the race of choice for people who ";
+			String dwarfText3 = "speak with fake scottish accents at renaissance faires and feel uneasy around women.";
+			String vampireText1 = "Vampires are stupid. They think they rule the night while they do nothing else ";
+			String vampireText2 = "just sucking. The vampires 'life' is all about sucking. They suck all night long ";
+			String vampireText3 = "and sleep while the sun is shining. They are the perfect choice for 'The Nobodies' ";
+			String vampireText4 = "whom think they are 'Somebodies'.";
 
 			raceImagePanel1.setBackground(Color.darkGray);
 			raceImagePanel2.setBackground(Color.darkGray);
@@ -114,21 +121,27 @@ public class MainFrame
 
 			Font raceInfoFont = new Font("monospace", Font.PLAIN, 15);
 
-			vampireInfo.setText("The vampires 'life' is all about sucking.");
+			vampireInfo.setText(vampireText1 + vampireText2 + vampireText3 + vampireText4);
 			vampireInfo.setFont(raceInfoFont);
 			vampireInfo.setBackground(Color.darkGray);
 			vampireInfo.setForeground(Color.white);
 			vampireInfo.setLineWrap(true);
-			elfInfo.setWrapStyleWord(true);
+			vampireInfo.setWrapStyleWord(true);
 			vampireInfo.setEditable(false);
+			vampireInfo.setMinimumSize(new Dimension(200, 250));
+			vampireInfo.setMaximumSize(new Dimension(500, 500));
+			vampireInfo.setPreferredSize(new Dimension(300, 300));
 
-			dwarfInfo.setText("Dwarf text.");
+			dwarfInfo.setText(dwarfText1 + dwarfText2 + dwarfText3);
 			dwarfInfo.setFont(raceInfoFont);
 			dwarfInfo.setBackground(Color.darkGray);
 			dwarfInfo.setForeground(Color.white);
 			dwarfInfo.setLineWrap(true);
-			elfInfo.setWrapStyleWord(true);
+			dwarfInfo.setWrapStyleWord(true);
 			dwarfInfo.setEditable(false);
+			dwarfInfo.setMinimumSize(new Dimension(200, 250));
+			dwarfInfo.setMaximumSize(new Dimension(500, 500));
+			dwarfInfo.setPreferredSize(new Dimension(300, 300));
 
 			elfInfo.setText(elfText1 + elfText2 + elfText3);
 			elfInfo.setFont(raceInfoFont);
@@ -137,6 +150,9 @@ public class MainFrame
 			elfInfo.setLineWrap(true);
 			elfInfo.setWrapStyleWord(true);
 			elfInfo.setEditable(false);
+			elfInfo.setMinimumSize(new Dimension(200, 250));
+			elfInfo.setMaximumSize(new Dimension(500, 500));
+			elfInfo.setPreferredSize(new Dimension(300, 300));
 
 			raceInfoPanel1.add(vampireInfo);
 			raceInfoPanel2.add(dwarfInfo);

@@ -11,6 +11,7 @@ public class MainFrame
 {
 	private JFrame mainFrame;
 	private final Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
+	private final Font infoFont = new Font("Monospaced", Font.BOLD, 20);
 	private final Font menuFont = new Font("Monospaced", Font.BOLD, 15);
 	private final Border buttonBorder = new LineBorder(Color.WHITE, 2, true);
 
@@ -179,8 +180,6 @@ public class MainFrame
 			String vampireText4 = "whom think they are 'Somebodies'.";
 
 			//format the race descriptions
-			Font infoFont = new Font("Monospaced", Font.BOLD, 20);
-
 			vampireInfo.setText(vampireText1 + vampireText2 + vampireText3 + vampireText4);
 			vampireInfo.setFont(infoFont);
 			vampireInfo.setBackground(Color.darkGray);
@@ -350,7 +349,72 @@ public class MainFrame
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			System.out.println("Vampire selected");
+			JPanel characterNamePanel = new JPanel();
+			JPanel characterStatPanel = new JPanel();
+			JTextArea characterNameLabel = new JTextArea();
+			JTextArea characterStatLabel = new JTextArea();
+			JTextArea availableStatPointsLabel = new JTextArea();
+			JTextField characterNameField = new JTextField("Sucker");
+
+			characterNameLabel.setText(" Add your character name: ");
+			characterNameLabel.setFont(infoFont);
+			characterNameLabel.setBackground(Color.darkGray);
+			characterNameLabel.setForeground(Color.white);
+			characterNameLabel.setLineWrap(true);
+			characterNameLabel.setWrapStyleWord(true);
+			characterNameLabel.setEditable(false);
+			characterNameLabel.setMinimumSize(new Dimension(300, 40));
+			characterNameLabel.setMaximumSize(new Dimension(300, 40));
+			characterNameLabel.setPreferredSize(new Dimension(300, 40));
+
+			characterNameField.setFont(infoFont);
+			characterNameField.setBackground(Color.darkGray);
+			characterNameField.setForeground(Color.white);
+			characterNameField.setMinimumSize(new Dimension(300, 40));
+			characterNameField.setMaximumSize(new Dimension(300, 40));
+			characterNameField.setPreferredSize(new Dimension(300, 40));
+
+			characterStatLabel.setText(" Generate your character ");
+			characterStatLabel.setFont(infoFont);
+			characterStatLabel.setBackground(Color.darkGray);
+			characterStatLabel.setForeground(Color.white);
+			characterStatLabel.setLineWrap(true);
+			characterStatLabel.setWrapStyleWord(true);
+			characterStatLabel.setEditable(false);
+			characterStatLabel.setMinimumSize(new Dimension(300, 40));
+			characterStatLabel.setMaximumSize(new Dimension(300, 40));
+			characterStatLabel.setPreferredSize(new Dimension(300, 40));
+
+			availableStatPointsLabel.setText(" Available stat points ");
+			availableStatPointsLabel.setFont(infoFont);
+			availableStatPointsLabel.setBackground(Color.darkGray);
+			availableStatPointsLabel.setForeground(Color.white);
+			availableStatPointsLabel.setLineWrap(true);
+			availableStatPointsLabel.setWrapStyleWord(true);
+			availableStatPointsLabel.setEditable(false);
+			availableStatPointsLabel.setMinimumSize(new Dimension(300, 40));
+			availableStatPointsLabel.setMaximumSize(new Dimension(300, 40));
+			availableStatPointsLabel.setPreferredSize(new Dimension(300, 40));
+
+
+
+			characterNamePanel.setLayout(new BoxLayout(characterNamePanel, BoxLayout.Y_AXIS));
+			characterNamePanel.setBackground(Color.darkGray);
+			characterNamePanel.add(characterNameLabel);
+			characterNamePanel.add(characterNameField);
+
+			characterStatPanel.setLayout(new BoxLayout(characterStatPanel, BoxLayout.Y_AXIS));
+			characterStatPanel.setBackground(Color.darkGray);
+			characterStatPanel.add(characterStatLabel);
+			characterStatPanel.add(availableStatPointsLabel);
+
+
+			mainFrame.getContentPane().removeAll();
+			mainFrame.setTitle("Matta's Best RPG Game - Vampire Character Generation");
+			mainFrame.setLayout(new BorderLayout());
+			mainFrame.getContentPane().add(BorderLayout.WEST, characterNamePanel);
+			mainFrame.getContentPane().add(BorderLayout.CENTER, characterStatPanel);
+			mainFrame.validate();
 		}
 	}
 
@@ -358,7 +422,9 @@ public class MainFrame
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			System.out.println("Dwarf selected");
+			mainFrame.getContentPane().removeAll();
+			mainFrame.setTitle("Matta's Best RPG Game - Dwarf Character Generation");
+			mainFrame.validate();
 		}
 	}
 
@@ -366,7 +432,9 @@ public class MainFrame
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			System.out.println("Elf selected");
+			mainFrame.getContentPane().removeAll();
+			mainFrame.setTitle("Matta's Best RPG Game - Elf Character Generation");
+			mainFrame.validate();
 		}
 	}
 }

@@ -36,7 +36,7 @@ public class GameContent
 		JMenuItem aboutHelpMenu = new JMenuItem("About");
 		Font menuFont = new Font("Monospaced", Font.BOLD, 15);
 
-		//add menu items and format them
+		//format the menu items
 		newGameMenu.setBackground(Color.darkGray);
 		newGameMenu.setForeground(Color.white);
 		newGameMenu.setFont(menuFont);
@@ -119,6 +119,52 @@ public class GameContent
 
 		//add menu bar to the main frame
 		mainFrame.setJMenuBar(menuBar);
+		mainFrame.validate();
+	}
+
+	public void buildMainPage()
+	{
+		JPanel startPanel = new JPanel();
+		JPanel emptyPanel = new JPanel();
+		JPanel buttonsPanel = new JPanel(new GridLayout(2, 1));
+		JButton newGameButton = new JButton("New game");
+		JButton loadGameButton = new JButton("Load game");
+		Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
+
+		//format the buttons
+		newGameButton.setBackground(Color.darkGray);
+		newGameButton.setForeground(Color.white);
+		newGameButton.setFont(buttonFont);
+		newGameButton.setBorder(border);
+
+		loadGameButton.setBackground(Color.darkGray);
+		loadGameButton.setForeground(Color.white);
+		loadGameButton.setFont(buttonFont);
+		loadGameButton.setBorder(border);
+
+		//add the buttons to the panel
+		buttonsPanel.add(newGameButton);
+		buttonsPanel.add(loadGameButton);
+
+		//format the panels
+		emptyPanel.setBackground(Color.darkGray);
+
+		buttonsPanel.setBackground(Color.darkGray);
+		buttonsPanel.setPreferredSize(new Dimension(200, 100));
+
+		startPanel.setBackground(Color.darkGray);
+
+		//
+		startPanel.add(buttonsPanel);
+
+		//add action listeners to the buttons
+		newGameButton.addActionListener(new NewGameListener());
+		loadGameButton.addActionListener(new LoadGameListener());
+
+		//add panels to the frame
+		mainFrame.setLayout(new GridLayout(2, 1));
+		mainFrame.getContentPane().add(BorderLayout.CENTER, emptyPanel);
+		mainFrame.getContentPane().add(BorderLayout.CENTER, startPanel);
 		mainFrame.validate();
 	}
 

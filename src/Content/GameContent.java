@@ -36,7 +36,6 @@ public class GameContent
 		JMenuItem aboutHelpMenu = new JMenuItem("About");
 		Font menuFont = new Font("Monospaced", Font.BOLD, 15);
 
-
 		//add menu items and format them
 		newGameMenu.setBackground(Color.darkGray);
 		newGameMenu.setForeground(Color.white);
@@ -78,28 +77,34 @@ public class GameContent
 		aboutHelpMenu.setFont(menuFont);
 		aboutHelpMenu.setBorder(border);
 
-		//add menu items to menus and format the menus
+		//add menu items to menus
 		gameMenu.add(newGameMenu);
 		gameMenu.add(loadGameMenu);
 		gameMenu.add(saveGameMenu);
 		gameMenu.add(quitGameMenu);
-		gameMenu.setForeground(Color.white);
-		gameMenu.setFont(menuFont);
 
 		optionsMenu.add(settingsOptionsMenu);
-		optionsMenu.setForeground(Color.white);
-		optionsMenu.setFont(menuFont);
 
 		helpMenu.add(helpHelpMenu);
 		helpMenu.add(updateHelpMenu);
 		helpMenu.add(aboutHelpMenu);
+
+		//format the menus
+		gameMenu.setForeground(Color.white);
+		gameMenu.setFont(menuFont);
+
+		optionsMenu.setForeground(Color.white);
+		optionsMenu.setFont(menuFont);
+
 		helpMenu.setForeground(Color.white);
 		helpMenu.setFont(menuFont);
 
-		//add menus to menu bar and format the bar
+		//add menus to menu bar
 		menuBar.add(gameMenu);
 		menuBar.add(optionsMenu);
 		menuBar.add(helpMenu);
+
+		//format the menu bar
 		menuBar.setBackground(Color.darkGray);
 
 		//add action listeners to the menu items
@@ -107,57 +112,14 @@ public class GameContent
 		loadGameMenu.addActionListener(new LoadGameListener());
 		saveGameMenu.addActionListener(new SaveGameListener());
 		quitGameMenu.addActionListener(new QuitGameListener());
-		settingsOptionsMenu.addActionListener(new SettingsGameListener());
-		helpHelpMenu.addActionListener(new HelpGameListener());
-		updateHelpMenu.addActionListener(new UpdateGameListener());
-		aboutHelpMenu.addActionListener(new AboutGameListener());
+		settingsOptionsMenu.addActionListener(new SettingsListener());
+		helpHelpMenu.addActionListener(new HelpListener());
+		updateHelpMenu.addActionListener(new UpdateListener());
+		aboutHelpMenu.addActionListener(new AboutListener());
 
+		//add menu bar to the main frame
 		mainFrame.setJMenuBar(menuBar);
 		mainFrame.validate();
-	}
-
-	public void buildMainPage()
-	{
-		addComponentsToPane(mainFrame.getContentPane());
-		mainFrame.validate();
-	}
-
-	public void addComponentsToPane(Container pane)
-	{
-		JButton newGameButton = new JButton("New game");
-		JButton loadGameButton = new JButton("Load game");
-		Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
-		GridBagConstraints newGameButtonConstraints = new GridBagConstraints();
-		GridBagConstraints loadGameButtonConstraints = new GridBagConstraints();
-
-		pane.setLayout(new GridBagLayout());
-
-		//format the buttons
-		newGameButton.setBackground(Color.darkGray);
-		newGameButton.setForeground(Color.white);
-		newGameButton.setFont(buttonFont);
-		newGameButton.setBorder(border);
-		newGameButton.setPreferredSize(new Dimension(200, 50));
-
-		loadGameButton.setBackground(Color.darkGray);
-		loadGameButton.setForeground(Color.white);
-		loadGameButton.setFont(buttonFont);
-		loadGameButton.setBorder(border);
-		loadGameButton.setPreferredSize(new Dimension(200, 50));
-
-		newGameButtonConstraints.fill = GridBagConstraints.HORIZONTAL;
-		newGameButtonConstraints.gridx = 0;
-		newGameButtonConstraints.gridy = 0;
-		pane.add(newGameButton, newGameButtonConstraints);
-
-		loadGameButtonConstraints.fill = GridBagConstraints.HORIZONTAL;
-		loadGameButtonConstraints.gridx = 0;
-		loadGameButtonConstraints.gridy = 1;
-		pane.add(loadGameButton, loadGameButtonConstraints);
-
-		//add action listeners to the buttons
-		newGameButton.addActionListener(new NewGameListener());
-		loadGameButton.addActionListener(new LoadGameListener());
 	}
 
 	private class NewGameListener implements ActionListener
@@ -198,14 +160,14 @@ public class GameContent
 					new String[]{"Yes, quit", "No, cancel"},
 					"No, cancel");
 
-			if(result == 0)
+			if (result == 0)
 			{
 				mainFrame.dispose();
 			}
 		}
 	}
 
-	private class SettingsGameListener implements ActionListener
+	private class SettingsListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
@@ -213,7 +175,7 @@ public class GameContent
 		}
 	}
 
-	private class HelpGameListener implements ActionListener
+	private class HelpListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
@@ -221,7 +183,7 @@ public class GameContent
 		}
 	}
 
-	private class UpdateGameListener implements ActionListener
+	private class UpdateListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
@@ -229,7 +191,7 @@ public class GameContent
 		}
 	}
 
-	private class AboutGameListener implements ActionListener
+	private class AboutListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{

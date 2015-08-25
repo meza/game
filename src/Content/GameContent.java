@@ -142,6 +142,10 @@ public class GameContent
 		loadGameButton.setFont(buttonFont);
 		loadGameButton.setBorder(border);
 
+		//add tooltips to the buttons
+		newGameButton.setToolTipText("Start a 'New game'");
+		loadGameButton.setToolTipText("Continue an existing game");
+
 		//add the buttons to the panel
 		buttonsPanel.add(newGameButton);
 		buttonsPanel.add(loadGameButton);
@@ -172,9 +176,91 @@ public class GameContent
 	{
 		public void actionPerformed(ActionEvent event)
 		{
+			//remove panels
+			mainFrame.getContentPane().removeAll();
+			//mainFrame.repaint();
 
+
+			JPanel panel = new JPanel();
+			panel.setLayout(new GridLayout(1, 1));
+			ImageIcon icon = new ImageIcon("/Images/vampire.jpg", "a pretty but meaningless splat");
+			JLabel label = new JLabel(icon);
+			panel.add(label);
+
+			mainFrame.getContentPane().add(panel);
+			mainFrame.validate();
+
+			//add race selector page content
+		//	buildRaceSelectorPage(mainFrame.getContentPane());
+		//	mainFrame.validate();
 		}
 	}
+
+	public static void buildRaceSelectorPage(Container pane)
+	{
+		JButton button1 = new JButton("Button 1");
+		JButton button2 = new JButton("Button 2");
+		JButton button3 = new JButton("Button 3");
+		JButton button4 = new JButton("Long-Named Button 4");
+		JButton button5 = new JButton("5");
+		GridBagConstraints c1 = new GridBagConstraints();
+		GridBagConstraints c2 = new GridBagConstraints();
+		GridBagConstraints c3 = new GridBagConstraints();
+		GridBagConstraints c4 = new GridBagConstraints();
+		GridBagConstraints c5 = new GridBagConstraints();
+
+		pane.setLayout(new GridBagLayout());
+
+		c1.weightx = 0.5;
+		c1.fill = GridBagConstraints.HORIZONTAL;
+		c1.gridx = 0;
+		c1.gridy = 0;
+		pane.add(button1, c1);
+
+		c2.fill = GridBagConstraints.HORIZONTAL;
+		c2.weightx = 0.5;
+		c2.gridx = 1;
+		c2.gridy = 0;
+		pane.add(button2, c2);
+
+		c3.fill = GridBagConstraints.HORIZONTAL;
+		c3.weightx = 0.5;
+		c3.gridx = 2;
+		c3.gridy = 0;
+		pane.add(button3, c3);
+
+		c4.fill = GridBagConstraints.HORIZONTAL;
+		c4.ipady = 40;      //make this component tall
+		c4.weightx = 0.0;
+		c4.gridwidth = 3;
+		c4.gridx = 0;
+		c4.gridy = 1;
+		pane.add(button4, c4);
+
+		c5.fill = GridBagConstraints.HORIZONTAL;
+		c5.ipady = 0;       //reset to default
+		c5.weighty = 1.0;   //request any extra vertical space
+		c5.anchor = GridBagConstraints.PAGE_END; //bottom of space
+		c5.insets = new Insets(10,0,0,0);  //top padding
+		c5.gridx = 1;       //aligned with button 2
+		c5.gridwidth = 2;   //2 columns wide
+		c5.gridy = 2;       //third row
+		pane.add(button5, c5);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	private class LoadGameListener implements ActionListener
 	{

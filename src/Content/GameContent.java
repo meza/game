@@ -78,13 +78,16 @@ public class GameContent
 		aboutHelpMenu.setFont(menuFont);
 		aboutHelpMenu.setBorder(border);
 
+		//disable save game option because no current game
+		saveGameMenu.setEnabled(false);
+
 		//add tooltip for the menu items
 		newGameMenu.setToolTipText("Start a 'New game'");
 		loadGameMenu.setToolTipText("Continue an existing game");
 		saveGameMenu.setToolTipText("Save the current game");
 		quitGameMenu.setToolTipText("Quit from the game");
 		settingsOptionsMenu.setToolTipText("Basic settings");
-		helpHelpMenu.setToolTipText("You can find some helps here");
+		helpHelpMenu.setToolTipText("You can find some help here");
 		updateHelpMenu.setToolTipText("Check for new updates");
 		aboutHelpMenu.setToolTipText("About the game");
 

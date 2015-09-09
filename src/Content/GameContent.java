@@ -78,6 +78,16 @@ public class GameContent
 		aboutHelpMenu.setFont(menuFont);
 		aboutHelpMenu.setBorder(border);
 
+		//add tooltip for the menu items
+		newGameMenu.setToolTipText("Start a 'New game'");
+		loadGameMenu.setToolTipText("Continue an existing game");
+		saveGameMenu.setToolTipText("Save the current game");
+		quitGameMenu.setToolTipText("Quit from the game");
+		settingsOptionsMenu.setToolTipText("Basic settings");
+		helpHelpMenu.setToolTipText("You can find some helps here");
+		updateHelpMenu.setToolTipText("Check for new updates");
+		aboutHelpMenu.setToolTipText("About the game");
+
 		//add menu items to menus
 		gameMenu.add(newGameMenu);
 		gameMenu.add(loadGameMenu);

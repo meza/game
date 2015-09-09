@@ -6,10 +6,11 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 public class GameContent
 {
-	private JFrame mainFrame = new JFrame("Matta's Best RPG Game");
+	private final JFrame mainFrame = new JFrame("Matta's Best RPG Game");
 	private final Border border = new LineBorder(Color.WHITE, 2, true);
 
 	public void buildMainFrame()
@@ -176,24 +177,40 @@ public class GameContent
 	{
 		public void actionPerformed(ActionEvent event)
 		{
+			JPanel vampirePanel = new JPanel();
+			JPanel dwarfPanel = new JPanel();
+			JPanel elfPanel = new JPanel();
+			ImageIcon vampireIcon = new ImageIcon();
+			ImageIcon dwarfIcon = new ImageIcon();
+			ImageIcon elfIcon = new ImageIcon();
+			String vampireInfo;
+			String dwarfInfo;
+			String elfInfo;
+			JButton selectVampire = new JButton();
+			JButton selectDwarf = new JButton();
+			JButton selectElf = new JButton();
+
+			/*ImageIcon icon = createImageIcon("/Images/elf.jpg", "Elf");
+			JLabel label = new JLabel("rewrwerwer", icon, JLabel.CENTER);
+			panel.add(label);*/
+
 			//remove panels
 			mainFrame.getContentPane().removeAll();
-			//mainFrame.repaint();
-
-
-			JPanel panel = new JPanel();
-			panel.setLayout(new GridLayout(1, 1));
-			ImageIcon icon = new ImageIcon("/Images/vampire.jpg", "a pretty but meaningless splat");
-			JLabel label = new JLabel(icon);
-			panel.add(label);
-
-			mainFrame.getContentPane().add(panel);
+			mainFrame.setLayout(new GridLayout(3, 2));
+			mainFrame.repaint();
+			mainFrame.getContentPane().add(vampirePanel);
 			mainFrame.validate();
 
 			//add race selector page content
 		//	buildRaceSelectorPage(mainFrame.getContentPane());
 		//	mainFrame.validate();
 		}
+	}
+
+	private ImageIcon createImageIcon(String path, String description)
+	{
+		URL imgURL = NewGameListener.class.getResource(path);
+		return new ImageIcon(imgURL, description);
 	}
 
 	public static void buildRaceSelectorPage(Container pane)

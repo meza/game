@@ -193,25 +193,84 @@ public class GameContent
 			JPanel vampirePanel = new JPanel();
 			JPanel dwarfPanel = new JPanel();
 			JPanel elfPanel = new JPanel();
-			ImageIcon vampireIcon = new ImageIcon();
-			ImageIcon dwarfIcon = new ImageIcon();
-			ImageIcon elfIcon = new ImageIcon();
-			String vampireInfo;
-			String dwarfInfo;
-			String elfInfo;
-			JButton selectVampire = new JButton();
-			JButton selectDwarf = new JButton();
-			JButton selectElf = new JButton();
+			JLabel vampireLabel;
+			JLabel dwarfLabel;
+			JLabel elfLabel;
+			ImageIcon vampireIcon;
+			ImageIcon dwarfIcon;
+			ImageIcon elfIcon;
+			String vampireInfo1;
+			String vampireInfo2;
+			String vampireInfo3;
+			String vampireInfo4;
+			String dwarfInfo1;
+			String dwarfInfo2;
+			String dwarfInfo3;
+			String elfInfo1;
+			String elfInfo2;
+			String elfInfo3;
+			JButton selectVampireButton = new JButton("Select the Vampire");
+			JButton selectDwarfButton = new JButton("Select the Dwarf");
+			JButton selectElfButton = new JButton("Select the Elf");
+
+			//create race icons
+			vampireIcon = createImageIcon("/Images/vampire.jpg", "The shame of the species");
+			dwarfIcon = createImageIcon("/Images/dwarf.jpg", "Worst of the worsts");
+			elfIcon = createImageIcon("/Images/elf.jpg", "A fat and ugly elf");
+
+			//create race description
+			vampireInfo1 = "Vampires are stupid. They think they rule the night while they do nothing else just ";
+			vampireInfo2 = "sucking. The vampires 'life' is all about sucking. They suck all night long and sleep";
+			vampireInfo3 = " while the sun is shining. They are the perfect choice for 'The Nobodies' whom think ";
+			vampireInfo4 = "they are 'Somebodies'.";
+			dwarfInfo1 = "Dwarves have bad tempers and worse body odour. They rarely came out of their caves, much ";
+			dwarfInfo2 = "to the relief of all other races. They are the race of choice for people who speak ";
+			dwarfInfo3 = "with fake scottish accents at renaissance faires and feel uneasy around women.";
+			elfInfo1 = "Elves are slender and beautiful as well as annoying. They live in forests where they ";
+			elfInfo2 = "molest small animals and play boring music all night long. They are the perfect choice ";
+			elfInfo3 = "for depressed and sociopathic players who feel undervalued and misunderstood.";
+
+			//put icons and race descriptions together
+			vampireLabel = new JLabel(
+					vampireInfo1 + vampireInfo2 + vampireInfo3 + vampireInfo4,
+					vampireIcon,
+					JLabel.CENTER );
+			dwarfLabel = new JLabel(
+					dwarfInfo1 + dwarfInfo2 + dwarfInfo3,
+					dwarfIcon,
+					JLabel.CENTER);
+			elfLabel = new JLabel(
+					elfInfo1 + elfInfo2 + elfInfo3,
+					elfIcon,
+					JLabel.CENTER);
+
 
 			/*ImageIcon icon = createImageIcon("/Images/elf.jpg", "Elf");
 			JLabel label = new JLabel("rewrwerwer", icon, JLabel.CENTER);
 			panel.add(label);*/
 
+			//set panels layout
+			vampirePanel.setLayout(new BoxLayout(vampirePanel, BoxLayout.PAGE_AXIS));
+			dwarfPanel.setLayout(new BoxLayout(dwarfPanel, BoxLayout.PAGE_AXIS));
+			elfPanel.setLayout(new BoxLayout(elfPanel, BoxLayout.PAGE_AXIS));
+
+			//add content to the panels
+			vampirePanel.add(vampireLabel);
+			vampirePanel.add(selectVampireButton);
+
+			dwarfPanel.add(dwarfLabel);
+			dwarfPanel.add(selectDwarfButton);
+
+			elfPanel.add(elfLabel);
+			elfPanel.add(selectElfButton);
+
 			//remove panels
 			mainFrame.getContentPane().removeAll();
-			mainFrame.setLayout(new GridLayout(3, 2));
+			mainFrame.setLayout(new GridLayout(1, 3));
 			mainFrame.repaint();
 			mainFrame.getContentPane().add(vampirePanel);
+			mainFrame.getContentPane().add(dwarfPanel);
+			mainFrame.getContentPane().add(elfPanel);
 			mainFrame.validate();
 
 			//add race selector page content

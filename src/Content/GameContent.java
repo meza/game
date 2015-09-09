@@ -172,7 +172,7 @@ public class GameContent
 
 		startPanel.setBackground(Color.darkGray);
 
-		//
+		//add panel to set the buttons size
 		startPanel.add(buttonsPanel);
 
 		//add action listeners to the buttons
@@ -199,16 +199,16 @@ public class GameContent
 			ImageIcon vampireIcon;
 			ImageIcon dwarfIcon;
 			ImageIcon elfIcon;
-			String vampireInfo1;
-			String vampireInfo2;
-			String vampireInfo3;
-			String vampireInfo4;
-			String dwarfInfo1;
-			String dwarfInfo2;
-			String dwarfInfo3;
-			String elfInfo1;
-			String elfInfo2;
-			String elfInfo3;
+			String vampireInfo1 = "Vampires are stupid. They think they rule the night while they do nothing else ";
+			String vampireInfo2 = "just sucking. The vampires 'life' is all about sucking. They suck all night long ";
+			String vampireInfo3 = "and sleep while the sun is shining. They are the perfect choice for 'The ";
+			String vampireInfo4 = "Nobodies' whom think they are 'Somebodies'.";
+			String dwarfInfo1 = "Dwarves have bad tempers and worse body odour. They rarely came out of their caves, ";
+			String dwarfInfo2 = "much to the relief of all other races. They are the race of choice for people who ";
+			String dwarfInfo3 = "speak with fake scottish accents at renaissance faires and feel uneasy around women.";
+			String elfInfo1 = "Elves are slender and beautiful as well as annoying. They live in forests where they ";
+			String elfInfo2 = "molest small animals and play boring music all night long. They are the perfect choice ";
+			String elfInfo3 = "for depressed and sociopathic players who feel undervalued and misunderstood.";
 			JButton selectVampireButton = new JButton("Select the Vampire");
 			JButton selectDwarfButton = new JButton("Select the Dwarf");
 			JButton selectElfButton = new JButton("Select the Elf");
@@ -217,18 +217,6 @@ public class GameContent
 			vampireIcon = createImageIcon("/Images/vampire.jpg", "The shame of the species");
 			dwarfIcon = createImageIcon("/Images/dwarf.jpg", "Worst of the worsts");
 			elfIcon = createImageIcon("/Images/elf.jpg", "A fat and ugly elf");
-
-			//create race description
-			vampireInfo1 = "Vampires are stupid. They think they rule the night while they do nothing else just ";
-			vampireInfo2 = "sucking. The vampires 'life' is all about sucking. They suck all night long and sleep";
-			vampireInfo3 = " while the sun is shining. They are the perfect choice for 'The Nobodies' whom think ";
-			vampireInfo4 = "they are 'Somebodies'.";
-			dwarfInfo1 = "Dwarves have bad tempers and worse body odour. They rarely came out of their caves, much ";
-			dwarfInfo2 = "to the relief of all other races. They are the race of choice for people who speak ";
-			dwarfInfo3 = "with fake scottish accents at renaissance faires and feel uneasy around women.";
-			elfInfo1 = "Elves are slender and beautiful as well as annoying. They live in forests where they ";
-			elfInfo2 = "molest small animals and play boring music all night long. They are the perfect choice ";
-			elfInfo3 = "for depressed and sociopathic players who feel undervalued and misunderstood.";
 
 			//put icons and race descriptions together
 			vampireLabel = new JLabel(

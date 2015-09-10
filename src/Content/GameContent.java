@@ -79,10 +79,10 @@ public class GameContent
 		aboutHelpMenu.setFont(menuFont);
 		aboutHelpMenu.setBorder(border);
 
-		//disable save game option because no current game
+		//disable save game option because no current game exist
 		saveGameMenu.setEnabled(false);
 
-		//add tooltip for the menu items
+		//add tooltip to the menu items
 		newGameMenu.setToolTipText("Start a 'New game'");
 		loadGameMenu.setToolTipText("Continue an existing game");
 		saveGameMenu.setToolTipText("Save the current game");
@@ -92,7 +92,7 @@ public class GameContent
 		updateHelpMenu.setToolTipText("Check for new updates");
 		aboutHelpMenu.setToolTipText("About the game");
 
-		//add menu items to menus
+		//add menu items to the menus
 		gameMenu.add(newGameMenu);
 		gameMenu.add(loadGameMenu);
 		gameMenu.add(saveGameMenu);
@@ -114,7 +114,7 @@ public class GameContent
 		helpMenu.setForeground(Color.white);
 		helpMenu.setFont(menuFont);
 
-		//add menus to menu bar
+		//add menus to the menu bar
 		menuBar.add(gameMenu);
 		menuBar.add(optionsMenu);
 		menuBar.add(helpMenu);
@@ -217,7 +217,7 @@ public class GameContent
 			JButton selectElfButton = new JButton("Select Elf");
 			Font infoFont = new Font("Monospaced", Font.BOLD, 20);
 
-			//create race icons
+			//create the race icons
 			vampireIcon = createImageIcon("/Images/vampire.jpg", "The shame of the species");
 			dwarfIcon = createImageIcon("/Images/dwarf.jpg", "Worst of the worsts");
 			elfIcon = createImageIcon("/Images/elf.jpg", "A fat and ugly elf");
@@ -227,6 +227,7 @@ public class GameContent
 			dwarfIconLabel = new JLabel(dwarfIcon);
 			elfIconLabel = new JLabel(elfIcon);
 
+			//set the icons alignment to center
 			vampireIconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 			dwarfIconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 			elfIconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -265,7 +266,7 @@ public class GameContent
 			elfInfo.setMaximumSize(new Dimension(400, 250));
 			elfInfo.setPreferredSize(new Dimension(300, 250));
 
-			//format the buttons
+			//format the race selector buttons
 			selectVampireButton.setBackground(Color.darkGray);
 			selectVampireButton.setForeground(Color.white);
 			selectVampireButton.setFont(buttonFont);
@@ -284,6 +285,16 @@ public class GameContent
 			selectElfButton.setBorder(border);
 			selectElfButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+			//add tooltips to the buttons
+			selectVampireButton.setToolTipText("Play with the 'Vampire' race");
+			selectDwarfButton.setToolTipText("Play with the 'Dwarf' race");
+			selectElfButton.setToolTipText("Play with the 'Elf' race");
+
+			//add action listeners to the buttons
+			selectVampireButton.addActionListener(new VampireSelectedListener());
+			selectDwarfButton.addActionListener(new DwarfSelectedListener());
+			selectElfButton.addActionListener(new ElfSelectedListener());
+
 			//set panels layout
 			vampirePanel.setLayout(new BoxLayout(vampirePanel, BoxLayout.PAGE_AXIS));
 			dwarfPanel.setLayout(new BoxLayout(dwarfPanel, BoxLayout.PAGE_AXIS));
@@ -292,7 +303,7 @@ public class GameContent
 			//format the panels
 			vampirePanel.setBackground(Color.darkGray);
 			dwarfPanel.setBackground(Color.darkGray);
-			dwarfPanel.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 1, Color.white));
+			dwarfPanel.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 2, Color.white));
 			elfPanel.setBackground(Color.darkGray);
 
 			//add content to the panels
@@ -317,7 +328,7 @@ public class GameContent
 			elfPanel.add(Box.createRigidArea(new Dimension(0,90)));
 			elfPanel.add(selectElfButton);
 
-			//remove panels and add the new ones
+			//remove the old panels and add the new ones
 			mainFrame.getContentPane().removeAll();
 			mainFrame.setLayout(new GridLayout(1, 3));
 			mainFrame.repaint();
@@ -333,6 +344,30 @@ public class GameContent
 	{
 		URL imgURL = NewGameListener.class.getResource(path);
 		return new ImageIcon(imgURL, description);
+	}
+
+	private class VampireSelectedListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+
+		}
+	}
+
+	private class DwarfSelectedListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+
+		}
+	}
+
+	private class ElfSelectedListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+
+		}
 	}
 
 	private class LoadGameListener implements ActionListener

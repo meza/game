@@ -12,6 +12,7 @@ public class GameContent
 {
 	private final JFrame mainFrame = new JFrame("Matta's Best RPG Game");
 	private final Border border = new LineBorder(Color.WHITE, 2, true);
+	private final Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
 
 	public void buildMainFrame()
 	{
@@ -143,7 +144,6 @@ public class GameContent
 		JPanel buttonsPanel = new JPanel(new GridLayout(2, 1));
 		JButton newGameButton = new JButton("New game");
 		JButton loadGameButton = new JButton("Load game");
-		Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
 
 		//format the buttons
 		newGameButton.setBackground(Color.darkGray);
@@ -199,19 +199,23 @@ public class GameContent
 			ImageIcon vampireIcon;
 			ImageIcon dwarfIcon;
 			ImageIcon elfIcon;
-			String vampireInfo1 = "Vampires are stupid. They think they rule the night while they do nothing else ";
-			String vampireInfo2 = "just sucking. The vampires 'life' is all about sucking. They suck all night long ";
-			String vampireInfo3 = "and sleep while the sun is shining. They are the perfect choice for 'The ";
-			String vampireInfo4 = "Nobodies' whom think they are 'Somebodies'.";
-			String dwarfInfo1 = "Dwarves have bad tempers and worse body odour. They rarely came out of their caves, ";
-			String dwarfInfo2 = "much to the relief of all other races. They are the race of choice for people who ";
-			String dwarfInfo3 = "speak with fake scottish accents at renaissance faires and feel uneasy around women.";
-			String elfInfo1 = "Elves are slender and beautiful as well as annoying. They live in forests where they ";
-			String elfInfo2 = "molest small animals and play boring music all night long. They are the perfect choice ";
-			String elfInfo3 = "for depressed and sociopathic players who feel undervalued and misunderstood.";
-			JButton selectVampireButton = new JButton("Select the Vampire");
-			JButton selectDwarfButton = new JButton("Select the Dwarf");
-			JButton selectElfButton = new JButton("Select the Elf");
+			JTextArea vampireInfo = new JTextArea();
+			JTextArea dwarfInfo = new JTextArea();;
+			JTextArea elfInfo = new JTextArea();;
+			String vampireText1 = "Vampires are stupid. They think they rule the night while they do nothing else ";
+			String vampireText2 = "just sucking. The vampires 'life' is all about sucking. They suck all night long ";
+			String vampireText3 = "and sleep while the sun is shining. They are the perfect choice for 'The ";
+			String vampireText4 = "Nobodies' whom think they are 'Somebodies'.";
+			String dwarfText1 = "Dwarves have bad tempers and worse body odour. They rarely came out of their caves, ";
+			String dwarfText2 = "much to the relief of all other races. They are the race of choice for people who ";
+			String dwarfText3 = "speak with fake scottish accents at renaissance faires and feel uneasy around women.";
+			String elfText1 = "Elves are slender and beautiful as well as annoying. They live in forests where they ";
+			String elfText2 = "molest small animals and play boring music all night long. They are the perfect choice ";
+			String elfText3 = "for depressed and sociopathic players who feel undervalued and misunderstood.";
+			JButton selectVampireButton = new JButton("Select Vampire");
+			JButton selectDwarfButton = new JButton("Select Dwarf");
+			JButton selectElfButton = new JButton("Select Elf");
+			Font infoFont = new Font("Monospaced", Font.BOLD, 20);
 
 			//create race icons
 			vampireIcon = createImageIcon("/Images/vampire.jpg", "The shame of the species");
@@ -223,19 +227,94 @@ public class GameContent
 			dwarfIconLabel = new JLabel(dwarfIcon);
 			elfIconLabel = new JLabel(elfIcon);
 
+			vampireIconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+			dwarfIconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+			elfIconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+			//format the race descriptions
+			vampireInfo.setText(vampireText1 + vampireText2 + vampireText3 + vampireText4);
+			vampireInfo.setFont(infoFont);
+			vampireInfo.setBackground(Color.darkGray);
+			vampireInfo.setForeground(Color.white);
+			vampireInfo.setLineWrap(true);
+			vampireInfo.setWrapStyleWord(true);
+			vampireInfo.setEditable(false);
+			vampireInfo.setMinimumSize(new Dimension(200, 200));
+			vampireInfo.setMaximumSize(new Dimension(400, 250));
+			vampireInfo.setPreferredSize(new Dimension(300, 250));
+
+			dwarfInfo.setText(dwarfText1 + dwarfText2 + dwarfText3);
+			dwarfInfo.setFont(infoFont);
+			dwarfInfo.setBackground(Color.darkGray);
+			dwarfInfo.setForeground(Color.white);
+			dwarfInfo.setLineWrap(true);
+			dwarfInfo.setWrapStyleWord(true);
+			dwarfInfo.setEditable(false);
+			dwarfInfo.setMinimumSize(new Dimension(200, 200));
+			dwarfInfo.setMaximumSize(new Dimension(400, 250));
+			dwarfInfo.setPreferredSize(new Dimension(300, 250));
+
+			elfInfo.setText(elfText1 + elfText2 + elfText3);
+			elfInfo.setFont(infoFont);
+			elfInfo.setBackground(Color.darkGray);
+			elfInfo.setForeground(Color.white);
+			elfInfo.setLineWrap(true);
+			elfInfo.setWrapStyleWord(true);
+			elfInfo.setEditable(false);
+			elfInfo.setMinimumSize(new Dimension(200, 200));
+			elfInfo.setMaximumSize(new Dimension(400, 250));
+			elfInfo.setPreferredSize(new Dimension(300, 250));
+
+			//format the buttons
+			selectVampireButton.setBackground(Color.darkGray);
+			selectVampireButton.setForeground(Color.white);
+			selectVampireButton.setFont(buttonFont);
+			selectVampireButton.setBorder(border);
+			selectVampireButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+			selectDwarfButton.setBackground(Color.darkGray);
+			selectDwarfButton.setForeground(Color.white);
+			selectDwarfButton.setFont(buttonFont);
+			selectDwarfButton.setBorder(border);
+			selectDwarfButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+			selectElfButton.setBackground(Color.darkGray);
+			selectElfButton.setForeground(Color.white);
+			selectElfButton.setFont(buttonFont);
+			selectElfButton.setBorder(border);
+			selectElfButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 			//set panels layout
 			vampirePanel.setLayout(new BoxLayout(vampirePanel, BoxLayout.PAGE_AXIS));
 			dwarfPanel.setLayout(new BoxLayout(dwarfPanel, BoxLayout.PAGE_AXIS));
 			elfPanel.setLayout(new BoxLayout(elfPanel, BoxLayout.PAGE_AXIS));
 
+			//format the panels
+			vampirePanel.setBackground(Color.darkGray);
+			dwarfPanel.setBackground(Color.darkGray);
+			dwarfPanel.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 1, Color.white));
+			elfPanel.setBackground(Color.darkGray);
+
 			//add content to the panels
+			vampirePanel.add(Box.createRigidArea(new Dimension(0,20)));
 			vampirePanel.add(vampireIconLabel);
+			vampirePanel.add(Box.createRigidArea(new Dimension(0,90)));
+			vampirePanel.add(vampireInfo);
+			vampirePanel.add(Box.createRigidArea(new Dimension(0,90)));
 			vampirePanel.add(selectVampireButton);
 
+			dwarfPanel.add(Box.createRigidArea(new Dimension(0,20)));
 			dwarfPanel.add(dwarfIconLabel);
+			dwarfPanel.add(Box.createRigidArea(new Dimension(0,90)));
+			dwarfPanel.add(dwarfInfo);
+			dwarfPanel.add(Box.createRigidArea(new Dimension(0,90)));
 			dwarfPanel.add(selectDwarfButton);
 
+			elfPanel.add(Box.createRigidArea(new Dimension(0,20)));
 			elfPanel.add(elfIconLabel);
+			elfPanel.add(Box.createRigidArea(new Dimension(0,90)));
+			elfPanel.add(elfInfo);
+			elfPanel.add(Box.createRigidArea(new Dimension(0,90)));
 			elfPanel.add(selectElfButton);
 
 			//remove panels and add the new ones

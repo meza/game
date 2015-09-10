@@ -200,8 +200,8 @@ public class GameContent
 			ImageIcon dwarfIcon;
 			ImageIcon elfIcon;
 			JTextArea vampireInfo = new JTextArea();
-			JTextArea dwarfInfo = new JTextArea();;
-			JTextArea elfInfo = new JTextArea();;
+			JTextArea dwarfInfo = new JTextArea();
+			JTextArea elfInfo = new JTextArea();
 			String vampireText1 = "The vampires 'life' is all about sucking. They think they rule the night while ";
 			String vampireText2 = "they do nothing else just sucking all night long and sleep while the sun is ";
 			String vampireText3 = "shining. They are the perfect choice for 'The Nobodies' whom think they are";

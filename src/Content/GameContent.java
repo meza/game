@@ -202,10 +202,10 @@ public class GameContent
 			JTextArea vampireInfo = new JTextArea();
 			JTextArea dwarfInfo = new JTextArea();;
 			JTextArea elfInfo = new JTextArea();;
-			String vampireText1 = "Vampires are stupid. They think they rule the night while they do nothing else ";
-			String vampireText2 = "just sucking. The vampires 'life' is all about sucking. They suck all night long ";
-			String vampireText3 = "and sleep while the sun is shining. They are the perfect choice for 'The ";
-			String vampireText4 = "Nobodies' whom think they are 'Somebodies'.";
+			String vampireText1 = "The vampires 'life' is all about sucking. They think they rule the night while ";
+			String vampireText2 = "they do nothing else just sucking all night long and sleep while the sun is ";
+			String vampireText3 = "shining. They are the perfect choice for 'The Nobodies' whom think they are";
+			String vampireText4 = " 'Somebodies'.";
 			String dwarfText1 = "Dwarves have bad tempers and worse body odour. They rarely came out of their caves, ";
 			String dwarfText2 = "much to the relief of all other races. They are the race of choice for people who ";
 			String dwarfText3 = "speak with fake scottish accents at renaissance faires and feel uneasy around women.";

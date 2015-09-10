@@ -193,9 +193,9 @@ public class GameContent
 			JPanel vampirePanel = new JPanel();
 			JPanel dwarfPanel = new JPanel();
 			JPanel elfPanel = new JPanel();
-			JLabel vampireLabel;
-			JLabel dwarfLabel;
-			JLabel elfLabel;
+			JLabel vampireIconLabel;
+			JLabel dwarfIconLabel;
+			JLabel elfIconLabel;
 			ImageIcon vampireIcon;
 			ImageIcon dwarfIcon;
 			ImageIcon elfIcon;
@@ -218,19 +218,10 @@ public class GameContent
 			dwarfIcon = createImageIcon("/Images/dwarf.jpg", "Worst of the worsts");
 			elfIcon = createImageIcon("/Images/elf.jpg", "A fat and ugly elf");
 
-			//put icons and race descriptions together
-			vampireLabel = new JLabel(
-					vampireInfo1 + vampireInfo2 + vampireInfo3 + vampireInfo4,
-					vampireIcon,
-					JLabel.CENTER );
-			dwarfLabel = new JLabel(
-					dwarfInfo1 + dwarfInfo2 + dwarfInfo3,
-					dwarfIcon,
-					JLabel.CENTER);
-			elfLabel = new JLabel(
-					elfInfo1 + elfInfo2 + elfInfo3,
-					elfIcon,
-					JLabel.CENTER);
+			//add the icons to the labels
+			vampireIconLabel = new JLabel(vampireIcon);
+			dwarfIconLabel = new JLabel(dwarfIcon);
+			elfIconLabel = new JLabel(elfIcon);
 
 			//set panels layout
 			vampirePanel.setLayout(new BoxLayout(vampirePanel, BoxLayout.PAGE_AXIS));
@@ -238,19 +229,20 @@ public class GameContent
 			elfPanel.setLayout(new BoxLayout(elfPanel, BoxLayout.PAGE_AXIS));
 
 			//add content to the panels
-			vampirePanel.add(vampireLabel);
+			vampirePanel.add(vampireIconLabel);
 			vampirePanel.add(selectVampireButton);
 
-			dwarfPanel.add(dwarfLabel);
+			dwarfPanel.add(dwarfIconLabel);
 			dwarfPanel.add(selectDwarfButton);
 
-			elfPanel.add(elfLabel);
+			elfPanel.add(elfIconLabel);
 			elfPanel.add(selectElfButton);
 
 			//remove panels and add the new ones
 			mainFrame.getContentPane().removeAll();
 			mainFrame.setLayout(new GridLayout(1, 3));
 			mainFrame.repaint();
+			mainFrame.setTitle("Matta's Best RPG Game - Select Race");
 			mainFrame.getContentPane().add(vampirePanel);
 			mainFrame.getContentPane().add(dwarfPanel);
 			mainFrame.getContentPane().add(elfPanel);

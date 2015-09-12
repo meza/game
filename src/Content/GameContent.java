@@ -14,10 +14,7 @@ import java.util.Properties;
 
 public class GameContent
 {
-	private Properties mainFrameLabelsProperties = new Properties();
-	private Properties labelsForMultiplePagesProperties = new Properties();
-	private Properties selectRacePageProperties = new Properties();
-	private Properties generateRacePageProperties = new Properties();
+	private final Properties LabelsProperties = new Properties();
 	private final JFrame mainFrame = new JFrame();
 	private final Border border = new LineBorder(Color.WHITE, 2, true);
 	private final Font menuFont = new Font("Monospaced", Font.BOLD, 15);
@@ -34,14 +31,7 @@ public class GameContent
 	{
 		try
 		{
-			mainFrameLabelsProperties.load(new FileInputStream(
-					"src/StaticContent/Properties/MainFrameLabels.properties"));
-			labelsForMultiplePagesProperties.load(new FileInputStream(
-					"src/StaticContent/Properties/LabelsForMultiplePlaces.properties"));
-			selectRacePageProperties.load(new FileInputStream(
-					"src/StaticContent/Properties/SelectRacePage.properties"));
-			generateRacePageProperties.load(new FileInputStream(
-					"src/StaticContent/Properties/GenerateRacePage.properties"));
+			LabelsProperties.load(new FileInputStream("src/StaticContent/Properties/Labels.properties"));
 		}
 		catch (IOException e)
 		{
@@ -51,7 +41,7 @@ public class GameContent
 
 	public void buildMainFrame()
 	{
-		mainFrame.setTitle(mainFrameLabelsProperties.getProperty("mainFrameTitle"));
+		mainFrame.setTitle(LabelsProperties.getProperty("mainFrameTitle"));
 		mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		mainFrame.setSize(1200, 800);
 		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -63,17 +53,17 @@ public class GameContent
 	private JMenuBar buildMenuBar()
 	{
 		JMenuBar menuBar = new JMenuBar();
-		JMenu gameMenu = new JMenu(mainFrameLabelsProperties.getProperty("gameMenuText"));
-		JMenu optionsMenu = new JMenu(mainFrameLabelsProperties.getProperty("optionsMenuText"));
-		JMenu helpMenu = new JMenu(mainFrameLabelsProperties.getProperty("helpMenuText"));
-		JMenuItem newGameMenu = new JMenuItem(labelsForMultiplePagesProperties.getProperty("newGameText"));
-		JMenuItem loadGameMenu = new JMenuItem(labelsForMultiplePagesProperties.getProperty("loadGameText"));
-		JMenuItem saveGameMenu = new JMenuItem(mainFrameLabelsProperties.getProperty("saveGameMenuText"));
-		JMenuItem quitGameMenu = new JMenuItem(mainFrameLabelsProperties.getProperty("quitGameMenuText"));
-		JMenuItem settingsOptionsMenu = new JMenuItem(mainFrameLabelsProperties.getProperty("settingsOptionsMenuText"));
-		JMenuItem helpHelpMenu = new JMenuItem(mainFrameLabelsProperties.getProperty("helpHelpMenuText"));
-		JMenuItem updateHelpMenu = new JMenuItem(mainFrameLabelsProperties.getProperty("updateHelpMenuText"));
-		JMenuItem aboutHelpMenu = new JMenuItem(mainFrameLabelsProperties.getProperty("aboutHelpMenuText"));
+		JMenu gameMenu = new JMenu(LabelsProperties.getProperty("gameMenuText"));
+		JMenu optionsMenu = new JMenu(LabelsProperties.getProperty("optionsMenuText"));
+		JMenu helpMenu = new JMenu(LabelsProperties.getProperty("helpMenuText"));
+		JMenuItem newGameMenu = new JMenuItem(LabelsProperties.getProperty("newGameMenuItemText"));
+		JMenuItem loadGameMenu = new JMenuItem(LabelsProperties.getProperty("loadGameMenuItemText"));
+		JMenuItem saveGameMenu = new JMenuItem(LabelsProperties.getProperty("saveGameMenuItemText"));
+		JMenuItem quitGameMenu = new JMenuItem(LabelsProperties.getProperty("quitGameMenuItemText"));
+		JMenuItem settingsOptionsMenu = new JMenuItem(LabelsProperties.getProperty("settingsOptionsMenuItemText"));
+		JMenuItem helpHelpMenu = new JMenuItem(LabelsProperties.getProperty("helpHelpMenuItemText"));
+		JMenuItem updateHelpMenu = new JMenuItem(LabelsProperties.getProperty("updateHelpMenuItemText"));
+		JMenuItem aboutHelpMenu = new JMenuItem(LabelsProperties.getProperty("aboutHelpMenuItemText"));
 
 		//format the menu items
 		setMenuItemStyle(newGameMenu);
@@ -89,14 +79,14 @@ public class GameContent
 		saveGameMenu.setEnabled(false);
 
 		//add tooltip to the menu items
-		newGameMenu.setToolTipText(labelsForMultiplePagesProperties.getProperty("newGameToolTipText"));
-		loadGameMenu.setToolTipText(labelsForMultiplePagesProperties.getProperty("loadGameToolTipText"));
-		saveGameMenu.setToolTipText(mainFrameLabelsProperties.getProperty("saveGameMenuToolTipText"));
-		quitGameMenu.setToolTipText(mainFrameLabelsProperties.getProperty("quitGameMenuToolTipText"));
-		settingsOptionsMenu.setToolTipText(mainFrameLabelsProperties.getProperty("settingsOptionsMenuToolTipText"));
-		helpHelpMenu.setToolTipText(mainFrameLabelsProperties.getProperty("helpHelpMenuToolTipText"));
-		updateHelpMenu.setToolTipText(mainFrameLabelsProperties.getProperty("updateHelpMenuToolTipText"));
-		aboutHelpMenu.setToolTipText(mainFrameLabelsProperties.getProperty("aboutHelpMenuToolTipText"));
+		newGameMenu.setToolTipText(LabelsProperties.getProperty("newGameMenuItemToolTipText"));
+		loadGameMenu.setToolTipText(LabelsProperties.getProperty("loadGameMenuItemToolTipText"));
+		saveGameMenu.setToolTipText(LabelsProperties.getProperty("saveGameMenuItemToolTipText"));
+		quitGameMenu.setToolTipText(LabelsProperties.getProperty("quitGameMenuItemToolTipText"));
+		settingsOptionsMenu.setToolTipText(LabelsProperties.getProperty("settingsOptionsMenuItemToolTipText"));
+		helpHelpMenu.setToolTipText(LabelsProperties.getProperty("helpHelpMenuItemToolTipText"));
+		updateHelpMenu.setToolTipText(LabelsProperties.getProperty("updateHelpMenuItemToolTipText"));
+		aboutHelpMenu.setToolTipText(LabelsProperties.getProperty("aboutHelpMenuItemToolTipText"));
 
 		//add menu items to the menus
 		gameMenu.add(newGameMenu);
@@ -155,16 +145,16 @@ public class GameContent
 		JPanel startPanel = new JPanel();
 		JPanel emptyPanel = new JPanel();
 		JPanel buttonsPanel = new JPanel(new GridLayout(2, 1));
-		JButton newGameButton = new JButton(labelsForMultiplePagesProperties.getProperty("newGameText"));
-		JButton loadGameButton = new JButton(labelsForMultiplePagesProperties.getProperty("loadGameText"));
+		JButton newGameButton = new JButton(LabelsProperties.getProperty("newGameButtonText"));
+		JButton loadGameButton = new JButton(LabelsProperties.getProperty("loadGameButtonText"));
 
 		//format the buttons
 		setButtonStyle(newGameButton);
 		setButtonStyle(loadGameButton);
 
 		//add tooltips to the buttons
-		newGameButton.setToolTipText(labelsForMultiplePagesProperties.getProperty("newGameToolTipText"));
-		loadGameButton.setToolTipText(labelsForMultiplePagesProperties.getProperty("loadGameToolTipText"));
+		newGameButton.setToolTipText(LabelsProperties.getProperty("newGameButtonToolTipText"));
+		loadGameButton.setToolTipText(LabelsProperties.getProperty("loadGameButtonToolTipText"));
 
 		//add the buttons to the panel
 		buttonsPanel.add(newGameButton);
@@ -222,12 +212,12 @@ public class GameContent
 		JTextArea vampireInfo = new JTextArea();
 		JTextArea dwarfInfo = new JTextArea();
 		JTextArea elfInfo = new JTextArea();
-		String vampireText = selectRacePageProperties.getProperty("vampireText");
-		String dwarfText = selectRacePageProperties.getProperty("dwarfText");
-		String elfText = selectRacePageProperties.getProperty("elfText");
-		JButton selectVampireButton = new JButton(selectRacePageProperties.getProperty("selectVampireButtonText"));
-		JButton selectDwarfButton = new JButton(selectRacePageProperties.getProperty("selectDwarfButtonText"));
-		JButton selectElfButton = new JButton(selectRacePageProperties.getProperty("selectElfButtonText"));
+		String vampireText = LabelsProperties.getProperty("vampireRaceDescription");
+		String dwarfText = LabelsProperties.getProperty("dwarfRaceDescription");
+		String elfText = LabelsProperties.getProperty("elfRaceDescription");
+		JButton selectVampireButton = new JButton(LabelsProperties.getProperty("selectVampireButtonText"));
+		JButton selectDwarfButton = new JButton(LabelsProperties.getProperty("selectDwarfButtonText"));
+		JButton selectElfButton = new JButton(LabelsProperties.getProperty("selectElfButtonText"));
 
 		//create the race icons
 		vampireIcon = createImageIcon("/StaticContent/Images/vampire.jpg");
@@ -260,9 +250,9 @@ public class GameContent
 		selectElfButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		//add tooltips to the buttons
-		selectVampireButton.setToolTipText(selectRacePageProperties.getProperty("selectVampireButtonToolTipText"));
-		selectDwarfButton.setToolTipText(selectRacePageProperties.getProperty("selectDwarfButtonToolTipText"));
-		selectElfButton.setToolTipText(selectRacePageProperties.getProperty("selectElfButtonToolTipText"));
+		selectVampireButton.setToolTipText(LabelsProperties.getProperty("selectVampireButtonToolTipText"));
+		selectDwarfButton.setToolTipText(LabelsProperties.getProperty("selectDwarfButtonToolTipText"));
+		selectElfButton.setToolTipText(LabelsProperties.getProperty("selectElfButtonToolTipText"));
 
 		//add action listeners to the buttons
 		selectVampireButton.addActionListener(new VampireSelectedListener());
@@ -291,7 +281,7 @@ public class GameContent
 		mainFrame.getContentPane().removeAll();
 		mainFrame.setLayout(new GridLayout(1, 3));
 		mainFrame.repaint();
-		mainFrame.setTitle(selectRacePageProperties.getProperty("mainFrameTitleSelectRacePage"));
+		mainFrame.setTitle(LabelsProperties.getProperty("mainFrameTitleSelectRacePage"));
 		mainFrame.getContentPane().add(vampirePanel);
 		mainFrame.getContentPane().add(dwarfPanel);
 		mainFrame.getContentPane().add(elfPanel);
@@ -320,11 +310,11 @@ public class GameContent
 
 	private void addItemsToRaceSelectorPanel(JPanel panel, JLabel label, JTextArea description, JButton button)
 	{
-		panel.add(Box.createRigidArea(new Dimension(0, 20)));
+		panel.add(Box.createRigidArea(new Dimension(0, 30)));
 		panel.add(label);
-		panel.add(Box.createRigidArea(new Dimension(0, 90)));
+		panel.add(Box.createRigidArea(new Dimension(0, 70)));
 		panel.add(description);
-		panel.add(Box.createRigidArea(new Dimension(0, 90)));
+		panel.add(Box.createRigidArea(new Dimension(0, 70)));
 		panel.add(button);
 	}
 
@@ -368,7 +358,7 @@ public class GameContent
 	private void buildCharacterGeneratorPage()
 	{
 		//buildCharacterGeneratorPage(getSelectedRace());
-		mainFrame.setTitle(MessageFormat.format(generateRacePageProperties.getProperty(
+		mainFrame.setTitle(MessageFormat.format(LabelsProperties.getProperty(
 				"mainFrameTitleGenerateRacePage"), getSelectedRace()));
 		/*JPanel namePanel = new JPanel();
 		JLabel vampireIconLabel;

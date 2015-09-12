@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.Properties;
 
 public class GameContent
@@ -364,7 +365,8 @@ public class GameContent
 	private void buildCharacterGeneratorPage()
 	{
 		//buildCharacterGeneratorPage(getSelectedRace());
-		mainFrame.setTitle("Matta's Best RPG Game - Generate " + getSelectedRace() + " Character");
+		mainFrame.setTitle(MessageFormat.format(labelsForMultiplePagesProperties.getProperty(
+				"mainFrameTitleGenerateRacePage"), getSelectedRace()));
 		/*JPanel namePanel = new JPanel();
 		JLabel vampireIconLabel;
 		ImageIcon vampireIcon;

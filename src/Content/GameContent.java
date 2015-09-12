@@ -17,6 +17,7 @@ public class GameContent
 	private Properties mainFrameLabelsProperties = new Properties();
 	private Properties labelsForMultiplePagesProperties = new Properties();
 	private Properties selectRacePageProperties = new Properties();
+	private Properties generateRacePageProperties = new Properties();
 	private final JFrame mainFrame = new JFrame();
 	private final Border border = new LineBorder(Color.WHITE, 2, true);
 	private final Font menuFont = new Font("Monospaced", Font.BOLD, 15);
@@ -33,12 +34,14 @@ public class GameContent
 	{
 		try
 		{
-			selectRacePageProperties.load(new FileInputStream(
-					"src/StaticContent/Properties/SelectRacePage.properties"));
 			mainFrameLabelsProperties.load(new FileInputStream(
 					"src/StaticContent/Properties/MainFrameLabels.properties"));
 			labelsForMultiplePagesProperties.load(new FileInputStream(
 					"src/StaticContent/Properties/LabelsForMultiplePlaces.properties"));
+			selectRacePageProperties.load(new FileInputStream(
+					"src/StaticContent/Properties/SelectRacePage.properties"));
+			generateRacePageProperties.load(new FileInputStream(
+					"src/StaticContent/Properties/GenerateRacePage.properties"));
 		}
 		catch (IOException e)
 		{
@@ -365,7 +368,7 @@ public class GameContent
 	private void buildCharacterGeneratorPage()
 	{
 		//buildCharacterGeneratorPage(getSelectedRace());
-		mainFrame.setTitle(MessageFormat.format(labelsForMultiplePagesProperties.getProperty(
+		mainFrame.setTitle(MessageFormat.format(generateRacePageProperties.getProperty(
 				"mainFrameTitleGenerateRacePage"), getSelectedRace()));
 		/*JPanel namePanel = new JPanel();
 		JLabel vampireIconLabel;

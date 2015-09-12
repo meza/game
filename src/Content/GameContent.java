@@ -140,8 +140,15 @@ public class GameContent
 		menu.setFont(menuFont);
 	}
 
-	public void buildMainPage()
+	public void addMainPageToTheMainFrame()
 	{
+		mainFrame.getContentPane().add(BorderLayout.CENTER, buildMainPage());
+		mainFrame.validate();
+	}
+
+	private JPanel buildMainPage()
+	{
+		JPanel mainPanel = new JPanel(new GridLayout(2, 1));
 		JPanel startPanel = new JPanel();
 		JPanel emptyPanel = new JPanel();
 		JPanel buttonsPanel = new JPanel(new GridLayout(2, 1));
@@ -175,11 +182,11 @@ public class GameContent
 		newGameButton.addActionListener(new NewGameListener());
 		loadGameButton.addActionListener(new LoadGameListener());
 
-		//add panels to the frame
-		mainFrame.setLayout(new GridLayout(2, 1));
-		mainFrame.getContentPane().add(BorderLayout.CENTER, emptyPanel);
-		mainFrame.getContentPane().add(BorderLayout.CENTER, startPanel);
-		mainFrame.validate();
+		//add the panels to the main panel
+		mainPanel.add(emptyPanel);
+		mainPanel.add(startPanel);
+
+		return mainPanel;
 	}
 
 	private void setButtonStyle(JButton button)
@@ -194,12 +201,17 @@ public class GameContent
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			buildSelectRacePage();
+			mainFrame.getContentPane().removeAll();
+			mainFrame.repaint();
+			mainFrame.setTitle(LabelsProperties.getProperty("mainFrameTitleSelectRacePage"));
+			mainFrame.getContentPane().add(buildSelectRacePage());
+			mainFrame.validate();
 		}
 	}
 
-	private void buildSelectRacePage()
+	private JPanel buildSelectRacePage()
 	{
+		JPanel mainPanel = new JPanel(new GridLayout(1, 3));
 		JPanel vampirePanel = new JPanel();
 		JPanel dwarfPanel = new JPanel();
 		JPanel elfPanel = new JPanel();
@@ -277,15 +289,12 @@ public class GameContent
 		addItemsToRaceSelectorPanel(dwarfPanel, dwarfIconLabel, dwarfInfo, selectDwarfButton);
 		addItemsToRaceSelectorPanel(elfPanel, elfIconLabel, elfInfo, selectElfButton);
 
-		//remove the old panels and add the new ones
-		mainFrame.getContentPane().removeAll();
-		mainFrame.setLayout(new GridLayout(1, 3));
-		mainFrame.repaint();
-		mainFrame.setTitle(LabelsProperties.getProperty("mainFrameTitleSelectRacePage"));
-		mainFrame.getContentPane().add(vampirePanel);
-		mainFrame.getContentPane().add(dwarfPanel);
-		mainFrame.getContentPane().add(elfPanel);
-		mainFrame.validate();
+		//add the panels to the main panel
+		mainPanel.add(vampirePanel);
+		mainPanel.add(dwarfPanel);
+		mainPanel.add(elfPanel);
+
+		return mainPanel;
 	}
 
 	private ImageIcon createImageIcon(String path)

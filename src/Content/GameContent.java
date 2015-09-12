@@ -19,7 +19,7 @@ public class GameContent
 	private final JFrame mainFrame = new JFrame();
 	private final Border border = new LineBorder(Color.WHITE, 2, true);
 	private final Font menuFont = new Font("Monospaced", Font.BOLD, 15);
-	private final Font infoFont = new Font("Monospaced", Font.BOLD, 20);
+	private final Font textFont = new Font("Monospaced", Font.BOLD, 20);
 	private final Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
 	private String selectedRace;
 
@@ -303,7 +303,7 @@ public class GameContent
 	private void setRaceDescriptionStyle(JTextArea textArea, String description)
 	{
 		textArea.setText(description);
-		textArea.setFont(infoFont);
+		textArea.setFont(textFont);
 		textArea.setBackground(Color.darkGray);
 		textArea.setForeground(Color.white);
 		textArea.setLineWrap(true);
@@ -328,21 +328,27 @@ public class GameContent
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			selectedRace = "Vampire";
-			buildCharacterGeneratorPage(selectedRace);
-			mainFrame.setTitle(labelsForMultiplePagesProperties.getProperty("mattaqwert"));
-			//mainFrame.setTitle("Matta's Best RPG Game - Generate " + selectedRace + " Character");
+			setSelectedRace("Vampire");
+			buildCharacterGeneratorPage();
 		}
+	}
+
+	private void setSelectedRace(String race)
+	{
+		selectedRace = race;
+	}
+
+	private String getSelectedRace()
+	{
+		return selectedRace;
 	}
 
 	private class DwarfSelectedListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			selectedRace = "Dwarf";
-			buildCharacterGeneratorPage(selectedRace);
-			mainFrame.setTitle("Matta's Best RPG Game - Generate " + selectedRace + " Character");
-
+			setSelectedRace("Dwarf");
+			buildCharacterGeneratorPage();
 		}
 	}
 
@@ -350,15 +356,15 @@ public class GameContent
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			selectedRace = "Elf";
-			buildCharacterGeneratorPage(selectedRace);
-			mainFrame.setTitle("Matta's Best RPG Game - Generate " + selectedRace + " Character");
-
+			setSelectedRace("Elf");
+			buildCharacterGeneratorPage();
 		}
 	}
 
-	private void buildCharacterGeneratorPage(String selectedRace)
+	private void buildCharacterGeneratorPage()
 	{
+		//buildCharacterGeneratorPage(getSelectedRace());
+		mainFrame.setTitle("Matta's Best RPG Game - Generate " + getSelectedRace() + " Character");
 		/*JPanel namePanel = new JPanel();
 		JLabel vampireIconLabel;
 		ImageIcon vampireIcon;

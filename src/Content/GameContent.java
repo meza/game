@@ -14,7 +14,7 @@ import java.util.Properties;
 public class GameContent
 {
 	private Properties mainFrameLabelsProperties = new Properties();
-	private Properties labelsForMultiplePlacesProperties = new Properties();
+	private Properties labelsForMultiplePagesProperties = new Properties();
 	private Properties selectRacePageProperties = new Properties();
 	private final JFrame mainFrame = new JFrame();
 	private final Border border = new LineBorder(Color.WHITE, 2, true);
@@ -36,7 +36,7 @@ public class GameContent
 					"src/StaticContent/Properties/SelectRacePage.properties"));
 			mainFrameLabelsProperties.load(new FileInputStream(
 					"src/StaticContent/Properties/MainFrameLabels.properties"));
-			labelsForMultiplePlacesProperties.load(new FileInputStream(
+			labelsForMultiplePagesProperties.load(new FileInputStream(
 					"src/StaticContent/Properties/LabelsForMultiplePlaces.properties"));
 		}
 		catch (IOException e)
@@ -52,16 +52,18 @@ public class GameContent
 		mainFrame.setSize(1200, 800);
 		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		mainFrame.setVisible(true);
+		mainFrame.setJMenuBar(buildMenuBar());
+		mainFrame.validate();
 	}
 
-	public void buildMenus()
+	private JMenuBar buildMenuBar()
 	{
 		JMenuBar menuBar = new JMenuBar();
 		JMenu gameMenu = new JMenu(mainFrameLabelsProperties.getProperty("gameMenuText"));
 		JMenu optionsMenu = new JMenu(mainFrameLabelsProperties.getProperty("optionsMenuText"));
 		JMenu helpMenu = new JMenu(mainFrameLabelsProperties.getProperty("helpMenuText"));
-		JMenuItem newGameMenu = new JMenuItem(labelsForMultiplePlacesProperties.getProperty("newGameText"));
-		JMenuItem loadGameMenu = new JMenuItem(labelsForMultiplePlacesProperties.getProperty("loadGameText"));
+		JMenuItem newGameMenu = new JMenuItem(labelsForMultiplePagesProperties.getProperty("newGameText"));
+		JMenuItem loadGameMenu = new JMenuItem(labelsForMultiplePagesProperties.getProperty("loadGameText"));
 		JMenuItem saveGameMenu = new JMenuItem(mainFrameLabelsProperties.getProperty("saveGameMenuText"));
 		JMenuItem quitGameMenu = new JMenuItem(mainFrameLabelsProperties.getProperty("quitGameMenuText"));
 		JMenuItem settingsOptionsMenu = new JMenuItem(mainFrameLabelsProperties.getProperty("settingsOptionsMenuText"));
@@ -79,12 +81,12 @@ public class GameContent
 		setMenuItemStyle(updateHelpMenu);
 		setMenuItemStyle(aboutHelpMenu);
 
-		//disable save game option because current game is not exist
+		//disable save game option because game is not exist currently
 		saveGameMenu.setEnabled(false);
 
 		//add tooltip to the menu items
-		newGameMenu.setToolTipText(labelsForMultiplePlacesProperties.getProperty("newGameToolTipText"));
-		loadGameMenu.setToolTipText(labelsForMultiplePlacesProperties.getProperty("loadGameToolTipText"));
+		newGameMenu.setToolTipText(labelsForMultiplePagesProperties.getProperty("newGameToolTipText"));
+		loadGameMenu.setToolTipText(labelsForMultiplePagesProperties.getProperty("loadGameToolTipText"));
 		saveGameMenu.setToolTipText(mainFrameLabelsProperties.getProperty("saveGameMenuToolTipText"));
 		quitGameMenu.setToolTipText(mainFrameLabelsProperties.getProperty("quitGameMenuToolTipText"));
 		settingsOptionsMenu.setToolTipText(mainFrameLabelsProperties.getProperty("settingsOptionsMenuToolTipText"));
@@ -127,9 +129,7 @@ public class GameContent
 		updateHelpMenu.addActionListener(new UpdateListener());
 		aboutHelpMenu.addActionListener(new AboutListener());
 
-		//add menu bar to the main frame
-		mainFrame.setJMenuBar(menuBar);
-		mainFrame.validate();
+		return menuBar;
 	}
 
 	private void setMenuItemStyle(JMenuItem menuItem)
@@ -151,16 +151,16 @@ public class GameContent
 		JPanel startPanel = new JPanel();
 		JPanel emptyPanel = new JPanel();
 		JPanel buttonsPanel = new JPanel(new GridLayout(2, 1));
-		JButton newGameButton = new JButton(labelsForMultiplePlacesProperties.getProperty("newGameText"));
-		JButton loadGameButton = new JButton(labelsForMultiplePlacesProperties.getProperty("loadGameText"));
+		JButton newGameButton = new JButton(labelsForMultiplePagesProperties.getProperty("newGameText"));
+		JButton loadGameButton = new JButton(labelsForMultiplePagesProperties.getProperty("loadGameText"));
 
 		//format the buttons
 		setButtonStyle(newGameButton);
 		setButtonStyle(loadGameButton);
 
 		//add tooltips to the buttons
-		newGameButton.setToolTipText(labelsForMultiplePlacesProperties.getProperty("newGameToolTipText"));
-		loadGameButton.setToolTipText(labelsForMultiplePlacesProperties.getProperty("loadGameToolTipText"));
+		newGameButton.setToolTipText(labelsForMultiplePagesProperties.getProperty("newGameToolTipText"));
+		loadGameButton.setToolTipText(labelsForMultiplePagesProperties.getProperty("loadGameToolTipText"));
 
 		//add the buttons to the panel
 		buttonsPanel.add(newGameButton);
@@ -330,7 +330,7 @@ public class GameContent
 		{
 			selectedRace = "Vampire";
 			buildCharacterGeneratorPage(selectedRace);
-			mainFrame.setTitle(labelsForMultiplePlacesProperties.getProperty("mattaqwert"));
+			mainFrame.setTitle(labelsForMultiplePagesProperties.getProperty("mattaqwert"));
 			//mainFrame.setTitle("Matta's Best RPG Game - Generate " + selectedRace + " Character");
 		}
 	}

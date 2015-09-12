@@ -15,9 +15,8 @@ import java.util.Properties;
 public class GameContent
 {
 	private final Properties LabelsProperties = new Properties();
-	private final JFrame mainFrame = new JFrame();
+	protected final JFrame mainFrame = new JFrame();
 	private final Border border = new LineBorder(Color.WHITE, 2, true);
-	private final Font menuFont = new Font("Monospaced", Font.BOLD, 15);
 	private final Font textFont = new Font("Monospaced", Font.BOLD, 20);
 	private final Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
 	private String selectedRace;
@@ -41,109 +40,33 @@ public class GameContent
 
 	public void buildMainFrame()
 	{
+		BuildMenuBar menuBar = new BuildMenuBar();
+
 		mainFrame.setTitle(LabelsProperties.getProperty("mainFrameTitle"));
 		mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		mainFrame.setSize(1200, 800);
 		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		mainFrame.setVisible(true);
-		mainFrame.setJMenuBar(buildMenuBar());
+		mainFrame.setJMenuBar(menuBar.buildMenuBar());
 		mainFrame.validate();
 	}
 
-	private JMenuBar buildMenuBar()
+	public void closeGame()
 	{
-		JMenuBar menuBar = new JMenuBar();
-		JMenu gameMenu = new JMenu(LabelsProperties.getProperty("gameMenuText"));
-		JMenu optionsMenu = new JMenu(LabelsProperties.getProperty("optionsMenuText"));
-		JMenu helpMenu = new JMenu(LabelsProperties.getProperty("helpMenuText"));
-		JMenuItem newGameMenu = new JMenuItem(LabelsProperties.getProperty("newGameMenuItemText"));
-		JMenuItem loadGameMenu = new JMenuItem(LabelsProperties.getProperty("loadGameMenuItemText"));
-		JMenuItem saveGameMenu = new JMenuItem(LabelsProperties.getProperty("saveGameMenuItemText"));
-		JMenuItem quitGameMenu = new JMenuItem(LabelsProperties.getProperty("quitGameMenuItemText"));
-		JMenuItem settingsOptionsMenu = new JMenuItem(LabelsProperties.getProperty("settingsOptionsMenuItemText"));
-		JMenuItem helpHelpMenu = new JMenuItem(LabelsProperties.getProperty("helpHelpMenuItemText"));
-		JMenuItem updateHelpMenu = new JMenuItem(LabelsProperties.getProperty("updateHelpMenuItemText"));
-		JMenuItem aboutHelpMenu = new JMenuItem(LabelsProperties.getProperty("aboutHelpMenuItemText"));
 
-		//format the menu items
-		setMenuItemStyle(newGameMenu);
-		setMenuItemStyle(loadGameMenu);
-		setMenuItemStyle(saveGameMenu);
-		setMenuItemStyle(quitGameMenu);
-		setMenuItemStyle(settingsOptionsMenu);
-		setMenuItemStyle(helpHelpMenu);
-		setMenuItemStyle(updateHelpMenu);
-		setMenuItemStyle(aboutHelpMenu);
+		System.out.println("22222222222222222222");
+		mainFrame.dispose();
+		System.out.println("3333333333333333");
 
-		//disable save game option because game is not exist currently
-		saveGameMenu.setEnabled(false);
-
-		//add tooltip to the menu items
-		newGameMenu.setToolTipText(LabelsProperties.getProperty("newGameMenuItemToolTipText"));
-		loadGameMenu.setToolTipText(LabelsProperties.getProperty("loadGameMenuItemToolTipText"));
-		saveGameMenu.setToolTipText(LabelsProperties.getProperty("saveGameMenuItemToolTipText"));
-		quitGameMenu.setToolTipText(LabelsProperties.getProperty("quitGameMenuItemToolTipText"));
-		settingsOptionsMenu.setToolTipText(LabelsProperties.getProperty("settingsOptionsMenuItemToolTipText"));
-		helpHelpMenu.setToolTipText(LabelsProperties.getProperty("helpHelpMenuItemToolTipText"));
-		updateHelpMenu.setToolTipText(LabelsProperties.getProperty("updateHelpMenuItemToolTipText"));
-		aboutHelpMenu.setToolTipText(LabelsProperties.getProperty("aboutHelpMenuItemToolTipText"));
-
-		//add menu items to the menus
-		gameMenu.add(newGameMenu);
-		gameMenu.add(loadGameMenu);
-		gameMenu.add(saveGameMenu);
-		gameMenu.add(quitGameMenu);
-
-		optionsMenu.add(settingsOptionsMenu);
-
-		helpMenu.add(helpHelpMenu);
-		helpMenu.add(updateHelpMenu);
-		helpMenu.add(aboutHelpMenu);
-
-		//format the menus
-		setMenuStyle(gameMenu);
-		setMenuStyle(optionsMenu);
-		setMenuStyle(helpMenu);
-
-		//add menus to the menu bar
-		menuBar.add(gameMenu);
-		menuBar.add(optionsMenu);
-		menuBar.add(helpMenu);
-
-		//format the menu bar
-		menuBar.setBackground(Color.darkGray);
-
-		//add action listeners to the menu items
-		newGameMenu.addActionListener(new NewGameListener());
-		loadGameMenu.addActionListener(new LoadGameListener());
-		saveGameMenu.addActionListener(new SaveGameListener());
-		quitGameMenu.addActionListener(new QuitGameListener());
-		settingsOptionsMenu.addActionListener(new SettingsListener());
-		helpHelpMenu.addActionListener(new HelpListener());
-		updateHelpMenu.addActionListener(new UpdateListener());
-		aboutHelpMenu.addActionListener(new AboutListener());
-
-		return menuBar;
-	}
-
-	private void setMenuItemStyle(JMenuItem menuItem)
-	{
-		menuItem.setBackground(Color.darkGray);
-		menuItem.setForeground(Color.white);
-		menuItem.setFont(menuFont);
-		menuItem.setBorder(border);
-	}
-
-	private void setMenuStyle(JMenu menu)
-	{
-		menu.setForeground(Color.white);
-		menu.setFont(menuFont);
 	}
 
 	public void addMainPageToTheMainFrame()
 	{
 		mainFrame.getContentPane().add(BorderLayout.CENTER, buildMainPage());
 		mainFrame.validate();
+
+		try{Thread.sleep(4000);}catch(InterruptedException e){System.out.println("bizb");}
+		//closeGame();
 	}
 
 	private JPanel buildMainPage()
@@ -401,71 +324,6 @@ public class GameContent
 		public void actionPerformed(ActionEvent event)
 		{
 
-		}
-	}
-
-	private class SaveGameListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-
-		}
-	}
-
-	private class QuitGameListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			int result = JOptionPane.showOptionDialog(
-					null,
-					"Are you really want to quit?",
-					"Are you really want to quit?",
-					JOptionPane.OK_CANCEL_OPTION,
-					JOptionPane.INFORMATION_MESSAGE,
-					null,
-					new String[]{"Yes, quit", "No, cancel"},
-					"No, cancel");
-
-			if (result == 0)
-			{
-				mainFrame.dispose();
-			}
-		}
-	}
-
-	private class SettingsListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-
-		}
-	}
-
-	private class HelpListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-
-		}
-	}
-
-	private class UpdateListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-
-		}
-	}
-
-	private class AboutListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			JOptionPane.showMessageDialog(
-					null,
-					"Matta's Best RPG Game\nVersion 0.1",
-					"About",
-					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }

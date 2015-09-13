@@ -1,54 +1,29 @@
 package Content;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
 
-public class BuildMenuBar
+class BuildMenuBar
 {
-	private final Properties LabelsProperties = new Properties();
-	private final Border border = new LineBorder(Color.WHITE, 2, true);
 	private final Font menuFont = new Font("Monospaced", Font.BOLD, 15);
-	GameContent gameContent = new GameContent();
+	private final GameContent gameContent = new GameContent();
 
-	public BuildMenuBar()
-	{
-		loadProperties();
-	}
-
-	private void loadProperties()
-	{
-		try
-		{
-			LabelsProperties.load(new FileInputStream("src/StaticContent/Properties/Labels.properties"));
-		}
-		catch (IOException e)
-		{
-			System.out.println("Exception Occurred: " + e.getMessage());
-		}
-	}
-
-
-	protected JMenuBar buildMenuBar()
+	JMenuBar buildMenuBar()
 	{
 		JMenuBar menuBar = new JMenuBar();
-		JMenu gameMenu = new JMenu(LabelsProperties.getProperty("gameMenuText"));
-		JMenu optionsMenu = new JMenu(LabelsProperties.getProperty("optionsMenuText"));
-		JMenu helpMenu = new JMenu(LabelsProperties.getProperty("helpMenuText"));
-		JMenuItem newGameMenu = new JMenuItem(LabelsProperties.getProperty("newGameMenuItemText"));
-		JMenuItem loadGameMenu = new JMenuItem(LabelsProperties.getProperty("loadGameMenuItemText"));
-		JMenuItem saveGameMenu = new JMenuItem(LabelsProperties.getProperty("saveGameMenuItemText"));
-		JMenuItem quitGameMenu = new JMenuItem(LabelsProperties.getProperty("quitGameMenuItemText"));
-		JMenuItem settingsOptionsMenu = new JMenuItem(LabelsProperties.getProperty("settingsOptionsMenuItemText"));
-		JMenuItem helpHelpMenu = new JMenuItem(LabelsProperties.getProperty("helpHelpMenuItemText"));
-		JMenuItem updateHelpMenu = new JMenuItem(LabelsProperties.getProperty("updateHelpMenuItemText"));
-		JMenuItem aboutHelpMenu = new JMenuItem(LabelsProperties.getProperty("aboutHelpMenuItemText"));
+		JMenu gameMenu = new JMenu(gameContent.LabelsProperties.getProperty("gameMenuText"));
+		JMenu optionsMenu = new JMenu(gameContent.LabelsProperties.getProperty("optionsMenuText"));
+		JMenu helpMenu = new JMenu(gameContent.LabelsProperties.getProperty("helpMenuText"));
+		JMenuItem newGameMenu = new JMenuItem(gameContent.LabelsProperties.getProperty("newGameMenuItemText"));
+		JMenuItem loadGameMenu = new JMenuItem(gameContent.LabelsProperties.getProperty("loadGameMenuItemText"));
+		JMenuItem saveGameMenu = new JMenuItem(gameContent.LabelsProperties.getProperty("saveGameMenuItemText"));
+		JMenuItem quitGameMenu = new JMenuItem(gameContent.LabelsProperties.getProperty("quitGameMenuItemText"));
+		JMenuItem settingsOptionsMenu = new JMenuItem(gameContent.LabelsProperties.getProperty("settingsOptionsMenuItemText"));
+		JMenuItem helpHelpMenu = new JMenuItem(gameContent.LabelsProperties.getProperty("helpHelpMenuItemText"));
+		JMenuItem updateHelpMenu = new JMenuItem(gameContent.LabelsProperties.getProperty("updateHelpMenuItemText"));
+		JMenuItem aboutHelpMenu = new JMenuItem(gameContent.LabelsProperties.getProperty("aboutHelpMenuItemText"));
 
 		//format the menu items
 		setMenuItemStyle(newGameMenu);
@@ -64,14 +39,14 @@ public class BuildMenuBar
 		saveGameMenu.setEnabled(false);
 
 		//add tooltip to the menu items
-		newGameMenu.setToolTipText(LabelsProperties.getProperty("newGameMenuItemToolTipText"));
-		loadGameMenu.setToolTipText(LabelsProperties.getProperty("loadGameMenuItemToolTipText"));
-		saveGameMenu.setToolTipText(LabelsProperties.getProperty("saveGameMenuItemToolTipText"));
-		quitGameMenu.setToolTipText(LabelsProperties.getProperty("quitGameMenuItemToolTipText"));
-		settingsOptionsMenu.setToolTipText(LabelsProperties.getProperty("settingsOptionsMenuItemToolTipText"));
-		helpHelpMenu.setToolTipText(LabelsProperties.getProperty("helpHelpMenuItemToolTipText"));
-		updateHelpMenu.setToolTipText(LabelsProperties.getProperty("updateHelpMenuItemToolTipText"));
-		aboutHelpMenu.setToolTipText(LabelsProperties.getProperty("aboutHelpMenuItemToolTipText"));
+		newGameMenu.setToolTipText(gameContent.LabelsProperties.getProperty("newGameMenuItemToolTipText"));
+		loadGameMenu.setToolTipText(gameContent.LabelsProperties.getProperty("loadGameMenuItemToolTipText"));
+		saveGameMenu.setToolTipText(gameContent.LabelsProperties.getProperty("saveGameMenuItemToolTipText"));
+		quitGameMenu.setToolTipText(gameContent.LabelsProperties.getProperty("quitGameMenuItemToolTipText"));
+		settingsOptionsMenu.setToolTipText(gameContent.LabelsProperties.getProperty("settingsOptionsMenuItemToolTipText"));
+		helpHelpMenu.setToolTipText(gameContent.LabelsProperties.getProperty("helpHelpMenuItemToolTipText"));
+		updateHelpMenu.setToolTipText(gameContent.LabelsProperties.getProperty("updateHelpMenuItemToolTipText"));
+		aboutHelpMenu.setToolTipText(gameContent.LabelsProperties.getProperty("aboutHelpMenuItemToolTipText"));
 
 		//add menu items to the menus
 		gameMenu.add(newGameMenu);
@@ -116,7 +91,7 @@ public class BuildMenuBar
 		menuItem.setBackground(Color.darkGray);
 		menuItem.setForeground(Color.white);
 		menuItem.setFont(menuFont);
-		menuItem.setBorder(border);
+		menuItem.setBorder(gameContent.border);
 	}
 
 	private void setMenuStyle(JMenu menu)

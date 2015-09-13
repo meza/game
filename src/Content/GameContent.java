@@ -14,9 +14,9 @@ import java.util.Properties;
 
 public class GameContent
 {
-	private final Properties LabelsProperties = new Properties();
-	protected final JFrame mainFrame = new JFrame();
-	private final Border border = new LineBorder(Color.WHITE, 2, true);
+	final Properties LabelsProperties = new Properties();
+	private final JFrame mainFrame = new JFrame();
+	final Border border = new LineBorder(Color.WHITE, 2, true);
 	private final Font textFont = new Font("Monospaced", Font.BOLD, 20);
 	private final Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
 	private String selectedRace;

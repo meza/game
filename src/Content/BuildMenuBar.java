@@ -140,9 +140,7 @@ class BuildMenuBar
 
 			if (result == 0)
 			{
-				System.out.println("111111111111");
-				gameContent.closeGame();
-				System.out.println("4444444444444444444");
+				System.exit(0);
 			}
 		}
 	}

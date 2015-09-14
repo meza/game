@@ -51,22 +51,10 @@ public class GameContent
 		mainFrame.validate();
 	}
 
-	public void closeGame()
-	{
-
-		System.out.println("22222222222222222222");
-		mainFrame.dispose();
-		System.out.println("3333333333333333");
-
-	}
-
 	public void addMainPageToTheMainFrame()
 	{
 		mainFrame.getContentPane().add(BorderLayout.CENTER, buildMainPage());
 		mainFrame.validate();
-
-		try{Thread.sleep(4000);}catch(InterruptedException e){System.out.println("bizb");}
-		//closeGame();
 	}
 
 	private JPanel buildMainPage()

@@ -12,7 +12,7 @@ import java.util.Properties;
 public class BuildGameContent
 {
 	final Properties LabelsProperties = new Properties();
-	private final JFrame mainFrame = new JFrame();
+	private static final JFrame mainFrame = new JFrame();
 	final Border border = new LineBorder(Color.WHITE, 2, true);
 	private final Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
 	private String selectedRace;

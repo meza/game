@@ -1,6 +1,6 @@
 package Game;
 
-import Content.GameContent;
+import BuildContent.BuildGameContent;
 
 class Game
 {
@@ -12,8 +12,8 @@ class Game
 
 	private void start()
 	{
-		GameContent gameContent = new GameContent();
-		gameContent.buildMainFrame();
-		gameContent.addMainPageToTheMainFrame();
+		BuildGameContent buildGameContent = new BuildGameContent();
+		buildGameContent.buildMainFrame();
+		buildGameContent.addMainPageToTheMainFrame();
 	}
 }

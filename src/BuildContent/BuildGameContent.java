@@ -10,7 +10,7 @@ import java.util.Properties;
 public class BuildGameContent
 {
 	final Properties LabelsProperties = new Properties();
-	protected static final JFrame mainFrame = new JFrame();
+	private static final JFrame mainFrame = new JFrame();
 	private String selectedRace = "";
 
 	public BuildGameContent()
@@ -66,7 +66,7 @@ public class BuildGameContent
 		mainFrame.validate();
 	}
 
-	protected void changeMenuItemState(String menuItemName, Boolean isEnabled)
+	private void changeMenuItemState(String menuItemName, Boolean isEnabled)
 	{
 		int numberOfTheMenus = mainFrame.getJMenuBar().getMenuCount();
 

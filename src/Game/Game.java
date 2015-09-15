@@ -12,8 +12,8 @@ class Game
 
 	private void start()
 	{
-		BuildGameContent buildGameContent = new BuildGameContent();
-		buildGameContent.buildMainFrame();
-		buildGameContent.addMainPageToTheMainFrame();
+		BuildGameContent gameContent = new BuildGameContent();
+		gameContent.buildMainFrame();
+		gameContent.addMainPageToTheMainFrame();
 	}
 }

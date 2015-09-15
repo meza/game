@@ -15,7 +15,7 @@ public class BuildGameContent
 	private static final JFrame mainFrame = new JFrame();
 	final Border border = new LineBorder(Color.WHITE, 2, true);
 	private final Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
-	private String selectedRace;
+	private String selectedRace = "";
 
 	public BuildGameContent()
 	{

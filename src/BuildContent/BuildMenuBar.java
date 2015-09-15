@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 
 class BuildMenuBar
 {
-	private final Font menuFont = new Font("Monospaced", Font.BOLD, 15);
 	private final BuildGameContent buildGameContent = new BuildGameContent();
+	private final Font menuFont = new Font("Monospaced", Font.BOLD, 15);
 
 	JMenuBar buildMenuBar()
 	{

@@ -1,6 +1,8 @@
 package BuildContent;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +11,7 @@ class BuildMenuBar
 {
 	private final BuildGameContent buildGameContent = new BuildGameContent();
 	private final Font menuFont = new Font("Monospaced", Font.BOLD, 15);
+	final Border border = new LineBorder(Color.WHITE, 2, true);
 
 	JMenuBar buildMenuBar()
 	{
@@ -91,7 +94,7 @@ class BuildMenuBar
 		menuItem.setBackground(Color.darkGray);
 		menuItem.setForeground(Color.white);
 		menuItem.setFont(menuFont);
-		menuItem.setBorder(buildGameContent.border);
+		menuItem.setBorder(border);
 	}
 
 	private void setMenuStyle(JMenu menu)

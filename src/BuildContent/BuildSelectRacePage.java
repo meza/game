@@ -9,6 +9,7 @@ import java.net.URL;
 class BuildSelectRacePage
 {
 	private final BuildGameContent buildGameContent = new BuildGameContent();
+	private final BuildMainPage buildMainPage = new BuildMainPage();
 	private final Font textFont = new Font("Monospaced", Font.BOLD, 20);
 
 	JPanel buildSelectRacePage()
@@ -54,13 +55,13 @@ class BuildSelectRacePage
 		setRaceDescriptionStyle(elfInfo, elfText);
 
 		//format the race selector buttons
-		buildGameContent.setButtonStyle(selectVampireButton);
+		buildMainPage.setButtonStyle(selectVampireButton);
 		selectVampireButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		buildGameContent.setButtonStyle(selectDwarfButton);
+		buildMainPage.setButtonStyle(selectDwarfButton);
 		selectDwarfButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		buildGameContent.setButtonStyle(selectElfButton);
+		buildMainPage.setButtonStyle(selectElfButton);
 		selectElfButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		//add tooltips to the buttons

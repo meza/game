@@ -1,8 +1,6 @@
 package BuildContent;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,8 +11,6 @@ public class BuildGameContent
 {
 	final Properties LabelsProperties = new Properties();
 	private static final JFrame mainFrame = new JFrame();
-	final Border border = new LineBorder(Color.WHITE, 2, true);
-	private final Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
 	private String selectedRace = "";
 
 	public BuildGameContent()
@@ -53,14 +49,6 @@ public class BuildGameContent
 
 		mainFrame.getContentPane().add(BorderLayout.CENTER, mainPage.buildMainPage());
 		mainFrame.validate();
-	}
-
-	void setButtonStyle(JButton button)
-	{
-		button.setBackground(Color.darkGray);
-		button.setForeground(Color.white);
-		button.setFont(buttonFont);
-		button.setBorder(border);
 	}
 
 	void addSelectRacePageToTheMainFrame()

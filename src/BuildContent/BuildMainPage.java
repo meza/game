@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 class BuildMainPage
 {
 	private final BuildGameContent buildGameContent = new BuildGameContent();
+	private final BuildMenuBar buildMenuBar = new BuildMenuBar();
+	private final Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
 
 	JPanel buildMainPage()
 	{
@@ -19,8 +21,8 @@ class BuildMainPage
 		JButton loadGameButton = new JButton(buildGameContent.LabelsProperties.getProperty("loadGameButtonText"));
 
 		//format the buttons
-		buildGameContent.setButtonStyle(newGameButton);
-		buildGameContent.setButtonStyle(loadGameButton);
+		setButtonStyle(newGameButton);
+		setButtonStyle(loadGameButton);
 
 		//add tooltips to the buttons
 		newGameButton.setToolTipText(buildGameContent.LabelsProperties.getProperty("newGameButtonToolTipText"));
@@ -50,6 +52,14 @@ class BuildMainPage
 		mainPanel.add(startPanel);
 
 		return mainPanel;
+	}
+
+	void setButtonStyle(JButton button)
+	{
+		button.setBackground(Color.darkGray);
+		button.setForeground(Color.white);
+		button.setFont(buttonFont);
+		button.setBorder(buildMenuBar.border);
 	}
 
 	private class NewGameListener implements ActionListener

@@ -10,7 +10,7 @@ import java.util.Properties;
 public class BuildGameContent
 {
 	final Properties LabelsProperties = new Properties();
-	private static final JFrame mainFrame = new JFrame();
+	protected static final JFrame mainFrame = new JFrame();
 	private String selectedRace = "";
 
 	public BuildGameContent()
@@ -40,6 +40,8 @@ public class BuildGameContent
 		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		mainFrame.setVisible(true);
 		mainFrame.setJMenuBar(menuBar.buildMenuBar());
+		//disable "Save game" menu item because game is not exist currently
+		changeMenuItemState("Save game", false);
 		mainFrame.validate();
 	}
 
@@ -58,8 +60,36 @@ public class BuildGameContent
 		mainFrame.getContentPane().removeAll();
 		mainFrame.repaint();
 		mainFrame.setTitle(LabelsProperties.getProperty("mainFrameTitleSelectRacePage"));
+		//disable "New game" menu item because new game creation started
+		changeMenuItemState("New game", false);
 		mainFrame.getContentPane().add(selectRacePage.buildSelectRacePage());
 		mainFrame.validate();
+	}
+
+	protected void changeMenuItemState(String menuItemName, Boolean isEnabled)
+	{
+		int numberOfTheMenus = mainFrame.getJMenuBar().getMenuCount();
+
+		for (int i = 0; i < numberOfTheMenus; i++)
+		{
+			setMenuItemState(i, menuItemName, isEnabled);
+		}
+	}
+
+	private void setMenuItemState(int menuNumber, String menuItemName, Boolean isEnabled)
+	{
+		int numberOfTheMenuItems = mainFrame.getJMenuBar().getMenu(menuNumber).getMenuComponentCount();
+
+		for (int j = 0; j < numberOfTheMenuItems; j++)
+		{
+			String menuItemText = mainFrame.getJMenuBar().getMenu(menuNumber).getMenuComponent(j).getName();
+
+			if (menuItemName.equals(menuItemText))
+			{
+				mainFrame.getJMenuBar().getMenu(menuNumber).getMenuComponent(j).setEnabled(isEnabled);
+				return;
+			}
+		}
 	}
 
 	void setSelectedRace(String race)

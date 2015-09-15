@@ -38,9 +38,6 @@ class BuildMenuBar
 		setMenuItemStyle(updateHelpMenu);
 		setMenuItemStyle(aboutHelpMenu);
 
-		//disable save game option because game is not exist currently
-		saveGameMenu.setEnabled(false);
-
 		//add tooltip to the menu items
 		newGameMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("newGameMenuItemToolTipText"));
 		loadGameMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("loadGameMenuItemToolTipText"));
@@ -50,6 +47,16 @@ class BuildMenuBar
 		helpHelpMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("helpHelpMenuItemToolTipText"));
 		updateHelpMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("updateHelpMenuItemToolTipText"));
 		aboutHelpMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("aboutHelpMenuItemToolTipText"));
+
+		//add name to the menu items
+		newGameMenu.setName(buildGameContent.LabelsProperties.getProperty("newGameMenuItemText"));
+		loadGameMenu.setName(buildGameContent.LabelsProperties.getProperty("loadGameMenuItemText"));
+		saveGameMenu.setName(buildGameContent.LabelsProperties.getProperty("saveGameMenuItemText"));
+		quitGameMenu.setName(buildGameContent.LabelsProperties.getProperty("quitGameMenuItemText"));
+		settingsOptionsMenu.setName(buildGameContent.LabelsProperties.getProperty("settingsOptionsMenuItemText"));
+		helpHelpMenu.setName(buildGameContent.LabelsProperties.getProperty("helpHelpMenuItemText"));
+		updateHelpMenu.setName(buildGameContent.LabelsProperties.getProperty("updateHelpMenuItemText"));
+		aboutHelpMenu.setName(buildGameContent.LabelsProperties.getProperty("aboutHelpMenuItemText"));
 
 		//add menu items to the menus
 		gameMenu.add(newGameMenu);
@@ -67,6 +74,11 @@ class BuildMenuBar
 		setMenuStyle(gameMenu);
 		setMenuStyle(optionsMenu);
 		setMenuStyle(helpMenu);
+
+		//add name to the menus
+		gameMenu.setName(buildGameContent.LabelsProperties.getProperty("gameMenuText"));
+		optionsMenu.setName(buildGameContent.LabelsProperties.getProperty("optionsMenuText"));
+		helpMenu.setName(buildGameContent.LabelsProperties.getProperty("helpMenuText"));
 
 		//add menus to the menu bar
 		menuBar.add(gameMenu);

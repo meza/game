@@ -16,89 +16,134 @@ class BuildMenuBar
 	JMenuBar buildMenuBar()
 	{
 		JMenuBar menuBar = new JMenuBar();
-		JMenu gameMenu = new JMenu(buildGameContent.LabelsProperties.getProperty("gameMenuText"));
-		JMenu optionsMenu = new JMenu(buildGameContent.LabelsProperties.getProperty("optionsMenuText"));
-		JMenu helpMenu = new JMenu(buildGameContent.LabelsProperties.getProperty("helpMenuText"));
-		JMenuItem newGameMenu = new JMenuItem(buildGameContent.LabelsProperties.getProperty("newGameMenuItemText"));
-		JMenuItem loadGameMenu = new JMenuItem(buildGameContent.LabelsProperties.getProperty("loadGameMenuItemText"));
-		JMenuItem saveGameMenu = new JMenuItem(buildGameContent.LabelsProperties.getProperty("saveGameMenuItemText"));
-		JMenuItem quitGameMenu = new JMenuItem(buildGameContent.LabelsProperties.getProperty("quitGameMenuItemText"));
-		JMenuItem settingsOptionsMenu = new JMenuItem(buildGameContent.LabelsProperties.getProperty("settingsOptionsMenuItemText"));
-		JMenuItem helpHelpMenu = new JMenuItem(buildGameContent.LabelsProperties.getProperty("helpHelpMenuItemText"));
-		JMenuItem updateHelpMenu = new JMenuItem(buildGameContent.LabelsProperties.getProperty("updateHelpMenuItemText"));
-		JMenuItem aboutHelpMenu = new JMenuItem(buildGameContent.LabelsProperties.getProperty("aboutHelpMenuItemText"));
 
-		//format the menu items
-		setMenuItemStyle(newGameMenu);
-		setMenuItemStyle(loadGameMenu);
-		setMenuItemStyle(saveGameMenu);
-		setMenuItemStyle(quitGameMenu);
-		setMenuItemStyle(settingsOptionsMenu);
-		setMenuItemStyle(helpHelpMenu);
-		setMenuItemStyle(updateHelpMenu);
-		setMenuItemStyle(aboutHelpMenu);
+		menuBar.add(buildGameMenu());
+		menuBar.add(buildOptionsMenu());
+		menuBar.add(buildHelpMenu());
 
-		//add tooltip to the menu items
-		newGameMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("newGameMenuItemToolTipText"));
-		loadGameMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("loadGameMenuItemToolTipText"));
-		saveGameMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("saveGameMenuItemToolTipText"));
-		quitGameMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("quitGameMenuItemToolTipText"));
-		settingsOptionsMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("settingsOptionsMenuItemToolTipText"));
-		helpHelpMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("helpHelpMenuItemToolTipText"));
-		updateHelpMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("updateHelpMenuItemToolTipText"));
-		aboutHelpMenu.setToolTipText(buildGameContent.LabelsProperties.getProperty("aboutHelpMenuItemToolTipText"));
-
-		//add name to the menu items
-		newGameMenu.setName(buildGameContent.LabelsProperties.getProperty("newGameMenuItemText"));
-		loadGameMenu.setName(buildGameContent.LabelsProperties.getProperty("loadGameMenuItemText"));
-		saveGameMenu.setName(buildGameContent.LabelsProperties.getProperty("saveGameMenuItemText"));
-		quitGameMenu.setName(buildGameContent.LabelsProperties.getProperty("quitGameMenuItemText"));
-		settingsOptionsMenu.setName(buildGameContent.LabelsProperties.getProperty("settingsOptionsMenuItemText"));
-		helpHelpMenu.setName(buildGameContent.LabelsProperties.getProperty("helpHelpMenuItemText"));
-		updateHelpMenu.setName(buildGameContent.LabelsProperties.getProperty("updateHelpMenuItemText"));
-		aboutHelpMenu.setName(buildGameContent.LabelsProperties.getProperty("aboutHelpMenuItemText"));
-
-		//add menu items to the menus
-		gameMenu.add(newGameMenu);
-		gameMenu.add(loadGameMenu);
-		gameMenu.add(saveGameMenu);
-		gameMenu.add(quitGameMenu);
-
-		optionsMenu.add(settingsOptionsMenu);
-
-		helpMenu.add(helpHelpMenu);
-		helpMenu.add(updateHelpMenu);
-		helpMenu.add(aboutHelpMenu);
-
-		//format the menus
-		setMenuStyle(gameMenu);
-		setMenuStyle(optionsMenu);
-		setMenuStyle(helpMenu);
-
-		//add name to the menus
-		gameMenu.setName(buildGameContent.LabelsProperties.getProperty("gameMenuText"));
-		optionsMenu.setName(buildGameContent.LabelsProperties.getProperty("optionsMenuText"));
-		helpMenu.setName(buildGameContent.LabelsProperties.getProperty("helpMenuText"));
-
-		//add menus to the menu bar
-		menuBar.add(gameMenu);
-		menuBar.add(optionsMenu);
-		menuBar.add(helpMenu);
-
-		//format the menu bar
 		menuBar.setBackground(Color.darkGray);
 
-		//add action listeners to the menu items
-		newGameMenu.addActionListener(new NewGameListener());
-		loadGameMenu.addActionListener(new LoadGameListener());
-		saveGameMenu.addActionListener(new SaveGameListener());
-		quitGameMenu.addActionListener(new QuitGameListener());
-		settingsOptionsMenu.addActionListener(new SettingsListener());
-		helpHelpMenu.addActionListener(new HelpListener());
-		updateHelpMenu.addActionListener(new UpdateListener());
-		aboutHelpMenu.addActionListener(new AboutListener());
-
 		return menuBar;
+	}
+
+	private JMenu buildGameMenu()
+	{
+		JMenu gameMenu = new JMenu();
+		JMenuItem newGameMenuItem = new JMenuItem();
+		JMenuItem loadGameMenuItem = new JMenuItem();
+		JMenuItem saveGameMenuItem = new JMenuItem();
+		JMenuItem quitMenuItem = new JMenuItem();
+
+		buildMenuItem(
+				newGameMenuItem,
+				buildGameContent.LabelsProperties.getProperty("newGameMenuItemText"),
+				buildGameContent.LabelsProperties.getProperty("newGameMenuItemToolTipText"),
+				new NewGameListener());
+
+		buildMenuItem(
+				loadGameMenuItem,
+				buildGameContent.LabelsProperties.getProperty("loadGameMenuItemText"),
+				buildGameContent.LabelsProperties.getProperty("loadGameMenuItemToolTipText"),
+				new LoadGameListener());
+
+		buildMenuItem(
+				saveGameMenuItem,
+				buildGameContent.LabelsProperties.getProperty("saveGameMenuItemText"),
+				buildGameContent.LabelsProperties.getProperty("saveGameMenuItemToolTipText"),
+				new SaveGameListener());
+
+		buildMenuItem(
+				quitMenuItem,
+				buildGameContent.LabelsProperties.getProperty("quitMenuItemText"),
+				buildGameContent.LabelsProperties.getProperty("quitMenuItemToolTipText"),
+				new QuitGameListener());
+
+		buildMenu(
+				gameMenu,
+				buildGameContent.LabelsProperties.getProperty("gameMenuText"));
+
+		gameMenu.add(newGameMenuItem);
+		gameMenu.add(loadGameMenuItem);
+		gameMenu.add(saveGameMenuItem);
+		gameMenu.add(quitMenuItem);
+
+		return gameMenu;
+	}
+
+	private JMenu buildOptionsMenu()
+	{
+		JMenu optionsMenu = new JMenu();
+		JMenuItem settingsMenuItem = new JMenuItem();
+
+		buildMenuItem(
+				settingsMenuItem,
+				buildGameContent.LabelsProperties.getProperty("settingsMenuItemText"),
+				buildGameContent.LabelsProperties.getProperty("settingsMenuItemToolTipText"),
+				new SettingsListener());
+
+		buildMenu(
+				optionsMenu,
+				buildGameContent.LabelsProperties.getProperty("optionsMenuText"));
+
+		optionsMenu.add(settingsMenuItem);
+		
+		return optionsMenu;
+	}
+
+	private JMenu buildHelpMenu()
+	{
+		JMenu helpMenu = new JMenu();
+		JMenuItem helpMenuItem = new JMenuItem();
+		JMenuItem updateMenuItem =new JMenuItem();
+		JMenuItem aboutMenuItem = new JMenuItem();
+
+		buildMenuItem(
+				helpMenuItem,
+				buildGameContent.LabelsProperties.getProperty("helpMenuItemText"),
+				buildGameContent.LabelsProperties.getProperty("helpMenuItemToolTipText"),
+				new HelpListener());
+
+		buildMenuItem(
+				updateMenuItem,
+				buildGameContent.LabelsProperties.getProperty("updateMenuItemText"),
+				buildGameContent.LabelsProperties.getProperty("updateMenuItemToolTipText"),
+				new UpdateListener());
+
+		buildMenuItem(
+				aboutMenuItem,
+				buildGameContent.LabelsProperties.getProperty("aboutMenuItemText"),
+				buildGameContent.LabelsProperties.getProperty("aboutMenuItemToolTipText"),
+				new AboutListener());
+
+		buildMenu(
+				helpMenu,
+				buildGameContent.LabelsProperties.getProperty("helpMenuText"));
+
+		helpMenu.add(helpMenuItem);
+		helpMenu.add(updateMenuItem);
+		helpMenu.add(aboutMenuItem);
+
+		return helpMenu;
+	}
+
+	private JMenuItem buildMenuItem(JMenuItem menuItem, String text, String toolTipText, ActionListener listener)
+	{
+		menuItem.setText(text);
+		menuItem.setToolTipText(toolTipText);
+		menuItem.setName(text);
+		setMenuItemStyle(menuItem);
+		menuItem.addActionListener(listener);
+
+		return menuItem;
+	}
+
+	private JMenu buildMenu(JMenu menu, String text)
+	{
+		menu.setText(text);
+		menu.setName(text);
+		setMenuStyle(menu);
+
+		return menu;
 	}
 
 	private void setMenuItemStyle(JMenuItem menuItem)
@@ -195,5 +240,4 @@ class BuildMenuBar
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-
 }

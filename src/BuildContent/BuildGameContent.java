@@ -5,6 +5,8 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Properties;
 
 public class BuildGameContent
@@ -66,6 +68,13 @@ public class BuildGameContent
 		mainFrame.validate();
 	}
 
+	void addCharacterGeneratorPageToTheMainFrame()
+	{
+		BuildCharacterGeneratorPage characterGeneratorPage = new BuildCharacterGeneratorPage();
+
+		mainFrame.setTitle(MessageFormat.format(LabelsProperties.getProperty("mainFrameTitleGenerateRacePage"), getSelectedRace()));
+	}
+
 	private void changeMenuItemState(String menuItemName, Boolean isEnabled)
 	{
 		int numberOfTheMenus = mainFrame.getJMenuBar().getMenuCount();
@@ -78,15 +87,15 @@ public class BuildGameContent
 
 	private void setMenuItemState(int menuNumber, String menuItemName, Boolean isEnabled)
 	{
-		int numberOfTheMenuItems = mainFrame.getJMenuBar().getMenu(menuNumber).getMenuComponentCount();
+		ArrayList<Component> menuItems = new ArrayList<>(Arrays.asList(mainFrame.getJMenuBar().getMenu(menuNumber).getMenuComponents()));
 
-		for (int j = 0; j < numberOfTheMenuItems; j++)
+		for (Component item : menuItems)
 		{
-			String menuItemText = mainFrame.getJMenuBar().getMenu(menuNumber).getMenuComponent(j).getName();
+			String menuItemText = item.getName();
 
 			if (menuItemName.equals(menuItemText))
 			{
-				mainFrame.getJMenuBar().getMenu(menuNumber).getMenuComponent(j).setEnabled(isEnabled);
+				item.setEnabled(isEnabled);
 				return;
 			}
 		}
@@ -100,13 +109,6 @@ public class BuildGameContent
 	private String getSelectedRace()
 	{
 		return selectedRace;
-	}
-
-	void addCharacterGeneratorPageToTheMainFrame()
-	{
-		BuildCharacterGeneratorPage characterGeneratorPage = new BuildCharacterGeneratorPage();
-
-		mainFrame.setTitle(MessageFormat.format(LabelsProperties.getProperty("mainFrameTitleGenerateRacePage"), getSelectedRace()));
 	}
 
 }

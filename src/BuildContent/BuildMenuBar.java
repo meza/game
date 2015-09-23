@@ -126,24 +126,20 @@ class BuildMenuBar
 		return helpMenu;
 	}
 
-	private JMenuItem buildMenuItem(JMenuItem menuItem, String text, String toolTipText, ActionListener listener)
+	private void buildMenuItem(JMenuItem menuItem, String text, String toolTipText, ActionListener listener)
 	{
 		menuItem.setText(text);
 		menuItem.setToolTipText(toolTipText);
 		menuItem.setName(text);
 		setMenuItemStyle(menuItem);
 		menuItem.addActionListener(listener);
-
-		return menuItem;
 	}
 
-	private JMenu buildMenu(JMenu menu, String text)
+	private void buildMenu(JMenu menu, String text)
 	{
 		menu.setText(text);
 		menu.setName(text);
 		setMenuStyle(menu);
-
-		return menu;
 	}
 
 	private void setMenuItemStyle(JMenuItem menuItem)

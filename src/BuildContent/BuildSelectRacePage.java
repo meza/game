@@ -55,13 +55,13 @@ class BuildSelectRacePage
 		setRaceDescriptionStyle(elfInfo, elfText);
 
 		//format the race selector buttons
-		buildMainPage.setButtonStyle(selectVampireButton);
+//		buildMainPage.setButtonStyle(selectVampireButton);
 		selectVampireButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		buildMainPage.setButtonStyle(selectDwarfButton);
+//		buildMainPage.setButtonStyle(selectDwarfButton);
 		selectDwarfButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		buildMainPage.setButtonStyle(selectElfButton);
+//		buildMainPage.setButtonStyle(selectElfButton);
 		selectElfButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		//add tooltips to the buttons

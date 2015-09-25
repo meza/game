@@ -14,52 +14,57 @@ class BuildMainPage
 	JPanel buildMainPage()
 	{
 		JPanel mainPanel = new JPanel(new GridLayout(2, 1));
-		JPanel startPanel = new JPanel();
-		JPanel emptyPanel = new JPanel();
-		JPanel buttonsPanel = new JPanel(new GridLayout(2, 1));
-		JButton newGameButton = new JButton(buildGameContent.LabelsProperties.getProperty("newGameButtonText"));
-		JButton loadGameButton = new JButton(buildGameContent.LabelsProperties.getProperty("loadGameButtonText"));
+		JPanel newGamePanel = new JPanel();
+		JPanel loadGamePanel = new JPanel();
+		JButton newGameButton = new JButton();
+		JButton loadGameButton = new JButton();
 
-		//format the buttons
-		setButtonStyle(newGameButton);
-		setButtonStyle(loadGameButton);
+		buildButton(
+				newGameButton,
+				buildGameContent.LabelsProperties.getProperty("newGameButtonText"),
+				buildGameContent.LabelsProperties.getProperty("newGameButtonToolTipText"),
+				new NewGameListener());
+		buildButton(
+				loadGameButton,
+				buildGameContent.LabelsProperties.getProperty("loadGameButtonText"),
+				buildGameContent.LabelsProperties.getProperty("loadGameButtonToolTipText"),
+				new LoadGameListener());
 
-		//add tooltips to the buttons
-		newGameButton.setToolTipText(buildGameContent.LabelsProperties.getProperty("newGameButtonToolTipText"));
-		loadGameButton.setToolTipText(buildGameContent.LabelsProperties.getProperty("loadGameButtonToolTipText"));
+		setPanelStyle(newGamePanel);
+		setPanelStyle(loadGamePanel);
 
-		//add the buttons to the panel
-		buttonsPanel.add(newGameButton);
-		buttonsPanel.add(loadGameButton);
+		newGamePanel.add(Box.createVerticalGlue());
+		newGamePanel.add(newGameButton);
+		newGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
 
-		//format the panels
-		emptyPanel.setBackground(Color.darkGray);
+		loadGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
+		loadGamePanel.add(loadGameButton);
 
-		buttonsPanel.setBackground(Color.darkGray);
-		buttonsPanel.setPreferredSize(new Dimension(200, 100));
-
-		startPanel.setBackground(Color.darkGray);
-
-		//add panel to set the buttons size
-		startPanel.add(buttonsPanel);
-
-		//add action listeners to the buttons
-		newGameButton.addActionListener(new NewGameListener());
-		loadGameButton.addActionListener(new LoadGameListener());
-
-		//add the panels to the main panel
-		mainPanel.add(emptyPanel);
-		mainPanel.add(startPanel);
+		mainPanel.add(newGamePanel);
+		mainPanel.add(loadGamePanel);
 
 		return mainPanel;
 	}
 
-	void setButtonStyle(JButton button)
+	void buildButton(JButton button, String text, String toolTipText, ActionListener listener)
 	{
 		button.setBackground(Color.darkGray);
 		button.setForeground(Color.white);
 		button.setFont(buttonFont);
 		button.setBorder(buildMenuBar.border);
+		button.setMinimumSize(new Dimension(200, 50));
+		button.setMaximumSize(new Dimension(200, 50));
+		button.setPreferredSize(new Dimension(200, 50));
+		button.setAlignmentX(Component.CENTER_ALIGNMENT);
+		button.setText(text);
+		button.setToolTipText(toolTipText);
+		button.addActionListener(listener);
+	}
+
+	private void setPanelStyle(JPanel panel)
+	{
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		panel.setBackground(Color.darkGray);
 	}
 
 	private class NewGameListener implements ActionListener

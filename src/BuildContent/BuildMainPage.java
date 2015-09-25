@@ -24,21 +24,15 @@ class BuildMainPage
 				buildGameContent.LabelsProperties.getProperty("newGameButtonText"),
 				buildGameContent.LabelsProperties.getProperty("newGameButtonToolTipText"),
 				new NewGameListener());
+
 		buildButton(
 				loadGameButton,
 				buildGameContent.LabelsProperties.getProperty("loadGameButtonText"),
 				buildGameContent.LabelsProperties.getProperty("loadGameButtonToolTipText"),
 				new LoadGameListener());
 
-		setPanelStyle(newGamePanel);
-		setPanelStyle(loadGamePanel);
-
-		newGamePanel.add(Box.createVerticalGlue());
-		newGamePanel.add(newGameButton);
-		newGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
-
-		loadGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
-		loadGamePanel.add(loadGameButton);
+		buildNewGamePanel(newGamePanel, newGameButton);
+		buildLoadGamePanel(loadGamePanel, loadGameButton);
 
 		mainPanel.add(newGamePanel);
 		mainPanel.add(loadGamePanel);
@@ -59,6 +53,21 @@ class BuildMainPage
 		button.setText(text);
 		button.setToolTipText(toolTipText);
 		button.addActionListener(listener);
+	}
+
+	private void buildNewGamePanel(JPanel newGamePanel, JButton newGameButton)
+	{
+		setPanelStyle(newGamePanel);
+		newGamePanel.add(Box.createVerticalGlue());
+		newGamePanel.add(newGameButton);
+		newGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
+	}
+
+	private void buildLoadGamePanel(JPanel loadGamePanel, JButton loadGameButton)
+	{
+		setPanelStyle(loadGamePanel);
+		loadGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
+		loadGamePanel.add(loadGameButton);
 	}
 
 	private void setPanelStyle(JPanel panel)

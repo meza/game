@@ -51,7 +51,7 @@ public class BuildGameContent
 	{
 		BuildMainPage mainPage = new BuildMainPage();
 
-		mainFrame.getContentPane().add(BorderLayout.CENTER, mainPage.buildMainPage());
+		mainFrame.getContentPane().add(mainPage.buildMainPage());
 		mainFrame.validate();
 	}
 

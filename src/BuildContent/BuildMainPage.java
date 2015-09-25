@@ -14,20 +14,16 @@ class BuildMainPage
 	JPanel buildMainPage()
 	{
 		JPanel mainPanel = new JPanel(new GridLayout(2, 1));
-		JPanel newGamePanel = new JPanel();
-		JPanel loadGamePanel = new JPanel();
 
-		buildNewGamePanel(newGamePanel);
-		buildLoadGamePanel(loadGamePanel);
-
-		mainPanel.add(newGamePanel);
-		mainPanel.add(loadGamePanel);
+		mainPanel.add(buildNewGamePanel());
+		mainPanel.add(buildLoadGamePanel());
 
 		return mainPanel;
 	}
 
-	private void buildNewGamePanel(JPanel newGamePanel)
+	private JPanel buildNewGamePanel()
 	{
+		JPanel newGamePanel = new JPanel();
 		JButton newGameButton = new JButton();
 
 		buildButton(
@@ -40,10 +36,13 @@ class BuildMainPage
 		newGamePanel.add(Box.createVerticalGlue());
 		newGamePanel.add(newGameButton);
 		newGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
+
+		return newGamePanel;
 	}
 
-	private void buildLoadGamePanel(JPanel loadGamePanel)
+	private JPanel buildLoadGamePanel()
 	{
+		JPanel loadGamePanel = new JPanel();
 		JButton loadGameButton = new JButton();
 
 		buildButton(
@@ -55,6 +54,8 @@ class BuildMainPage
 		setPanelStyle(loadGamePanel);
 		loadGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
 		loadGamePanel.add(loadGameButton);
+
+		return loadGamePanel;
 	}
 
 	void buildButton(JButton button, String text, String toolTipText, ActionListener listener)

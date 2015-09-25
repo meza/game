@@ -62,11 +62,7 @@ class BuildSelectRacePage
 	{
 		JButton button = new JButton();
 
-		buildMainPage.buildButton(
-				button,
-				buttonText,
-				buttonToolTipText,
-				listener);
+		buildMainPage.buildButton(button, buttonText, buttonToolTipText, listener);
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.setBackground(Color.darkGray);

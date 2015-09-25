@@ -18,86 +18,69 @@ class BuildSelectRacePage
 		JPanel vampirePanel = new JPanel();
 		JPanel dwarfPanel = new JPanel();
 		JPanel elfPanel = new JPanel();
-		JLabel vampireIconLabel;
-		JLabel dwarfIconLabel;
-		JLabel elfIconLabel;
-		ImageIcon vampireIcon;
-		ImageIcon dwarfIcon;
-		ImageIcon elfIcon;
-		JTextArea vampireInfo = new JTextArea();
-		JTextArea dwarfInfo = new JTextArea();
-		JTextArea elfInfo = new JTextArea();
-		String vampireText = buildGameContent.LabelsProperties.getProperty("vampireRaceDescription");
-		String dwarfText = buildGameContent.LabelsProperties.getProperty("dwarfRaceDescription");
-		String elfText = buildGameContent.LabelsProperties.getProperty("elfRaceDescription");
-		JButton selectVampireButton = new JButton(buildGameContent.LabelsProperties.getProperty("selectVampireButtonText"));
-		JButton selectDwarfButton = new JButton(buildGameContent.LabelsProperties.getProperty("selectDwarfButtonText"));
-		JButton selectElfButton = new JButton(buildGameContent.LabelsProperties.getProperty("selectElfButtonText"));
 
-		//create the race icons
-		vampireIcon = createImageIcon("/StaticContent/Images/vampire.jpg");
-		dwarfIcon = createImageIcon("/StaticContent/Images/dwarf.jpg");
-		elfIcon = createImageIcon("/StaticContent/Images/elf.jpg");
+		buildRacePanel(
+				vampirePanel,
+				"/StaticContent/Images/Vampire.jpg",
+				buildGameContent.LabelsProperties.getProperty("vampireRaceDescription"),
+				buildGameContent.LabelsProperties.getProperty("selectVampireButtonText"),
+				buildGameContent.LabelsProperties.getProperty("selectVampireButtonToolTipText"),
+				new VampireSelectedListener());
 
-		//add the icons to the labels
-		vampireIconLabel = new JLabel(vampireIcon);
-		dwarfIconLabel = new JLabel(dwarfIcon);
-		elfIconLabel = new JLabel(elfIcon);
+		buildRacePanel(
+				dwarfPanel,
+				"/StaticContent/Images/Dwarf.jpg",
+				buildGameContent.LabelsProperties.getProperty("dwarfRaceDescription"),
+				buildGameContent.LabelsProperties.getProperty("selectDwarfButtonText"),
+				buildGameContent.LabelsProperties.getProperty("selectDwarfButtonToolTipText"),
+				new DwarfSelectedListener());
 
-		//set the icons alignment to center
-		vampireIconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		dwarfIconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		elfIconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		buildRacePanel(
+				elfPanel,
+				"/StaticContent/Images/Elf.jpg",
+				buildGameContent.LabelsProperties.getProperty("elfRaceDescription"),
+				buildGameContent.LabelsProperties.getProperty("selectElfButtonText"),
+				buildGameContent.LabelsProperties.getProperty("selectElfButtonToolTipText"),
+				new ElfSelectedListener());
 
-		//format the race descriptions
-		setRaceDescriptionStyle(vampireInfo, vampireText);
-		setRaceDescriptionStyle(dwarfInfo, dwarfText);
-		setRaceDescriptionStyle(elfInfo, elfText);
-
-		//format the race selector buttons
-//		buildMainPage.setButtonStyle(selectVampireButton);
-		selectVampireButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-//		buildMainPage.setButtonStyle(selectDwarfButton);
-		selectDwarfButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-//		buildMainPage.setButtonStyle(selectElfButton);
-		selectElfButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-		//add tooltips to the buttons
-		selectVampireButton.setToolTipText(buildGameContent.LabelsProperties.getProperty("selectVampireButtonToolTipText"));
-		selectDwarfButton.setToolTipText(buildGameContent.LabelsProperties.getProperty("selectDwarfButtonToolTipText"));
-		selectElfButton.setToolTipText(buildGameContent.LabelsProperties.getProperty("selectElfButtonToolTipText"));
-
-		//add action listeners to the buttons
-		selectVampireButton.addActionListener(new VampireSelectedListener());
-		selectDwarfButton.addActionListener(new DwarfSelectedListener());
-		selectElfButton.addActionListener(new ElfSelectedListener());
-
-		//set panels layout
-		vampirePanel.setLayout(new BoxLayout(vampirePanel, BoxLayout.PAGE_AXIS));
-		dwarfPanel.setLayout(new BoxLayout(dwarfPanel, BoxLayout.PAGE_AXIS));
-		elfPanel.setLayout(new BoxLayout(elfPanel, BoxLayout.PAGE_AXIS));
-
-		//format the panels
-		vampirePanel.setBackground(Color.darkGray);
-
-		dwarfPanel.setBackground(Color.darkGray);
 		dwarfPanel.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 2, Color.white));
 
-		elfPanel.setBackground(Color.darkGray);
-
-		//add content to the panels
-		addItemsToRaceSelectorPanel(vampirePanel, vampireIconLabel, vampireInfo, selectVampireButton);
-		addItemsToRaceSelectorPanel(dwarfPanel, dwarfIconLabel, dwarfInfo, selectDwarfButton);
-		addItemsToRaceSelectorPanel(elfPanel, elfIconLabel, elfInfo, selectElfButton);
-
-		//add the panels to the main panel
 		mainPanel.add(vampirePanel);
 		mainPanel.add(dwarfPanel);
 		mainPanel.add(elfPanel);
 
 		return mainPanel;
+	}
+
+	private void buildRacePanel(
+			JPanel panel,
+			String imageLocation,
+			String raceDescription,
+			String buttonText,
+			String buttonToolTipText,
+			ActionListener listener)
+	{
+		JLabel iconLabel;
+		ImageIcon icon;
+		JTextArea infoArea = new JTextArea();
+		JButton button = new JButton();
+
+		icon = createImageIcon(imageLocation);
+		iconLabel = new JLabel(icon);
+		iconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+		setRaceDescriptionStyle(infoArea, raceDescription);
+
+		buildMainPage.buildButton(
+				button,
+				buttonText,
+				buttonToolTipText,
+				listener);
+
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		panel.setBackground(Color.darkGray);
+
+		addItemsToRaceSelectorPanel(panel, iconLabel, infoArea, button);
 	}
 
 	private ImageIcon createImageIcon(String path)

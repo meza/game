@@ -46,9 +46,9 @@ class BuildMainPage
 		button.setForeground(Color.white);
 		button.setFont(buttonFont);
 		button.setBorder(buildMenuBar.border);
-		button.setMinimumSize(new Dimension(200, 50));
-		button.setMaximumSize(new Dimension(200, 50));
-		button.setPreferredSize(new Dimension(200, 50));
+		button.setMinimumSize(new Dimension(250, 50));
+		button.setMaximumSize(new Dimension(250, 50));
+		button.setPreferredSize(new Dimension(250, 50));
 		button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		button.setText(text);
 		button.setToolTipText(toolTipText);

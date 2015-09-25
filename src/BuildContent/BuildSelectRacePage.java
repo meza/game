@@ -60,16 +60,7 @@ class BuildSelectRacePage
 			String buttonToolTipText,
 			ActionListener listener)
 	{
-		JLabel iconLabel;
-		ImageIcon icon;
-		JTextArea infoArea = new JTextArea();
 		JButton button = new JButton();
-
-		icon = createImageIcon(imageLocation);
-		iconLabel = new JLabel(icon);
-		iconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-		setRaceDescriptionStyle(infoArea, raceDescription);
 
 		buildMainPage.buildButton(
 				button,
@@ -80,7 +71,23 @@ class BuildSelectRacePage
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.setBackground(Color.darkGray);
 
-		addItemsToRaceSelectorPanel(panel, iconLabel, infoArea, button);
+		addItemsToRaceSelectorPanel(
+				panel,
+				buildRaceImage(imageLocation),
+				buildRaceDescription(raceDescription),
+				button);
+	}
+
+	private JLabel buildRaceImage(String imageLocation)
+	{
+		JLabel iconLabel;
+		ImageIcon icon;
+
+		icon = createImageIcon(imageLocation);
+		iconLabel = new JLabel(icon);
+		iconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+		return iconLabel;
 	}
 
 	private ImageIcon createImageIcon(String path)
@@ -89,18 +96,22 @@ class BuildSelectRacePage
 		return new ImageIcon(imgURL);
 	}
 
-	private void setRaceDescriptionStyle(JTextArea textArea, String description)
+	private JTextArea buildRaceDescription(String description)
 	{
-		textArea.setText(description);
-		textArea.setFont(textFont);
-		textArea.setBackground(Color.darkGray);
-		textArea.setForeground(Color.white);
-		textArea.setLineWrap(true);
-		textArea.setWrapStyleWord(true);
-		textArea.setEditable(false);
-		textArea.setMinimumSize(new Dimension(200, 200));
-		textArea.setMaximumSize(new Dimension(400, 250));
-		textArea.setPreferredSize(new Dimension(300, 250));
+		JTextArea infoArea = new JTextArea();
+
+		infoArea.setText(description);
+		infoArea.setFont(textFont);
+		infoArea.setBackground(Color.darkGray);
+		infoArea.setForeground(Color.white);
+		infoArea.setLineWrap(true);
+		infoArea.setWrapStyleWord(true);
+		infoArea.setEditable(false);
+		infoArea.setMinimumSize(new Dimension(200, 200));
+		infoArea.setMaximumSize(new Dimension(400, 250));
+		infoArea.setPreferredSize(new Dimension(300, 250));
+
+		return infoArea;
 	}
 
 	private void addItemsToRaceSelectorPanel(JPanel panel, JLabel label, JTextArea description, JButton button)

@@ -131,7 +131,10 @@ class BuildMenuBar
 		menuItem.setText(text);
 		menuItem.setToolTipText(toolTipText);
 		menuItem.setName(text);
-		setMenuItemStyle(menuItem);
+		menuItem.setBackground(Color.darkGray);
+		menuItem.setForeground(Color.white);
+		menuItem.setFont(menuFont);
+		menuItem.setBorder(border);
 		menuItem.addActionListener(listener);
 	}
 
@@ -139,19 +142,6 @@ class BuildMenuBar
 	{
 		menu.setText(text);
 		menu.setName(text);
-		setMenuStyle(menu);
-	}
-
-	private void setMenuItemStyle(JMenuItem menuItem)
-	{
-		menuItem.setBackground(Color.darkGray);
-		menuItem.setForeground(Color.white);
-		menuItem.setFont(menuFont);
-		menuItem.setBorder(border);
-	}
-
-	private void setMenuStyle(JMenu menu)
-	{
 		menu.setForeground(Color.white);
 		menu.setFont(menuFont);
 	}

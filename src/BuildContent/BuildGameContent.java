@@ -72,7 +72,9 @@ public class BuildGameContent
 	{
 		BuildCharacterGeneratorPage characterGeneratorPage = new BuildCharacterGeneratorPage();
 
-		mainFrame.setTitle(MessageFormat.format(LabelsProperties.getProperty("mainFrameTitleGenerateRacePage"), getSelectedRace()));
+		mainFrame.setTitle(MessageFormat.format(
+				LabelsProperties.getProperty("mainFrameTitleGenerateRacePage"),
+				getSelectedRace()));
 	}
 
 	private void changeMenuItemState(String menuItemName, Boolean isEnabled)
@@ -87,7 +89,8 @@ public class BuildGameContent
 
 	private void setMenuItemState(int menuNumber, String menuItemName, Boolean isEnabled)
 	{
-		ArrayList<Component> menuItems = new ArrayList<>(Arrays.asList(mainFrame.getJMenuBar().getMenu(menuNumber).getMenuComponents()));
+		ArrayList<Component> menuItems = new ArrayList<>(
+				Arrays.asList(mainFrame.getJMenuBar().getMenu(menuNumber).getMenuComponents()));
 
 		for (Component item : menuItems)
 		{

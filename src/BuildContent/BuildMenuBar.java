@@ -86,7 +86,7 @@ class BuildMenuBar
 				buildGameContent.LabelsProperties.getProperty("optionsMenuText"));
 
 		optionsMenu.add(settingsMenuItem);
-		
+
 		return optionsMenu;
 	}
 
@@ -94,7 +94,7 @@ class BuildMenuBar
 	{
 		JMenu helpMenu = new JMenu();
 		JMenuItem helpMenuItem = new JMenuItem();
-		JMenuItem updateMenuItem =new JMenuItem();
+		JMenuItem updateMenuItem = new JMenuItem();
 		JMenuItem aboutMenuItem = new JMenuItem();
 
 		buildMenuItem(

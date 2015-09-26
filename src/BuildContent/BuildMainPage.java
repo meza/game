@@ -29,9 +29,10 @@ class BuildMainPage
 				newGameButton,
 				otherFunctions.getPropertyText("newGameButton"),
 				otherFunctions.getPropertyText("newGameButtonToolTip"),
-				new NewGameListener(),
+				otherFunctions.bigFont,
 				250,
-				50);
+				50,
+				new NewGameListener());
 
 		otherFunctions.setPanelStyle(newGamePanel);
 		newGamePanel.add(Box.createVerticalGlue());
@@ -50,9 +51,10 @@ class BuildMainPage
 				loadGameButton,
 				otherFunctions.getPropertyText("loadGameButton"),
 				otherFunctions.getPropertyText("loadGameButtonToolTip"),
-				new LoadGameListener(),
+				otherFunctions.bigFont,
 				250,
-				50);
+				50,
+				new LoadGameListener());
 
 		otherFunctions.setPanelStyle(loadGamePanel);
 		loadGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));

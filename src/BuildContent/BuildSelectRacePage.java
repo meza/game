@@ -60,7 +60,14 @@ class BuildSelectRacePage
 	{
 		JButton button = new JButton();
 
-		otherFunctions.buildButton(button, buttonText, buttonToolTipText, listener, 250, 50);
+		otherFunctions.buildButton(
+				button,
+				buttonText,
+				buttonToolTipText,
+				otherFunctions.bigFont,
+				250,
+				50,
+				listener);
 		otherFunctions.setPanelStyle(panel);
 
 		addItemsToTheRaceSelectorPanel(

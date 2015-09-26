@@ -31,17 +31,19 @@ class BuildCharacterGeneratorPage
 				validateCharacterNameButton,
 				otherFunctions.getPropertyText("validateCharacterNameButton"),
 				otherFunctions.getPropertyText("validateCharacterNameButtonToolTip"),
-				new validateCharacterNameListener(),
-				450,
-				50);
+				otherFunctions.mediumFont,
+				350,
+				50,
+				new validateCharacterNameListener());
 
 		otherFunctions.buildButton(
 				backButton,
 				otherFunctions.getPropertyText("backButton"),
 				otherFunctions.getPropertyText("backButtonToolTip"),
-				new backButtonListener(),
+				otherFunctions.bigFont,
 				150,
-				50);
+				50,
+				new backButtonListener());
 
 		otherFunctions.setPanelStyle(characterNamePanel);
 
@@ -51,10 +53,9 @@ class BuildCharacterGeneratorPage
 		characterNamePanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		characterNamePanel.add(otherFunctions.buildTextArea(
 				otherFunctions.getPropertyText("characterNameQuestion"),
-				otherFunctions.mediumFont,
-				380,
+				otherFunctions.bigFont,
+				470,
 				45));
-		characterNamePanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		characterNamePanel.add(otherFunctions.buildTextField(
 				otherFunctions.getPropertyText("offered" + otherFunctions.getSelectedRace() + "CharacterName"),
 				450,
@@ -91,9 +92,10 @@ class BuildCharacterGeneratorPage
 				startGameButton,
 				otherFunctions.getPropertyText("startGameButton"),
 				otherFunctions.getPropertyText("startGameButtonToolTip"),
-				new StartGameListener(),
+				otherFunctions.bigFont,
 				250,
-				50);
+				50,
+				new StartGameListener());
 
 		otherFunctions.setPanelStyle(startGamePanel);
 

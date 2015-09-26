@@ -15,6 +15,7 @@ class Game
 		BuildGameContent gameContent = new BuildGameContent();
 
 		gameContent.buildMainFrame();
+		gameContent.addMenuBarToTheMainFrame();
 		gameContent.addMainPageToTheMainFrame();
 	}
 }

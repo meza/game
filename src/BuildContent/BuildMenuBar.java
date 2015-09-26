@@ -1,17 +1,14 @@
 package BuildContent;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class BuildMenuBar
 {
-	private final BuildGameContent buildGameContent = new BuildGameContent();
-	private final Font menuFont = new Font("Monospaced", Font.BOLD, 15);
-	final Border border = new LineBorder(Color.WHITE, 2, true);
+	private final OtherFunctions otherFunctions = new OtherFunctions();
+	private final BuildGameContent gameContent = new BuildGameContent();
 
 	JMenuBar buildMenuBar()
 	{
@@ -36,31 +33,31 @@ class BuildMenuBar
 
 		buildMenuItem(
 				newGameMenuItem,
-				buildGameContent.LabelsProperties.getProperty("newGameMenuItem"),
-				buildGameContent.LabelsProperties.getProperty("newGameMenuItemToolTip"),
+				otherFunctions.getPropertyText("newGameMenuItem"),
+				otherFunctions.getPropertyText("newGameMenuItemToolTip"),
 				new NewGameListener());
 
 		buildMenuItem(
 				loadGameMenuItem,
-				buildGameContent.LabelsProperties.getProperty("loadGameMenuItem"),
-				buildGameContent.LabelsProperties.getProperty("loadGameMenuItemToolTip"),
+				otherFunctions.getPropertyText("loadGameMenuItem"),
+				otherFunctions.getPropertyText("loadGameMenuItemToolTip"),
 				new LoadGameListener());
 
 		buildMenuItem(
 				saveGameMenuItem,
-				buildGameContent.LabelsProperties.getProperty("saveGameMenuItem"),
-				buildGameContent.LabelsProperties.getProperty("saveGameMenuItemToolTip"),
+				otherFunctions.getPropertyText("saveGameMenuItem"),
+				otherFunctions.getPropertyText("saveGameMenuItemToolTip"),
 				new SaveGameListener());
 
 		buildMenuItem(
 				quitMenuItem,
-				buildGameContent.LabelsProperties.getProperty("quitMenuItem"),
-				buildGameContent.LabelsProperties.getProperty("quitMenuItemToolTip"),
+				otherFunctions.getPropertyText("quitMenuItem"),
+				otherFunctions.getPropertyText("quitMenuItemToolTip"),
 				new QuitGameListener());
 
 		buildMenu(
 				gameMenu,
-				buildGameContent.LabelsProperties.getProperty("gameMenu"));
+				otherFunctions.getPropertyText("gameMenu"));
 
 		gameMenu.add(newGameMenuItem);
 		gameMenu.add(loadGameMenuItem);
@@ -77,13 +74,13 @@ class BuildMenuBar
 
 		buildMenuItem(
 				settingsMenuItem,
-				buildGameContent.LabelsProperties.getProperty("settingsMenuItem"),
-				buildGameContent.LabelsProperties.getProperty("settingsMenuItemToolTip"),
+				otherFunctions.getPropertyText("settingsMenuItem"),
+				otherFunctions.getPropertyText("settingsMenuItemToolTip"),
 				new SettingsListener());
 
 		buildMenu(
 				optionsMenu,
-				buildGameContent.LabelsProperties.getProperty("optionsMenu"));
+				otherFunctions.getPropertyText("optionsMenu"));
 
 		optionsMenu.add(settingsMenuItem);
 
@@ -99,25 +96,25 @@ class BuildMenuBar
 
 		buildMenuItem(
 				helpMenuItem,
-				buildGameContent.LabelsProperties.getProperty("helpMenuItem"),
-				buildGameContent.LabelsProperties.getProperty("helpMenuItemToolTip"),
+				otherFunctions.getPropertyText("helpMenuItem"),
+				otherFunctions.getPropertyText("helpMenuItemToolTip"),
 				new HelpListener());
 
 		buildMenuItem(
 				updateMenuItem,
-				buildGameContent.LabelsProperties.getProperty("updateMenuItem"),
-				buildGameContent.LabelsProperties.getProperty("updateMenuItemToolTip"),
+				otherFunctions.getPropertyText("updateMenuItem"),
+				otherFunctions.getPropertyText("updateMenuItemToolTip"),
 				new UpdateListener());
 
 		buildMenuItem(
 				aboutMenuItem,
-				buildGameContent.LabelsProperties.getProperty("aboutMenuItem"),
-				buildGameContent.LabelsProperties.getProperty("aboutMenuItemToolTip"),
+				otherFunctions.getPropertyText("aboutMenuItem"),
+				otherFunctions.getPropertyText("aboutMenuItemToolTip"),
 				new AboutListener());
 
 		buildMenu(
 				helpMenu,
-				buildGameContent.LabelsProperties.getProperty("helpMenu"));
+				otherFunctions.getPropertyText("helpMenu"));
 
 		helpMenu.add(helpMenuItem);
 		helpMenu.add(updateMenuItem);
@@ -126,31 +123,31 @@ class BuildMenuBar
 		return helpMenu;
 	}
 
-	private void buildMenuItem(JMenuItem menuItem, String text, String toolTipText, ActionListener listener)
+	private void buildMenuItem(JMenuItem menuItem, String content, String toolTipText, ActionListener listener)
 	{
-		menuItem.setText(text);
+		menuItem.setText(content);
 		menuItem.setToolTipText(toolTipText);
-		menuItem.setName(text);
+		menuItem.setName(content);
 		menuItem.setBackground(Color.darkGray);
 		menuItem.setForeground(Color.white);
-		menuItem.setFont(menuFont);
-		menuItem.setBorder(border);
+		menuItem.setFont(otherFunctions.smallFont);
+		menuItem.setBorder(otherFunctions.border);
 		menuItem.addActionListener(listener);
 	}
 
-	private void buildMenu(JMenu menu, String text)
+	private void buildMenu(JMenu menu, String content)
 	{
-		menu.setText(text);
-		menu.setName(text);
+		menu.setText(content);
+		menu.setName(content);
 		menu.setForeground(Color.white);
-		menu.setFont(menuFont);
+		menu.setFont(otherFunctions.smallFont);
 	}
 
 	private class NewGameListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			buildGameContent.addSelectRacePageToTheMainFrame();
+			gameContent.addSelectRacePageToTheMainFrame();
 		}
 	}
 
@@ -176,15 +173,15 @@ class BuildMenuBar
 		{
 			int result = JOptionPane.showOptionDialog(
 					null,
-					buildGameContent.LabelsProperties.getProperty("quitPanelContent"),
-					buildGameContent.LabelsProperties.getProperty("quitPanelTitle"),
+					otherFunctions.getPropertyText("quitPanelContent"),
+					otherFunctions.getPropertyText("quitPanelTitle"),
 					JOptionPane.OK_CANCEL_OPTION,
 					JOptionPane.INFORMATION_MESSAGE,
 					null,
 					new String[]{
-							buildGameContent.LabelsProperties.getProperty("quitPanelYesButton"),
-							buildGameContent.LabelsProperties.getProperty("quitPanelNoButton")},
-					buildGameContent.LabelsProperties.getProperty("quitPanelNoButton"));
+							otherFunctions.getPropertyText("quitPanelYesButton"),
+							otherFunctions.getPropertyText("quitPanelNoButton")},
+					otherFunctions.getPropertyText("quitPanelNoButton"));
 
 			if (result == 0)
 			{
@@ -223,8 +220,8 @@ class BuildMenuBar
 		{
 			JOptionPane.showMessageDialog(
 					null,
-					buildGameContent.LabelsProperties.getProperty("aboutPanelContent"),
-					buildGameContent.LabelsProperties.getProperty("aboutPanelTitle"),
+					otherFunctions.getPropertyText("aboutPanelContent"),
+					otherFunctions.getPropertyText("aboutPanelTitle"),
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}

@@ -48,7 +48,7 @@ class BuildCharacterGeneratorPage
 		characterNamePanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		characterNamePanel.add(otherFunctions.buildRaceImage(
 				"/StaticContent/Images/" + otherFunctions.getSelectedRace() + ".jpg"));
-		characterNamePanel.add(Box.createRigidArea(new Dimension(0,20)));
+		characterNamePanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		characterNamePanel.add(otherFunctions.buildTextArea(
 				otherFunctions.getPropertyText("characterNameQuestion"),
 				otherFunctions.mediumFont,
@@ -68,7 +68,7 @@ class BuildCharacterGeneratorPage
 		characterNamePanel.add(validateCharacterNameButton);
 		characterNamePanel.add(Box.createVerticalGlue());
 		characterNamePanel.add(backButton);
-		characterNamePanel.add(Box.createRigidArea(new Dimension(0,60)));
+		characterNamePanel.add(Box.createRigidArea(new Dimension(0, 60)));
 
 		return characterNamePanel;
 	}
@@ -99,7 +99,7 @@ class BuildCharacterGeneratorPage
 
 		startGamePanel.add(Box.createVerticalGlue());
 		startGamePanel.add(startGameButton);
-		startGamePanel.add(Box.createRigidArea(new Dimension(0,60)));
+		startGamePanel.add(Box.createRigidArea(new Dimension(0, 60)));
 
 		return startGamePanel;
 	}

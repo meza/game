@@ -17,7 +17,7 @@ class OtherFunctions
 	private final Properties LabelsProperties = new Properties();
 	final Font smallFont = new Font("Monospaced", Font.BOLD, 15);
 	final Font mediumFont = new Font("Monospaced", Font.BOLD, 20);
-	final Font bigFont = new Font("Monospaced", Font.BOLD, 25);
+	private final Font bigFont = new Font("Monospaced", Font.BOLD, 25);
 	final Border border = new LineBorder(Color.WHITE, 2, true);
 	private static String selectedRace = "";
 
@@ -70,7 +70,13 @@ class OtherFunctions
 		}
 	}
 
-	void buildButton(JButton button, String content, String toolTipText, ActionListener listener, int width, int height)
+	void buildButton(
+			JButton button,
+			String content,
+			String toolTipText,
+			ActionListener listener,
+			int width,
+			int height)
 	{
 		button.setText(content);
 		button.setToolTipText(toolTipText);

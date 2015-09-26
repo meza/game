@@ -1,34 +1,70 @@
 package BuildContent;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 class BuildCharacterGeneratorPage
 {
-	protected void buildCharacterGeneratorPage()
+	private final BuildMainPage mainPage = new BuildMainPage();
+	private final BuildGameContent gameContent = new BuildGameContent();
+
+	JPanel buildCharacterGeneratorPage()
 	{
-		//buildCharacterGeneratorPage(getSelectedRace());
-		/*JPanel namePanel = new JPanel();
-		JLabel vampireIconLabel;
-		ImageIcon vampireIcon;
-		JTextField characterNameField = new JTextField("Sziv Arr");
+		JPanel mainPanel = new JPanel(new GridLayout(1, 3));
 
-		vampireIcon = createImageIcon("/StaticContent/Images/vampire.jpg");
-		vampireIconLabel = new JLabel(vampireIcon);
+		mainPanel.add(buildCharacterNamePanel());
+		mainPanel.add(buildCharacterStatPanel());
+		mainPanel.add(buildStartGamePanel());
 
-		namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.PAGE_AXIS));
-		namePanel.setBackground(Color.darkGray);
+		return mainPanel;
+	}
 
-		namePanel.add(Box.createRigidArea(new Dimension(0,20)));
-		namePanel.add(vampireIconLabel);
-		namePanel.add(Box.createRigidArea(new Dimension(0,40)));
-		namePanel.add(characterNameField);
+	private JPanel buildCharacterNamePanel()
+	{
+		JPanel characterNamePanel = new JPanel();
 
+		characterNamePanel.setBackground(Color.green);
 
-		//remove the old panels and add the new ones
-		mainFrame.getContentPane().removeAll();
-		mainFrame.setLayout(new GridLayout(1, 3));
-		mainFrame.repaint();
-		mainFrame.getContentPane().add(namePanel);
-		//mainFrame.getContentPane().add(statPanel);
-		//mainFrame.getContentPane().add(startGamePanel);
-		mainFrame.validate();*/
+		return characterNamePanel;
+	}
+
+	private JPanel buildCharacterStatPanel()
+	{
+		JPanel characterStatPanel = new JPanel();
+
+		characterStatPanel.setBackground(Color.yellow);
+
+		return characterStatPanel;
+	}
+
+	private JPanel buildStartGamePanel()
+	{
+		JPanel startGamePanel = new JPanel();
+		JButton startGameButton = new JButton();
+
+		mainPage.buildButton(
+				startGameButton,
+				gameContent.LabelsProperties.getProperty("startGameButtonText"),
+				gameContent.LabelsProperties.getProperty("startGameButtonToolTipText"),
+				new StartGameListener());
+
+		startGamePanel.setLayout(new BoxLayout(startGamePanel, BoxLayout.PAGE_AXIS));
+		startGamePanel.setBackground(Color.cyan);
+
+		startGamePanel.add(Box.createVerticalGlue());
+		startGamePanel.add(startGameButton);
+		startGamePanel.add(Box.createRigidArea(new Dimension(0,60)));
+
+		return startGamePanel;
+	}
+
+	private class StartGameListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+
+		}
 	}
 }

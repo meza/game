@@ -72,9 +72,13 @@ public class BuildGameContent
 	{
 		BuildCharacterGeneratorPage characterGeneratorPage = new BuildCharacterGeneratorPage();
 
+		mainFrame.getContentPane().removeAll();
+		mainFrame.repaint();
 		mainFrame.setTitle(MessageFormat.format(
 				LabelsProperties.getProperty("mainFrameTitleGenerateRacePage"),
 				getSelectedRace()));
+		mainFrame.getContentPane().add(characterGeneratorPage.buildCharacterGeneratorPage());
+		mainFrame.validate();
 	}
 
 	private void changeMenuItemState(String menuItemName, Boolean isEnabled)

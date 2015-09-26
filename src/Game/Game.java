@@ -13,6 +13,7 @@ class Game
 	private void start()
 	{
 		BuildGameContent gameContent = new BuildGameContent();
+
 		gameContent.buildMainFrame();
 		gameContent.addMainPageToTheMainFrame();
 	}

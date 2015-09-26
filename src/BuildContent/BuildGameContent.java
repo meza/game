@@ -13,7 +13,7 @@ public class BuildGameContent
 {
 	final Properties LabelsProperties = new Properties();
 	private static final JFrame mainFrame = new JFrame();
-	private String selectedRace = "";
+	private static String selectedRace = "";
 
 	public BuildGameContent()
 	{
@@ -113,7 +113,7 @@ public class BuildGameContent
 		selectedRace = race;
 	}
 
-	private String getSelectedRace()
+	String getSelectedRace()
 	{
 		return selectedRace;
 	}

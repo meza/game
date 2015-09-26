@@ -10,7 +10,7 @@ class BuildSelectRacePage
 {
 	private final BuildGameContent buildGameContent = new BuildGameContent();
 	private final BuildMainPage buildMainPage = new BuildMainPage();
-	private final Font textFont = new Font("Monospaced", Font.BOLD, 20);
+	final Font textFont = new Font("Monospaced", Font.BOLD, 20);
 
 	JPanel buildSelectRacePage()
 	{
@@ -23,24 +23,24 @@ class BuildSelectRacePage
 				vampirePanel,
 				"/StaticContent/Images/Vampire.jpg",
 				buildGameContent.LabelsProperties.getProperty("vampireRaceDescription"),
-				buildGameContent.LabelsProperties.getProperty("selectVampireButtonText"),
-				buildGameContent.LabelsProperties.getProperty("selectVampireButtonToolTipText"),
+				buildGameContent.LabelsProperties.getProperty("selectVampireButton"),
+				buildGameContent.LabelsProperties.getProperty("selectVampireButtonToolTip"),
 				new VampireSelectedListener());
 
 		buildRacePanel(
 				dwarfPanel,
 				"/StaticContent/Images/Dwarf.jpg",
 				buildGameContent.LabelsProperties.getProperty("dwarfRaceDescription"),
-				buildGameContent.LabelsProperties.getProperty("selectDwarfButtonText"),
-				buildGameContent.LabelsProperties.getProperty("selectDwarfButtonToolTipText"),
+				buildGameContent.LabelsProperties.getProperty("selectDwarfButton"),
+				buildGameContent.LabelsProperties.getProperty("selectDwarfButtonToolTip"),
 				new DwarfSelectedListener());
 
 		buildRacePanel(
 				elfPanel,
 				"/StaticContent/Images/Elf.jpg",
 				buildGameContent.LabelsProperties.getProperty("elfRaceDescription"),
-				buildGameContent.LabelsProperties.getProperty("selectElfButtonText"),
-				buildGameContent.LabelsProperties.getProperty("selectElfButtonToolTipText"),
+				buildGameContent.LabelsProperties.getProperty("selectElfButton"),
+				buildGameContent.LabelsProperties.getProperty("selectElfButtonToolTip"),
 				new ElfSelectedListener());
 
 		dwarfPanel.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 2, Color.white));
@@ -62,7 +62,7 @@ class BuildSelectRacePage
 	{
 		JButton button = new JButton();
 
-		buildMainPage.buildButton(button, buttonText, buttonToolTipText, listener);
+		buildMainPage.buildButton(button, buttonText, buttonToolTipText, listener, 250, 50);
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.setBackground(Color.darkGray);
@@ -70,11 +70,11 @@ class BuildSelectRacePage
 		addItemsToRaceSelectorPanel(
 				panel,
 				buildRaceImage(imageLocation),
-				buildRaceDescription(raceDescription),
+				buildTextArea(raceDescription, textFont, 400, 250),
 				button);
 	}
 
-	private JLabel buildRaceImage(String imageLocation)
+	 JLabel buildRaceImage(String imageLocation)
 	{
 		JLabel iconLabel;
 		ImageIcon icon;
@@ -92,20 +92,19 @@ class BuildSelectRacePage
 		return new ImageIcon(imgURL);
 	}
 
-	private JTextArea buildRaceDescription(String description)
+	JTextArea buildTextArea(String text, Font font, int width, int height)
 	{
-		JTextArea infoArea = new JTextArea();
+		JTextArea infoArea = new JTextArea(text);
 
-		infoArea.setText(description);
-		infoArea.setFont(textFont);
+		infoArea.setFont(font);
 		infoArea.setBackground(Color.darkGray);
 		infoArea.setForeground(Color.white);
 		infoArea.setLineWrap(true);
 		infoArea.setWrapStyleWord(true);
 		infoArea.setEditable(false);
-		infoArea.setMinimumSize(new Dimension(200, 200));
-		infoArea.setMaximumSize(new Dimension(400, 250));
-		infoArea.setPreferredSize(new Dimension(300, 250));
+		infoArea.setMinimumSize(new Dimension(width, height));
+		infoArea.setMaximumSize(new Dimension(width, height));
+		infoArea.setPreferredSize(new Dimension(width, height));
 
 		return infoArea;
 	}

@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 
 class BuildMainPage
 {
-	private final BuildGameContent buildGameContent = new BuildGameContent();
-	private final BuildMenuBar buildMenuBar = new BuildMenuBar();
+	private final BuildGameContent gameContent = new BuildGameContent();
+	private final BuildMenuBar menuBar = new BuildMenuBar();
 	private final Font buttonFont = new Font("Monospaced", Font.BOLD, 25);
 
 	JPanel buildMainPage()
@@ -28,9 +28,11 @@ class BuildMainPage
 
 		buildButton(
 				newGameButton,
-				buildGameContent.LabelsProperties.getProperty("newGameButtonText"),
-				buildGameContent.LabelsProperties.getProperty("newGameButtonToolTipText"),
-				new NewGameListener());
+				gameContent.LabelsProperties.getProperty("newGameButton"),
+				gameContent.LabelsProperties.getProperty("newGameButtonToolTip"),
+				new NewGameListener(),
+				250,
+				50);
 
 		setPanelStyle(newGamePanel);
 		newGamePanel.add(Box.createVerticalGlue());
@@ -47,9 +49,11 @@ class BuildMainPage
 
 		buildButton(
 				loadGameButton,
-				buildGameContent.LabelsProperties.getProperty("loadGameButtonText"),
-				buildGameContent.LabelsProperties.getProperty("loadGameButtonToolTipText"),
-				new LoadGameListener());
+				gameContent.LabelsProperties.getProperty("loadGameButton"),
+				gameContent.LabelsProperties.getProperty("loadGameButtonToolTip"),
+				new LoadGameListener(),
+				250,
+				50);
 
 		setPanelStyle(loadGamePanel);
 		loadGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -58,17 +62,17 @@ class BuildMainPage
 		return loadGamePanel;
 	}
 
-	void buildButton(JButton button, String text, String toolTipText, ActionListener listener)
+	void buildButton(JButton button, String text, String toolTipText, ActionListener listener, int width, int height)
 	{
 		button.setText(text);
 		button.setToolTipText(toolTipText);
 		button.setBackground(Color.darkGray);
 		button.setForeground(Color.white);
 		button.setFont(buttonFont);
-		button.setBorder(buildMenuBar.border);
-		button.setMinimumSize(new Dimension(250, 50));
-		button.setMaximumSize(new Dimension(250, 50));
-		button.setPreferredSize(new Dimension(250, 50));
+		button.setBorder(menuBar.border);
+		button.setMinimumSize(new Dimension(width, height));
+		button.setMaximumSize(new Dimension(width, height));
+		button.setPreferredSize(new Dimension(width, height));
 		button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		button.addActionListener(listener);
 	}
@@ -83,7 +87,7 @@ class BuildMainPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			buildGameContent.addSelectRacePageToTheMainFrame();
+			gameContent.addSelectRacePageToTheMainFrame();
 		}
 	}
 

@@ -36,31 +36,31 @@ class BuildMenuBar
 
 		buildMenuItem(
 				newGameMenuItem,
-				buildGameContent.LabelsProperties.getProperty("newGameMenuItemText"),
-				buildGameContent.LabelsProperties.getProperty("newGameMenuItemToolTipText"),
+				buildGameContent.LabelsProperties.getProperty("newGameMenuItem"),
+				buildGameContent.LabelsProperties.getProperty("newGameMenuItemToolTip"),
 				new NewGameListener());
 
 		buildMenuItem(
 				loadGameMenuItem,
-				buildGameContent.LabelsProperties.getProperty("loadGameMenuItemText"),
-				buildGameContent.LabelsProperties.getProperty("loadGameMenuItemToolTipText"),
+				buildGameContent.LabelsProperties.getProperty("loadGameMenuItem"),
+				buildGameContent.LabelsProperties.getProperty("loadGameMenuItemToolTip"),
 				new LoadGameListener());
 
 		buildMenuItem(
 				saveGameMenuItem,
-				buildGameContent.LabelsProperties.getProperty("saveGameMenuItemText"),
-				buildGameContent.LabelsProperties.getProperty("saveGameMenuItemToolTipText"),
+				buildGameContent.LabelsProperties.getProperty("saveGameMenuItem"),
+				buildGameContent.LabelsProperties.getProperty("saveGameMenuItemToolTip"),
 				new SaveGameListener());
 
 		buildMenuItem(
 				quitMenuItem,
-				buildGameContent.LabelsProperties.getProperty("quitMenuItemText"),
-				buildGameContent.LabelsProperties.getProperty("quitMenuItemToolTipText"),
+				buildGameContent.LabelsProperties.getProperty("quitMenuItem"),
+				buildGameContent.LabelsProperties.getProperty("quitMenuItemToolTip"),
 				new QuitGameListener());
 
 		buildMenu(
 				gameMenu,
-				buildGameContent.LabelsProperties.getProperty("gameMenuText"));
+				buildGameContent.LabelsProperties.getProperty("gameMenu"));
 
 		gameMenu.add(newGameMenuItem);
 		gameMenu.add(loadGameMenuItem);
@@ -77,13 +77,13 @@ class BuildMenuBar
 
 		buildMenuItem(
 				settingsMenuItem,
-				buildGameContent.LabelsProperties.getProperty("settingsMenuItemText"),
-				buildGameContent.LabelsProperties.getProperty("settingsMenuItemToolTipText"),
+				buildGameContent.LabelsProperties.getProperty("settingsMenuItem"),
+				buildGameContent.LabelsProperties.getProperty("settingsMenuItemToolTip"),
 				new SettingsListener());
 
 		buildMenu(
 				optionsMenu,
-				buildGameContent.LabelsProperties.getProperty("optionsMenuText"));
+				buildGameContent.LabelsProperties.getProperty("optionsMenu"));
 
 		optionsMenu.add(settingsMenuItem);
 
@@ -99,25 +99,25 @@ class BuildMenuBar
 
 		buildMenuItem(
 				helpMenuItem,
-				buildGameContent.LabelsProperties.getProperty("helpMenuItemText"),
-				buildGameContent.LabelsProperties.getProperty("helpMenuItemToolTipText"),
+				buildGameContent.LabelsProperties.getProperty("helpMenuItem"),
+				buildGameContent.LabelsProperties.getProperty("helpMenuItemToolTip"),
 				new HelpListener());
 
 		buildMenuItem(
 				updateMenuItem,
-				buildGameContent.LabelsProperties.getProperty("updateMenuItemText"),
-				buildGameContent.LabelsProperties.getProperty("updateMenuItemToolTipText"),
+				buildGameContent.LabelsProperties.getProperty("updateMenuItem"),
+				buildGameContent.LabelsProperties.getProperty("updateMenuItemToolTip"),
 				new UpdateListener());
 
 		buildMenuItem(
 				aboutMenuItem,
-				buildGameContent.LabelsProperties.getProperty("aboutMenuItemText"),
-				buildGameContent.LabelsProperties.getProperty("aboutMenuItemToolTipText"),
+				buildGameContent.LabelsProperties.getProperty("aboutMenuItem"),
+				buildGameContent.LabelsProperties.getProperty("aboutMenuItemToolTip"),
 				new AboutListener());
 
 		buildMenu(
 				helpMenu,
-				buildGameContent.LabelsProperties.getProperty("helpMenuText"));
+				buildGameContent.LabelsProperties.getProperty("helpMenu"));
 
 		helpMenu.add(helpMenuItem);
 		helpMenu.add(updateMenuItem);
@@ -176,13 +176,15 @@ class BuildMenuBar
 		{
 			int result = JOptionPane.showOptionDialog(
 					null,
-					"Are you really want to quit?",
-					"Are you really want to quit?",
+					buildGameContent.LabelsProperties.getProperty("quitPanelContent"),
+					buildGameContent.LabelsProperties.getProperty("quitPanelTitle"),
 					JOptionPane.OK_CANCEL_OPTION,
 					JOptionPane.INFORMATION_MESSAGE,
 					null,
-					new String[]{"Yes, quit", "No, cancel"},
-					"No, cancel");
+					new String[]{
+							buildGameContent.LabelsProperties.getProperty("quitPanelYesButton"),
+							buildGameContent.LabelsProperties.getProperty("quitPanelNoButton")},
+					buildGameContent.LabelsProperties.getProperty("quitPanelNoButton"));
 
 			if (result == 0)
 			{
@@ -221,8 +223,8 @@ class BuildMenuBar
 		{
 			JOptionPane.showMessageDialog(
 					null,
-					"Matta's Best RPG Game\nVersion 0.1",
-					"About",
+					buildGameContent.LabelsProperties.getProperty("aboutPanelContent"),
+					buildGameContent.LabelsProperties.getProperty("aboutPanelTitle"),
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}

@@ -54,7 +54,7 @@ class BuildCharacterGeneratorPage
 				"/StaticContent/Images/" + gameContent.getSelectedRace() + ".jpg"));
 		characterNamePanel.add(Box.createRigidArea(new Dimension(0,20)));
 		characterNamePanel.add(selectRacePage.buildTextArea(
-				gameContent.LabelsProperties.getProperty("characterName"),
+				gameContent.LabelsProperties.getProperty("characterNameQuestion"),
 				selectRacePage.textFont,
 				380,
 				45));
@@ -64,7 +64,7 @@ class BuildCharacterGeneratorPage
 				450,
 				45));
 		characterNamePanel.add(selectRacePage.buildTextArea(
-				gameContent.LabelsProperties.getProperty("characterNameHint"),
+				gameContent.LabelsProperties.getProperty("characterNameLengthHint"),
 				smallTextFont,
 				500,
 				30));

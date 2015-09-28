@@ -34,7 +34,7 @@ class BuildMainPage
 				50,
 				new NewGameListener());
 
-		otherFunctions.setPanelStyle(newGamePanel);
+		otherFunctions.setPanelStyle(newGamePanel, 3);
 		newGamePanel.add(Box.createVerticalGlue());
 		newGamePanel.add(newGameButton);
 		newGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -56,7 +56,7 @@ class BuildMainPage
 				50,
 				new LoadGameListener());
 
-		otherFunctions.setPanelStyle(loadGamePanel);
+		otherFunctions.setPanelStyle(loadGamePanel, 3);
 		loadGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
 		loadGamePanel.add(loadGameButton);
 

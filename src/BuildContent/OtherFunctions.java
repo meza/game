@@ -85,6 +85,7 @@ class OtherFunctions
 		button.setForeground(Color.white);
 		button.setFont(font);
 		button.setBorder(border);
+		button.setFocusPainted(false);
 		button.setMinimumSize(new Dimension(width, height));
 		button.setMaximumSize(new Dimension(width, height));
 		button.setPreferredSize(new Dimension(width, height));
@@ -92,9 +93,10 @@ class OtherFunctions
 		button.addActionListener(listener);
 	}
 
-	void setPanelStyle(JPanel panel)
+	//LINE_AXIS = 2; PAGE_AXIS = 3
+	void setPanelStyle(JPanel panel, int axis)
 	{
-		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		panel.setLayout(new BoxLayout(panel, axis));
 		panel.setBackground(Color.darkGray);
 	}
 
@@ -138,7 +140,7 @@ class OtherFunctions
 		return selectedRace;
 	}
 
-	JTextField buildTextField(String content, int width, int height)
+	JTextField buildTextField(String content, Boolean state, int width, int height)
 	{
 		JTextField textField = new JTextField(content);
 
@@ -148,6 +150,7 @@ class OtherFunctions
 		textField.setBorder(border);
 		textField.setCaretColor(Color.white);
 		textField.setAlignmentX(Component.CENTER_ALIGNMENT);
+		textField.setEnabled(state);
 		textField.setMinimumSize(new Dimension(width, height));
 		textField.setMaximumSize(new Dimension(width, height));
 		textField.setPreferredSize(new Dimension(width, height));

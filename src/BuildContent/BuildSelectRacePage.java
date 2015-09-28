@@ -65,10 +65,10 @@ class BuildSelectRacePage
 				buttonText,
 				buttonToolTipText,
 				otherFunctions.bigFont,
-				250,
+				300,
 				50,
 				listener);
-		otherFunctions.setPanelStyle(panel);
+		otherFunctions.setPanelStyle(panel, 3);
 
 		addItemsToTheRaceSelectorPanel(
 				panel,
@@ -79,7 +79,7 @@ class BuildSelectRacePage
 
 	private void addItemsToTheRaceSelectorPanel(JPanel panel, JLabel label, JTextArea description, JButton button)
 	{
-		panel.add(Box.createRigidArea(new Dimension(0, 30)));
+		panel.add(Box.createRigidArea(new Dimension(0, 100)));
 		panel.add(label);
 		panel.add(Box.createRigidArea(new Dimension(0, 70)));
 		panel.add(description);

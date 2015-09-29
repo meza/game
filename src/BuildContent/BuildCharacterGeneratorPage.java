@@ -84,15 +84,30 @@ class BuildCharacterGeneratorPage
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 200)));
 		characterAttributePanel.add(buildAvailableAttributePointsPanel());
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 60)));
-		characterAttributePanel.add(buildChangeAttributePanel(otherFunctions.getPropertyText("strength"), new DecreaseStrengthListener(), new IncreaseStrengthListener()));
+		characterAttributePanel.add(buildChangeAttributePanel(
+				otherFunctions.getPropertyText("strength"),
+				new DecreaseStrengthListener(),
+				new IncreaseStrengthListener()));
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
-		characterAttributePanel.add(buildChangeAttributePanel(otherFunctions.getPropertyText("dexterity"), new DecreaseDexterityListener(), new IncreaseDexterityListener()));
+		characterAttributePanel.add(buildChangeAttributePanel(
+				otherFunctions.getPropertyText("dexterity"),
+				new DecreaseDexterityListener(),
+				new IncreaseDexterityListener()));
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
-		characterAttributePanel.add(buildChangeAttributePanel(otherFunctions.getPropertyText("agility"), new DecreaseAgilityListener(), new IncreaseAgilityListener()));
+		characterAttributePanel.add(buildChangeAttributePanel(
+				otherFunctions.getPropertyText("agility"),
+				new DecreaseAgilityListener(),
+				new IncreaseAgilityListener()));
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
-		characterAttributePanel.add(buildChangeAttributePanel(otherFunctions.getPropertyText("intelligent"), new DecreaseIntelligentListener(), new IncreaseIntelligentListener()));
+		characterAttributePanel.add(buildChangeAttributePanel(
+				otherFunctions.getPropertyText("intelligent"),
+				new DecreaseIntelligentListener(),
+				new IncreaseIntelligentListener()));
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
-		characterAttributePanel.add(buildChangeAttributePanel(otherFunctions.getPropertyText("vitality"), new DecreaseVitalityListener(), new IncreaseVitalityListener()));
+		characterAttributePanel.add(buildChangeAttributePanel(
+				otherFunctions.getPropertyText("vitality"),
+				new DecreaseVitalityListener(),
+				new IncreaseVitalityListener()));
 
 		return characterAttributePanel;
 	}
@@ -112,7 +127,6 @@ class BuildCharacterGeneratorPage
 				new StartGameListener());
 
 		otherFunctions.setPanelStyle(startGamePanel, 3);
-		//startGamePanel.setBackground(Color.green);
 
 		startGamePanel.add(Box.createRigidArea(new Dimension(0, 120)));
 		startGamePanel.add(buildStatPanel("hitPoints"));
@@ -130,6 +144,8 @@ class BuildCharacterGeneratorPage
 		startGamePanel.add(buildStatPanel("accuracy"));
 		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
 		startGamePanel.add(buildStatPanel("evasion"));
+		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		startGamePanel.add(buildStatPanel("attackSpeed"));
 
 		startGamePanel.add(Box.createVerticalGlue());
 		startGamePanel.add(startGameButton);
@@ -150,7 +166,7 @@ class BuildCharacterGeneratorPage
 				410,
 				40));
 		panel.add(otherFunctions.buildTextArea(
-				"15",
+				String.valueOf(otherFunctions.getAvailableAttributePoints()),
 				otherFunctions.bigFont,
 				40,
 				40));
@@ -168,6 +184,9 @@ class BuildCharacterGeneratorPage
 		JTextArea attributeValueTextArea;
 		JButton decreaseButton = new JButton();
 		JButton increaseButton = new JButton();
+		int basicAttributeValue = 1;
+
+		otherFunctions.setAttributeValue(attributeName.toLowerCase(), basicAttributeValue);
 
 		attributeNameTextArea = otherFunctions.buildTextArea(attributeName, otherFunctions.bigFont, 200, 40);
 		attributeNameTextArea.setToolTipText(otherFunctions.getPropertyText(attributeName.toLowerCase() + "ToolTip"));
@@ -190,7 +209,11 @@ class BuildCharacterGeneratorPage
 				40,
 				increaseListener);
 
-		attributeValueTextArea = otherFunctions.buildTextArea("6", otherFunctions.bigFont, 30, 40);
+		attributeValueTextArea = otherFunctions.buildTextArea(
+				String.valueOf(basicAttributeValue),
+				otherFunctions.bigFont,
+				30,
+				40);
 		attributeValueTextArea.setToolTipText(otherFunctions.getPropertyText("attributeValueToolTip"));
 
 		otherFunctions.setPanelStyle(panel, 2);
@@ -212,7 +235,6 @@ class BuildCharacterGeneratorPage
 		JTextArea statValueTextArea;
 
 		statNameTextArea = otherFunctions.buildTextArea(otherFunctions.getPropertyText(statName) + ":", otherFunctions.bigFont, 270, 40);
-		System.out.println((statName + "ToolTip"));
 		statNameTextArea.setToolTipText("Current amount of the " + otherFunctions.getPropertyText(statName));
 
 		statValueTextArea = otherFunctions.buildTextArea("10", otherFunctions.bigFont, 30, 40);

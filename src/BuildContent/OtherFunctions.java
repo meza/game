@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Properties;
 
 class OtherFunctions
@@ -20,6 +21,8 @@ class OtherFunctions
 	final Font bigFont = new Font("Monospaced", Font.BOLD, 25);
 	final Border border = new LineBorder(Color.WHITE, 2, true);
 	private static String selectedRace = "";
+	private static int availableAttributePoints = 6;
+	private static HashMap<String, Integer> attributes = new HashMap<>();
 
 	public OtherFunctions()
 	{
@@ -156,5 +159,25 @@ class OtherFunctions
 		textField.setPreferredSize(new Dimension(width, height));
 
 		return textField;
+	}
+
+	void setAvailableAttributePoints(int value)
+	{
+		availableAttributePoints = value;
+	}
+
+	int getAvailableAttributePoints()
+	{
+		return availableAttributePoints;
+	}
+
+	void setAttributeValue(String attributeName, int attributeValue)
+	{
+		attributes.put(attributeName, attributeValue);
+	}
+
+	int getAttributeValue(String attributeName)
+	{
+		return attributes.get(attributeName);
 	}
 }

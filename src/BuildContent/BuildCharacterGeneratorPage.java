@@ -15,7 +15,7 @@ class BuildCharacterGeneratorPage
 		JPanel mainPanel = new JPanel(new GridLayout(1, 3));
 
 		mainPanel.add(buildCharacterNamePanel());
-		mainPanel.add(buildCharacterStatPanel());
+		mainPanel.add(buildCharacterAttributePanel());
 		mainPanel.add(buildStartGamePanel());
 
 		return mainPanel;
@@ -75,36 +75,26 @@ class BuildCharacterGeneratorPage
 		return characterNamePanel;
 	}
 
-	private JPanel buildCharacterStatPanel()
+	private JPanel buildCharacterAttributePanel()
 	{
-		JPanel characterStatPanel = new JPanel();
+		JPanel characterAttributePanel = new JPanel();
 
-		otherFunctions.setPanelStyle(characterStatPanel, 3);
+		otherFunctions.setPanelStyle(characterAttributePanel, 3);
 
-		characterStatPanel.add(Box.createRigidArea(new Dimension(0, 200)));
-		characterStatPanel.add(buildAvailableStatPointsPanel());
-		characterStatPanel.add(Box.createRigidArea(new Dimension(0, 60)));
-		characterStatPanel.add(buildStatPanel(
-				otherFunctions.getPropertyText("strength"),
-				new DecreaseStrengthListener(),
-				new IncreaseStrengthListener()));
-		characterStatPanel.add(Box.createRigidArea(new Dimension(0, 15)));
-		characterStatPanel.add(buildStatPanel(
-				otherFunctions.getPropertyText("dexterity"),
-				new DecreaseDexterityListener(),
-				new IncreaseDexterityListener()));
-		characterStatPanel.add(Box.createRigidArea(new Dimension(0, 15)));
-		characterStatPanel.add(buildStatPanel(
-				otherFunctions.getPropertyText("intelligent"),
-				new DecreaseIntelligentListener(),
-				new IncreaseIntelligentListener()));
-		characterStatPanel.add(Box.createRigidArea(new Dimension(0, 15)));
-		characterStatPanel.add(buildStatPanel(
-				otherFunctions.getPropertyText("vitality"),
-				new DecreaseVitalityListener(),
-				new IncreaseVitalityListener()));
+		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 200)));
+		characterAttributePanel.add(buildAvailableAttributePointsPanel());
+		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 60)));
+		characterAttributePanel.add(buildChangeAttributePanel(otherFunctions.getPropertyText("strength"), new DecreaseStrengthListener(), new IncreaseStrengthListener()));
+		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
+		characterAttributePanel.add(buildChangeAttributePanel(otherFunctions.getPropertyText("dexterity"), new DecreaseDexterityListener(), new IncreaseDexterityListener()));
+		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
+		characterAttributePanel.add(buildChangeAttributePanel(otherFunctions.getPropertyText("agility"), new DecreaseAgilityListener(), new IncreaseAgilityListener()));
+		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
+		characterAttributePanel.add(buildChangeAttributePanel(otherFunctions.getPropertyText("intelligent"), new DecreaseIntelligentListener(), new IncreaseIntelligentListener()));
+		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
+		characterAttributePanel.add(buildChangeAttributePanel(otherFunctions.getPropertyText("vitality"), new DecreaseVitalityListener(), new IncreaseVitalityListener()));
 
-		return characterStatPanel;
+		return characterAttributePanel;
 	}
 
 	private JPanel buildStartGamePanel()
@@ -122,6 +112,24 @@ class BuildCharacterGeneratorPage
 				new StartGameListener());
 
 		otherFunctions.setPanelStyle(startGamePanel, 3);
+		//startGamePanel.setBackground(Color.green);
+
+		startGamePanel.add(Box.createRigidArea(new Dimension(0, 120)));
+		startGamePanel.add(buildStatPanel("hitPoints"));
+		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		startGamePanel.add(buildStatPanel("meleeDamage"));
+		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		startGamePanel.add(buildStatPanel("rangedDamage"));
+		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		startGamePanel.add(buildStatPanel("magicDamage"));
+		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		startGamePanel.add(buildStatPanel("physicalDefense"));
+		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		startGamePanel.add(buildStatPanel("magicDefense"));
+		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		startGamePanel.add(buildStatPanel("accuracy"));
+		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		startGamePanel.add(buildStatPanel("evasion"));
 
 		startGamePanel.add(Box.createVerticalGlue());
 		startGamePanel.add(startGameButton);
@@ -130,16 +138,16 @@ class BuildCharacterGeneratorPage
 		return startGamePanel;
 	}
 
-	private JPanel buildAvailableStatPointsPanel()
+	private JPanel buildAvailableAttributePointsPanel()
 	{
 		JPanel panel = new JPanel();
 
 		otherFunctions.setPanelStyle(panel, 2);
 
 		panel.add(otherFunctions.buildTextArea(
-				otherFunctions.getPropertyText("availableStatPoints"),
+				otherFunctions.getPropertyText("availableAttributePoints"),
 				otherFunctions.bigFont,
-				350,
+				410,
 				40));
 		panel.add(otherFunctions.buildTextArea(
 				"15",
@@ -150,16 +158,19 @@ class BuildCharacterGeneratorPage
 		return panel;
 	}
 
-	private JPanel buildStatPanel(String statName, ActionListener decreaseListener, ActionListener increaseListener)
+	private JPanel buildChangeAttributePanel(
+			String attributeName,
+			ActionListener decreaseListener,
+			ActionListener increaseListener)
 	{
 		JPanel panel = new JPanel();
-		JTextArea statNameTextArea;
-		JTextArea statValueTextArea;
+		JTextArea attributeNameTextArea;
+		JTextArea attributeValueTextArea;
 		JButton decreaseButton = new JButton();
 		JButton increaseButton = new JButton();
 
-		statNameTextArea = otherFunctions.buildTextArea(statName, otherFunctions.bigFont, 200, 40);
-		statNameTextArea.setToolTipText(otherFunctions.getPropertyText(statName.toLowerCase() + "ToolTip"));
+		attributeNameTextArea = otherFunctions.buildTextArea(attributeName, otherFunctions.bigFont, 200, 40);
+		attributeNameTextArea.setToolTipText(otherFunctions.getPropertyText(attributeName.toLowerCase() + "ToolTip"));
 
 		otherFunctions.buildButton(
 				decreaseButton,
@@ -179,19 +190,39 @@ class BuildCharacterGeneratorPage
 				40,
 				increaseListener);
 
-		statValueTextArea = otherFunctions.buildTextArea("6", otherFunctions.bigFont, 30, 40);
-		statValueTextArea.setToolTipText(otherFunctions.getPropertyText("statValueToolTip"));
+		attributeValueTextArea = otherFunctions.buildTextArea("6", otherFunctions.bigFont, 30, 40);
+		attributeValueTextArea.setToolTipText(otherFunctions.getPropertyText("attributeValueToolTip"));
 
 		otherFunctions.setPanelStyle(panel, 2);
 
-		panel.add(statNameTextArea);
+		panel.add(attributeNameTextArea);
 		panel.add(decreaseButton);
 		panel.add(Box.createRigidArea(new Dimension(20, 0)));
-		panel.add(statValueTextArea);
+		panel.add(attributeValueTextArea);
 		panel.add(Box.createRigidArea(new Dimension(15, 0)));
 		panel.add(increaseButton);
 
 		return panel;
+	}
+
+	private JPanel buildStatPanel(String statName)
+	{
+		JPanel statPanel = new JPanel();
+		JTextArea statNameTextArea;
+		JTextArea statValueTextArea;
+
+		statNameTextArea = otherFunctions.buildTextArea(otherFunctions.getPropertyText(statName) + ":", otherFunctions.bigFont, 270, 40);
+		System.out.println((statName + "ToolTip"));
+		statNameTextArea.setToolTipText("Current amount of the " + otherFunctions.getPropertyText(statName));
+
+		statValueTextArea = otherFunctions.buildTextArea("10", otherFunctions.bigFont, 30, 40);
+		statValueTextArea.setToolTipText(otherFunctions.getPropertyText("statValueToolTip"));
+
+		otherFunctions.setPanelStyle(statPanel, 2);
+		statPanel.add(statNameTextArea);
+		statPanel.add(statValueTextArea);
+
+		return statPanel;
 	}
 
 	private class validateCharacterNameListener implements ActionListener
@@ -235,6 +266,22 @@ class BuildCharacterGeneratorPage
 	}
 
 	private class IncreaseDexterityListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+
+		}
+	}
+
+	private class DecreaseAgilityListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+
+		}
+	}
+
+	private class IncreaseAgilityListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{

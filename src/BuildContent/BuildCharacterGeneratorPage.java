@@ -10,7 +10,7 @@ class BuildCharacterGeneratorPage
 {
 	private static final OtherFunctions otherFunctions = new OtherFunctions();
 	private static final BuildGameContent gameContent = new BuildGameContent();
-	private static HashMap<String, JTextArea> textAreaList = new HashMap<>();
+	private static HashMap<String, JTextArea> attributeTextAreaList = new HashMap<>();
 
 	JPanel buildCharacterGeneratorPage()
 	{
@@ -97,14 +97,14 @@ class BuildCharacterGeneratorPage
 				new IncreaseDexterityListener()));
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
 		characterAttributePanel.add(buildChangeAttributePanel(
-				otherFunctions.getPropertyText("agility"),
-				new DecreaseAgilityListener(),
-				new IncreaseAgilityListener()));
-		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
-		characterAttributePanel.add(buildChangeAttributePanel(
 				otherFunctions.getPropertyText("intelligent"),
 				new DecreaseIntelligentListener(),
 				new IncreaseIntelligentListener()));
+		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
+		characterAttributePanel.add(buildChangeAttributePanel(
+				otherFunctions.getPropertyText("agility"),
+				new DecreaseAgilityListener(),
+				new IncreaseAgilityListener()));
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
 		characterAttributePanel.add(buildChangeAttributePanel(
 				otherFunctions.getPropertyText("vitality"),
@@ -143,12 +143,11 @@ class BuildCharacterGeneratorPage
 		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
 		startGamePanel.add(buildStatPanel("magicDefense"));
 		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		startGamePanel.add(buildStatPanel("attackSpeed"));
+		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
 		startGamePanel.add(buildStatPanel("accuracy"));
 		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
 		startGamePanel.add(buildStatPanel("evasion"));
-		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
-		startGamePanel.add(buildStatPanel("attackSpeed"));
-
 		startGamePanel.add(Box.createVerticalGlue());
 		startGamePanel.add(startGameButton);
 		startGamePanel.add(Box.createRigidArea(new Dimension(0, 60)));
@@ -243,57 +242,93 @@ class BuildCharacterGeneratorPage
 		JPanel statPanel = new JPanel();
 		JTextArea statNameTextArea;
 		JTextArea statValueTextArea;
+		String basicStatPoints = "1";
 
 		statNameTextArea = otherFunctions.buildTextArea(otherFunctions.getPropertyText(statName) + ":", otherFunctions.bigFont, 270, 40);
 		statNameTextArea.setToolTipText("Current amount of the " + otherFunctions.getPropertyText(statName));
 
-		statValueTextArea = otherFunctions.buildTextArea("10", otherFunctions.bigFont, 30, 40);
+		statValueTextArea = otherFunctions.buildTextArea(basicStatPoints, otherFunctions.bigFont, 30, 40);
 		statValueTextArea.setToolTipText(otherFunctions.getPropertyText("statValueToolTip"));
 
 		otherFunctions.setPanelStyle(statPanel, 2);
 		statPanel.add(statNameTextArea);
 		statPanel.add(statValueTextArea);
 
+		setTextAreaList(statName, statValueTextArea);
+
 		return statPanel;
 	}
 
 	void setTextAreaList(String textAreaName, JTextArea textArea)
 	{
-		textAreaList.put(textAreaName, textArea);
+		attributeTextAreaList.put(textAreaName, textArea);
 	}
 
 	JTextArea getTextAreaList(String textAreaName)
 	{
-		return textAreaList.get(textAreaName);
+		return attributeTextAreaList.get(textAreaName);
 	}
 
 	private void decreaseAttributeValue(String attribute)
 	{
-		JTextArea strengthValueTextArea = getTextAreaList(attribute);
+		JTextArea valueTextArea = getTextAreaList(attribute);
 		JTextArea attributeValueTextArea = getTextAreaList("attributePoints");
-		int strengthValue = Integer.valueOf(strengthValueTextArea.getText());
+		int strengthValue = Integer.valueOf(valueTextArea.getText());
 		int attributeValue = Integer.valueOf(attributeValueTextArea.getText());
 
-		if ((strengthValue > 0))
+		if ((strengthValue > 1))
 		{
-			strengthValueTextArea.setText(String.valueOf(strengthValue - 1));
+			valueTextArea.setText(String.valueOf(strengthValue - 1));
 			attributeValueTextArea.setText(String.valueOf(attributeValue + 1));
 		}
 	}
 
 	private void increaseAttributeValue(String attribute)
 	{
-		JTextArea strengthValueTextArea = getTextAreaList(attribute);
+		JTextArea valueTextArea = getTextAreaList(attribute);
 		JTextArea attributeValueTextArea = getTextAreaList("attributePoints");
-		int strengthValue = Integer.valueOf(strengthValueTextArea.getText());
+		int strengthValue = Integer.valueOf(valueTextArea.getText());
 		int attributeValue = Integer.valueOf(attributeValueTextArea.getText());
 
 		if ((attributeValue > 0))
 		{
-			strengthValueTextArea.setText(String.valueOf(strengthValue + 1));
+			valueTextArea.setText(String.valueOf(strengthValue + 1));
 			attributeValueTextArea.setText(String.valueOf(attributeValue - 1));
 		}
 
+	}
+
+	private void calculateStatValues()
+	{
+		JTextArea hitPointsValueTextArea = getTextAreaList("hitPoints");
+		JTextArea meleeDamageValueTextArea = getTextAreaList("meleeDamage");
+		JTextArea rangedDamageValueTextArea = getTextAreaList("rangedDamage");
+		JTextArea magicDamageValueTextArea = getTextAreaList("magicDamage");
+		JTextArea physicalDefenseValueTextArea = getTextAreaList("physicalDefense");
+		JTextArea magicDefenseValueTextArea = getTextAreaList("magicDefense");
+		JTextArea attackSpeedValueTextArea = getTextAreaList("attackSpeed");
+		JTextArea accuracyValueTextArea = getTextAreaList("accuracy");
+		JTextArea evasionValueTextArea = getTextAreaList("evasion");
+		JTextArea strengthValueTextArea = getTextAreaList("strength");
+		JTextArea dexterityValueTextArea = getTextAreaList("dexterity");
+		JTextArea intelligentValueTextArea = getTextAreaList("intelligent");
+		JTextArea agilityValueTextArea = getTextAreaList("agility");
+		JTextArea vitalityValueTextArea = getTextAreaList("vitality");
+		int strengthValue = Integer.valueOf(strengthValueTextArea.getText());
+		int dexterityValue = Integer.valueOf(dexterityValueTextArea.getText());
+		int intelligentValue = Integer.valueOf(intelligentValueTextArea.getText());
+		int agilityValue = Integer.valueOf(agilityValueTextArea.getText());
+		int vitalityValue = Integer.valueOf(vitalityValueTextArea.getText());
+
+		hitPointsValueTextArea.setText(String.valueOf(strengthValue + (2 * vitalityValue)));
+		meleeDamageValueTextArea.setText(String.valueOf(2 * strengthValue));
+		rangedDamageValueTextArea.setText(String.valueOf(2 * dexterityValue));
+		magicDamageValueTextArea.setText(String.valueOf(2 * intelligentValue));
+		physicalDefenseValueTextArea.setText(String.valueOf(strengthValue));
+		magicDefenseValueTextArea.setText(String.valueOf(intelligentValue));
+		attackSpeedValueTextArea.setText(String.valueOf(2 * agilityValue));
+		accuracyValueTextArea.setText(String.valueOf(dexterityValue));
+		evasionValueTextArea.setText(String.valueOf(agilityValue));
 	}
 
 	private class validateCharacterNameListener implements ActionListener
@@ -317,6 +352,7 @@ class BuildCharacterGeneratorPage
 		public void actionPerformed(ActionEvent event)
 		{
 			decreaseAttributeValue("strength");
+			calculateStatValues();
 		}
 	}
 
@@ -325,6 +361,7 @@ class BuildCharacterGeneratorPage
 		public void actionPerformed(ActionEvent event)
 		{
 			increaseAttributeValue("strength");
+			calculateStatValues();
 		}
 	}
 
@@ -333,6 +370,7 @@ class BuildCharacterGeneratorPage
 		public void actionPerformed(ActionEvent event)
 		{
 			decreaseAttributeValue("dexterity");
+			calculateStatValues();
 		}
 	}
 
@@ -341,6 +379,7 @@ class BuildCharacterGeneratorPage
 		public void actionPerformed(ActionEvent event)
 		{
 			increaseAttributeValue("dexterity");
+			calculateStatValues();
 		}
 	}
 
@@ -349,6 +388,7 @@ class BuildCharacterGeneratorPage
 		public void actionPerformed(ActionEvent event)
 		{
 			decreaseAttributeValue("agility");
+			calculateStatValues();
 		}
 	}
 
@@ -357,6 +397,7 @@ class BuildCharacterGeneratorPage
 		public void actionPerformed(ActionEvent event)
 		{
 			increaseAttributeValue("agility");
+			calculateStatValues();
 		}
 	}
 
@@ -365,6 +406,7 @@ class BuildCharacterGeneratorPage
 		public void actionPerformed(ActionEvent event)
 		{
 			decreaseAttributeValue("intelligent");
+			calculateStatValues();
 		}
 	}
 
@@ -373,6 +415,7 @@ class BuildCharacterGeneratorPage
 		public void actionPerformed(ActionEvent event)
 		{
 			increaseAttributeValue("intelligent");
+			calculateStatValues();
 		}
 	}
 
@@ -381,6 +424,7 @@ class BuildCharacterGeneratorPage
 		public void actionPerformed(ActionEvent event)
 		{
 			decreaseAttributeValue("vitality");
+			calculateStatValues();
 		}
 	}
 
@@ -389,6 +433,7 @@ class BuildCharacterGeneratorPage
 		public void actionPerformed(ActionEvent event)
 		{
 			increaseAttributeValue("vitality");
+			calculateStatValues();
 		}
 	}
 
@@ -396,7 +441,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-
+			//check available stat points. if > 0, then warning pop up.
 		}
 	}
 }

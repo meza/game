@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 
 class BuildSelectRacePage
 {
-	private final OtherFunctions otherFunctions = new OtherFunctions();
-	private final BuildGameContent gameContent = new BuildGameContent();
+	private static final OtherFunctions otherFunctions = new OtherFunctions();
+	private static final BuildGameContent gameContent = new BuildGameContent();
 
 	JPanel buildSelectRacePage()
 	{

@@ -15,7 +15,7 @@ import java.util.Properties;
 
 class OtherFunctions
 {
-	private final Properties LabelsProperties = new Properties();
+	private static final Properties LabelsProperties = new Properties();
 	final Font smallFont = new Font("Monospaced", Font.BOLD, 15);
 	final Font mediumFont = new Font("Monospaced", Font.BOLD, 20);
 	final Font bigFont = new Font("Monospaced", Font.BOLD, 25);

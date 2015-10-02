@@ -5,7 +5,7 @@ import java.text.MessageFormat;
 
 public class BuildGameContent
 {
-	private final OtherFunctions otherFunctions = new OtherFunctions();
+	private static final OtherFunctions otherFunctions = new OtherFunctions();
 	static final JFrame mainFrame = new JFrame();
 
 	public void buildMainFrame()

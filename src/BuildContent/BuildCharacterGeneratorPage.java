@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 class BuildCharacterGeneratorPage
 {
-	private final OtherFunctions otherFunctions = new OtherFunctions();
-	private final BuildGameContent gameContent = new BuildGameContent();
-
+	private static final OtherFunctions otherFunctions = new OtherFunctions();
+	private static final BuildGameContent gameContent = new BuildGameContent();
+	private static HashMap<String, JTextArea> textAreaList = new HashMap<>();
 
 	JPanel buildCharacterGeneratorPage()
 	{

@@ -10,6 +10,7 @@ class BuildCharacterGeneratorPage
 	private final OtherFunctions otherFunctions = new OtherFunctions();
 	private final BuildGameContent gameContent = new BuildGameContent();
 
+
 	JPanel buildCharacterGeneratorPage()
 	{
 		JPanel mainPanel = new JPanel(new GridLayout(1, 3));
@@ -255,12 +256,12 @@ class BuildCharacterGeneratorPage
 		}
 	}
 
-		private class backButtonListener implements ActionListener
+	private class backButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
 		{
-			public void actionPerformed(ActionEvent event)
-			{
-				gameContent.addSelectRacePageToTheMainFrame();
-			}
+			gameContent.addSelectRacePageToTheMainFrame();
+		}
 	}
 
 	private class DecreaseStrengthListener implements ActionListener

@@ -159,19 +159,25 @@ class BuildCharacterGeneratorPage
 	private JPanel buildAvailableAttributePointsPanel()
 	{
 		JPanel panel = new JPanel();
+		JTextArea availableAttributePoints;
+		String attributePoints = "6";
 
 		otherFunctions.setPanelStyle(panel, 2);
+
+		availableAttributePoints = otherFunctions.buildTextArea(
+				attributePoints,
+				otherFunctions.bigFont,
+				40,
+				40);
 
 		panel.add(otherFunctions.buildTextArea(
 				otherFunctions.getPropertyText("availableAttributePoints"),
 				otherFunctions.bigFont,
 				410,
 				40));
-		panel.add(otherFunctions.buildTextArea(
-				String.valueOf(otherFunctions.getAvailableAttributePoints()),
-				otherFunctions.bigFont,
-				40,
-				40));
+		panel.add(availableAttributePoints);
+
+		setTextAreaList("attributePoints", availableAttributePoints);
 
 		return panel;
 	}
@@ -218,6 +224,8 @@ class BuildCharacterGeneratorPage
 				40);
 		attributeValueTextArea.setToolTipText(otherFunctions.getPropertyText("attributeValueToolTip"));
 
+		setTextAreaList(attributeName.toLowerCase(), attributeValueTextArea);
+
 		otherFunctions.setPanelStyle(panel, 2);
 
 		panel.add(attributeNameTextArea);
@@ -249,6 +257,45 @@ class BuildCharacterGeneratorPage
 		return statPanel;
 	}
 
+	void setTextAreaList(String textAreaName, JTextArea textArea)
+	{
+		textAreaList.put(textAreaName, textArea);
+	}
+
+	JTextArea getTextAreaList(String textAreaName)
+	{
+		return textAreaList.get(textAreaName);
+	}
+
+	private void decreaseAttributeValue(String attribute)
+	{
+		JTextArea strengthValueTextArea = getTextAreaList(attribute);
+		JTextArea attributeValueTextArea = getTextAreaList("attributePoints");
+		int strengthValue = Integer.valueOf(strengthValueTextArea.getText());
+		int attributeValue = Integer.valueOf(attributeValueTextArea.getText());
+
+		if ((strengthValue > 0))
+		{
+			strengthValueTextArea.setText(String.valueOf(strengthValue - 1));
+			attributeValueTextArea.setText(String.valueOf(attributeValue + 1));
+		}
+	}
+
+	private void increaseAttributeValue(String attribute)
+	{
+		JTextArea strengthValueTextArea = getTextAreaList(attribute);
+		JTextArea attributeValueTextArea = getTextAreaList("attributePoints");
+		int strengthValue = Integer.valueOf(strengthValueTextArea.getText());
+		int attributeValue = Integer.valueOf(attributeValueTextArea.getText());
+
+		if ((attributeValue > 0))
+		{
+			strengthValueTextArea.setText(String.valueOf(strengthValue + 1));
+			attributeValueTextArea.setText(String.valueOf(attributeValue - 1));
+		}
+
+	}
+
 	private class validateCharacterNameListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -269,7 +316,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-
+			decreaseAttributeValue("strength");
 		}
 	}
 
@@ -277,7 +324,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-
+			increaseAttributeValue("strength");
 		}
 	}
 
@@ -285,7 +332,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-
+			decreaseAttributeValue("dexterity");
 		}
 	}
 
@@ -293,7 +340,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-
+			increaseAttributeValue("dexterity");
 		}
 	}
 
@@ -301,7 +348,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-
+			decreaseAttributeValue("agility");
 		}
 	}
 
@@ -309,7 +356,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-
+			increaseAttributeValue("agility");
 		}
 	}
 
@@ -317,7 +364,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-
+			decreaseAttributeValue("intelligent");
 		}
 	}
 
@@ -325,7 +372,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-
+			increaseAttributeValue("intelligent");
 		}
 	}
 
@@ -333,7 +380,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-
+			decreaseAttributeValue("vitality");
 		}
 	}
 
@@ -341,7 +388,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-
+			increaseAttributeValue("vitality");
 		}
 	}
 

@@ -4,13 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
 class BuildCharacterGeneratorPage
 {
 	private static final OtherFunctions otherFunctions = new OtherFunctions();
 	private static final BuildGameContent gameContent = new BuildGameContent();
-	private static final HashMap<String, JTextArea> attributeTextAreaList = new HashMap<>();
 
 	JPanel buildCharacterGeneratorPage()
 	{
@@ -176,7 +174,7 @@ class BuildCharacterGeneratorPage
 				40));
 		panel.add(availableAttributePoints);
 
-		setTextAreaList("attributePoints", availableAttributePoints);
+		otherFunctions.setTextAreaList("attributePoints", availableAttributePoints);
 
 		return panel;
 	}
@@ -221,7 +219,7 @@ class BuildCharacterGeneratorPage
 				40);
 		attributeValueTextArea.setToolTipText(otherFunctions.getPropertyText("attributeValueToolTip"));
 
-		setTextAreaList(attributeName.toLowerCase(), attributeValueTextArea);
+		otherFunctions.setTextAreaList(attributeName.toLowerCase(), attributeValueTextArea);
 
 		otherFunctions.setPanelStyle(panel, 2);
 
@@ -260,25 +258,15 @@ class BuildCharacterGeneratorPage
 		statPanel.add(statNameTextArea);
 		statPanel.add(statValueTextArea);
 
-		setTextAreaList(statName, statValueTextArea);
+		otherFunctions.setTextAreaList(statName, statValueTextArea);
 
 		return statPanel;
 	}
 
-	private void setTextAreaList(String textAreaName, JTextArea textArea)
-	{
-		attributeTextAreaList.put(textAreaName, textArea);
-	}
-
-	private JTextArea getTextAreaList(String textAreaName)
-	{
-		return attributeTextAreaList.get(textAreaName);
-	}
-
 	private void decreaseAttributeValue(String attribute)
 	{
-		JTextArea valueTextArea = getTextAreaList(attribute);
-		JTextArea attributeValueTextArea = getTextAreaList("attributePoints");
+		JTextArea valueTextArea = otherFunctions.getTextAreaList(attribute);
+		JTextArea attributeValueTextArea = otherFunctions.getTextAreaList("attributePoints");
 		int strengthValue = Integer.valueOf(valueTextArea.getText());
 		int attributeValue = Integer.valueOf(attributeValueTextArea.getText());
 
@@ -291,8 +279,8 @@ class BuildCharacterGeneratorPage
 
 	private void increaseAttributeValue(String attribute)
 	{
-		JTextArea valueTextArea = getTextAreaList(attribute);
-		JTextArea attributeValueTextArea = getTextAreaList("attributePoints");
+		JTextArea valueTextArea = otherFunctions.getTextAreaList(attribute);
+		JTextArea attributeValueTextArea = otherFunctions.getTextAreaList("attributePoints");
 		int strengthValue = Integer.valueOf(valueTextArea.getText());
 		int attributeValue = Integer.valueOf(attributeValueTextArea.getText());
 
@@ -306,20 +294,20 @@ class BuildCharacterGeneratorPage
 
 	private void calculateStatValues()
 	{
-		JTextArea hitPointsValueTextArea = getTextAreaList("hitPoints");
-		JTextArea meleeDamageValueTextArea = getTextAreaList("meleeDamage");
-		JTextArea rangedDamageValueTextArea = getTextAreaList("rangedDamage");
-		JTextArea magicDamageValueTextArea = getTextAreaList("magicDamage");
-		JTextArea physicalDefenseValueTextArea = getTextAreaList("physicalDefense");
-		JTextArea magicDefenseValueTextArea = getTextAreaList("magicDefense");
-		JTextArea attackSpeedValueTextArea = getTextAreaList("attackSpeed");
-		JTextArea accuracyValueTextArea = getTextAreaList("accuracy");
-		JTextArea evasionValueTextArea = getTextAreaList("evasion");
-		JTextArea strengthValueTextArea = getTextAreaList("strength");
-		JTextArea dexterityValueTextArea = getTextAreaList("dexterity");
-		JTextArea intelligentValueTextArea = getTextAreaList("intelligent");
-		JTextArea agilityValueTextArea = getTextAreaList("agility");
-		JTextArea vitalityValueTextArea = getTextAreaList("vitality");
+		JTextArea hitPointsValueTextArea = otherFunctions.getTextAreaList("hitPoints");
+		JTextArea meleeDamageValueTextArea = otherFunctions.getTextAreaList("meleeDamage");
+		JTextArea rangedDamageValueTextArea = otherFunctions.getTextAreaList("rangedDamage");
+		JTextArea magicDamageValueTextArea = otherFunctions.getTextAreaList("magicDamage");
+		JTextArea physicalDefenseValueTextArea = otherFunctions.getTextAreaList("physicalDefense");
+		JTextArea magicDefenseValueTextArea = otherFunctions.getTextAreaList("magicDefense");
+		JTextArea attackSpeedValueTextArea = otherFunctions.getTextAreaList("attackSpeed");
+		JTextArea accuracyValueTextArea = otherFunctions.getTextAreaList("accuracy");
+		JTextArea evasionValueTextArea = otherFunctions.getTextAreaList("evasion");
+		JTextArea strengthValueTextArea = otherFunctions.getTextAreaList("strength");
+		JTextArea dexterityValueTextArea = otherFunctions.getTextAreaList("dexterity");
+		JTextArea intelligentValueTextArea = otherFunctions.getTextAreaList("intelligent");
+		JTextArea agilityValueTextArea = otherFunctions.getTextAreaList("agility");
+		JTextArea vitalityValueTextArea = otherFunctions.getTextAreaList("vitality");
 		int strengthValue = Integer.valueOf(strengthValueTextArea.getText());
 		int dexterityValue = Integer.valueOf(dexterityValueTextArea.getText());
 		int intelligentValue = Integer.valueOf(intelligentValueTextArea.getText());
@@ -447,7 +435,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			int attributeValue = Integer.valueOf(getTextAreaList("attributePoints").getText());
+			int attributeValue = Integer.valueOf(otherFunctions.getTextAreaList("attributePoints").getText());
 
 			if ((attributeValue > 0))
 			{

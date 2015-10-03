@@ -16,11 +16,12 @@ import java.util.Properties;
 class OtherFunctions
 {
 	private static final Properties LabelsProperties = new Properties();
+	private static final HashMap<String, JTextArea> attributeTextAreaList = new HashMap<>();
+	private static String selectedRace = "";
 	final Font smallFont = new Font("Monospaced", Font.BOLD, 15);
 	final Font mediumFont = new Font("Monospaced", Font.BOLD, 20);
 	final Font bigFont = new Font("Monospaced", Font.BOLD, 25);
 	final Border border = new LineBorder(Color.WHITE, 2, true);
-	private static String selectedRace = "";
 
 	public OtherFunctions()
 	{
@@ -157,5 +158,15 @@ class OtherFunctions
 		textField.setPreferredSize(new Dimension(width, height));
 
 		return textField;
+	}
+
+	void setTextAreaList(String textAreaName, JTextArea textArea)
+	{
+		attributeTextAreaList.put(textAreaName, textArea);
+	}
+
+	JTextArea getTextAreaList(String textAreaName)
+	{
+		return attributeTextAreaList.get(textAreaName);
 	}
 }

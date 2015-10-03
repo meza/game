@@ -324,7 +324,7 @@ class BuildCharacterGeneratorPage
 		meleeDamageValueTextArea.setText(String.valueOf(2 * strengthValue));
 		rangedDamageValueTextArea.setText(String.valueOf(2 * dexterityValue));
 		magicDamageValueTextArea.setText(String.valueOf(2 * intelligentValue));
-		physicalDefenseValueTextArea.setText(String.valueOf(strengthValue));
+		physicalDefenseValueTextArea.setText(String.valueOf(vitalityValue));
 		magicDefenseValueTextArea.setText(String.valueOf(intelligentValue));
 		attackSpeedValueTextArea.setText(String.valueOf(2 * agilityValue));
 		accuracyValueTextArea.setText(String.valueOf(dexterityValue));
@@ -441,7 +441,20 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			//check available stat points. if > 0, then warning pop up.
+			int attributeValue = Integer.valueOf(getTextAreaList("attributePoints").getText());
+
+			if ((attributeValue > 0))
+			{
+				JOptionPane.showMessageDialog(
+						null,
+						otherFunctions.getPropertyText("startGamePopUpContent"),
+						otherFunctions.getPropertyText("startGamePopUpTitle"),
+						JOptionPane.WARNING_MESSAGE);
+			}
+			else
+			{
+				System.out.println("start");
+			}
 		}
 	}
 }

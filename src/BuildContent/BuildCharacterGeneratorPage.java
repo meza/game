@@ -10,7 +10,7 @@ class BuildCharacterGeneratorPage
 {
 	private static final OtherFunctions otherFunctions = new OtherFunctions();
 	private static final BuildGameContent gameContent = new BuildGameContent();
-	private static HashMap<String, JTextArea> attributeTextAreaList = new HashMap<>();
+	private static final HashMap<String, JTextArea> attributeTextAreaList = new HashMap<>();
 
 	JPanel buildCharacterGeneratorPage()
 	{
@@ -193,8 +193,6 @@ class BuildCharacterGeneratorPage
 		JButton increaseButton = new JButton();
 		int basicAttributeValue = 1;
 
-		otherFunctions.setAttributeValue(attributeName.toLowerCase(), basicAttributeValue);
-
 		attributeNameTextArea = otherFunctions.buildTextArea(attributeName, otherFunctions.bigFont, 200, 40);
 		attributeNameTextArea.setToolTipText(otherFunctions.getPropertyText(attributeName.toLowerCase() + "ToolTip"));
 
@@ -259,12 +257,12 @@ class BuildCharacterGeneratorPage
 		return statPanel;
 	}
 
-	void setTextAreaList(String textAreaName, JTextArea textArea)
+	private void setTextAreaList(String textAreaName, JTextArea textArea)
 	{
 		attributeTextAreaList.put(textAreaName, textArea);
 	}
 
-	JTextArea getTextAreaList(String textAreaName)
+	private JTextArea getTextAreaList(String textAreaName)
 	{
 		return attributeTextAreaList.get(textAreaName);
 	}

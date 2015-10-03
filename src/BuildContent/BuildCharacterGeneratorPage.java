@@ -242,10 +242,18 @@ class BuildCharacterGeneratorPage
 		JTextArea statValueTextArea;
 		String basicStatPoints = "1";
 
-		statNameTextArea = otherFunctions.buildTextArea(otherFunctions.getPropertyText(statName) + ":", otherFunctions.bigFont, 270, 40);
+		statNameTextArea = otherFunctions.buildTextArea(
+				otherFunctions.getPropertyText(statName) + ":",
+				otherFunctions.bigFont,
+				270,
+				40);
 		statNameTextArea.setToolTipText("Current amount of the " + otherFunctions.getPropertyText(statName));
 
-		statValueTextArea = otherFunctions.buildTextArea(basicStatPoints, otherFunctions.bigFont, 30, 40);
+		statValueTextArea = otherFunctions.buildTextArea(
+				basicStatPoints,
+				otherFunctions.bigFont,
+				30,
+				40);
 		statValueTextArea.setToolTipText(otherFunctions.getPropertyText("statValueToolTip"));
 
 		otherFunctions.setPanelStyle(statPanel, 2);

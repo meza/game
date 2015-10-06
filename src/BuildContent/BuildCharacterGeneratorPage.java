@@ -24,52 +24,45 @@ class BuildCharacterGeneratorPage
 	private JPanel buildCharacterNamePanel()
 	{
 		JPanel characterNamePanel = new JPanel();
-		JButton validateCharacterNameButton = new JButton();
-		JButton backButton = new JButton();
-
-		otherFunctions.buildButton(
-				validateCharacterNameButton,
-				otherFunctions.getPropertyText("validateCharacterNameButton"),
-				otherFunctions.getPropertyText("validateCharacterNameButtonToolTip"),
-				otherFunctions.mediumFont,
-				350,
-				50,
-				new validateCharacterNameListener());
-
-		otherFunctions.buildButton(
-				backButton,
-				otherFunctions.getPropertyText("backButton"),
-				otherFunctions.getPropertyText("backButtonToolTip"),
-				otherFunctions.bigFont,
-				120,
-				50,
-				new backButtonListener());
 
 		otherFunctions.setPanelStyle(characterNamePanel, 3);
 
 		characterNamePanel.add(Box.createRigidArea(new Dimension(0, 120)));
 		characterNamePanel.add(otherFunctions.buildRaceImage(
-				"/StaticContent/Images/" + otherFunctions.getSelectedRace() + ".jpg"));
+			                       "/StaticContent/Images/" + otherFunctions.getSelectedRace() + ".jpg"));
 		characterNamePanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		characterNamePanel.add(otherFunctions.buildTextArea(
-				otherFunctions.getPropertyText("characterNameQuestion"),
-				otherFunctions.bigFont,
-				470,
-				80));
+			                       otherFunctions.getPropertyText("characterNameQuestion"),
+			                       otherFunctions.bigFont,
+			                       470,
+			                       80));
 		characterNamePanel.add(otherFunctions.buildTextField(
-				otherFunctions.getPropertyText("offered" + otherFunctions.getSelectedRace() + "CharacterName"),
-				true,
-				370,
-				45));
+			                       otherFunctions.getPropertyText(
+				                       "offered" + otherFunctions.getSelectedRace() + "CharacterName"),
+			                       true,
+			                       370,
+			                       45));
 		characterNamePanel.add(otherFunctions.buildTextArea(
-				otherFunctions.getPropertyText("characterNameLengthHint"),
-				otherFunctions.smallFont,
-				500,
-				60));
+			                       otherFunctions.getPropertyText("characterNameLengthHint"),
+			                       otherFunctions.smallFont,
+			                       500,
+			                       60));
 		characterNamePanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		characterNamePanel.add(validateCharacterNameButton);
+		characterNamePanel.add(otherFunctions.buildButton(
+			                       otherFunctions.getPropertyText("validateCharacterNameButton"),
+			                       otherFunctions.getPropertyText("validateCharacterNameButtonToolTip"),
+			                       otherFunctions.mediumFont,
+			                       350,
+			                       50,
+			                       new validateCharacterNameListener()));
 		characterNamePanel.add(Box.createVerticalGlue());
-		characterNamePanel.add(backButton);
+		characterNamePanel.add(otherFunctions.buildButton(
+			                       otherFunctions.getPropertyText("backButton"),
+			                       otherFunctions.getPropertyText("backButtonToolTip"),
+			                       otherFunctions.bigFont,
+			                       120,
+			                       50,
+			                       new backButtonListener()));
 		characterNamePanel.add(Box.createRigidArea(new Dimension(0, 60)));
 
 		return characterNamePanel;
@@ -85,29 +78,29 @@ class BuildCharacterGeneratorPage
 		characterAttributePanel.add(buildAvailableAttributePointsPanel());
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 60)));
 		characterAttributePanel.add(buildChangeAttributePanel(
-				otherFunctions.getPropertyText("strength"),
-				new DecreaseStrengthListener(),
-				new IncreaseStrengthListener()));
+			                            otherFunctions.getPropertyText("strength"),
+			                            new DecreaseStrengthListener(),
+			                            new IncreaseStrengthListener()));
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
 		characterAttributePanel.add(buildChangeAttributePanel(
-				otherFunctions.getPropertyText("dexterity"),
-				new DecreaseDexterityListener(),
-				new IncreaseDexterityListener()));
+			                            otherFunctions.getPropertyText("dexterity"),
+			                            new DecreaseDexterityListener(),
+			                            new IncreaseDexterityListener()));
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
 		characterAttributePanel.add(buildChangeAttributePanel(
-				otherFunctions.getPropertyText("intelligent"),
-				new DecreaseIntelligentListener(),
-				new IncreaseIntelligentListener()));
+			                            otherFunctions.getPropertyText("intelligent"),
+			                            new DecreaseIntelligentListener(),
+			                            new IncreaseIntelligentListener()));
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
 		characterAttributePanel.add(buildChangeAttributePanel(
-				otherFunctions.getPropertyText("agility"),
-				new DecreaseAgilityListener(),
-				new IncreaseAgilityListener()));
+			                            otherFunctions.getPropertyText("agility"),
+			                            new DecreaseAgilityListener(),
+			                            new IncreaseAgilityListener()));
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
 		characterAttributePanel.add(buildChangeAttributePanel(
-				otherFunctions.getPropertyText("vitality"),
-				new DecreaseVitalityListener(),
-				new IncreaseVitalityListener()));
+			                            otherFunctions.getPropertyText("vitality"),
+			                            new DecreaseVitalityListener(),
+			                            new IncreaseVitalityListener()));
 
 		return characterAttributePanel;
 	}
@@ -115,16 +108,6 @@ class BuildCharacterGeneratorPage
 	private JPanel buildStartGamePanel()
 	{
 		JPanel startGamePanel = new JPanel();
-		JButton startGameButton = new JButton();
-
-		otherFunctions.buildButton(
-				startGameButton,
-				otherFunctions.getPropertyText("startGameButton"),
-				otherFunctions.getPropertyText("startGameButtonToolTip"),
-				otherFunctions.bigFont,
-				300,
-				100,
-				new StartGameListener());
 
 		otherFunctions.setPanelStyle(startGamePanel, 3);
 
@@ -147,7 +130,13 @@ class BuildCharacterGeneratorPage
 		startGamePanel.add(Box.createRigidArea(new Dimension(0, 10)));
 		startGamePanel.add(buildStatPanel("evasion"));
 		startGamePanel.add(Box.createVerticalGlue());
-		startGamePanel.add(startGameButton);
+		startGamePanel.add(otherFunctions.buildButton(
+			                   otherFunctions.getPropertyText("startGameButton"),
+			                   otherFunctions.getPropertyText("startGameButtonToolTip"),
+			                   otherFunctions.bigFont,
+			                   300,
+			                   100,
+			                   new StartGameListener()));
 		startGamePanel.add(Box.createRigidArea(new Dimension(0, 60)));
 
 		return startGamePanel;
@@ -162,16 +151,16 @@ class BuildCharacterGeneratorPage
 		otherFunctions.setPanelStyle(panel, 2);
 
 		availableAttributePoints = otherFunctions.buildTextArea(
-				attributePoints,
-				otherFunctions.bigFont,
-				40,
-				40);
+										attributePoints,
+										otherFunctions.bigFont,
+										40,
+										40);
 
 		panel.add(otherFunctions.buildTextArea(
-				otherFunctions.getPropertyText("availableAttributePoints"),
-				otherFunctions.bigFont,
-				410,
-				40));
+			          otherFunctions.getPropertyText("availableAttributePoints"),
+			          otherFunctions.bigFont,
+			          410,
+			          40));
 		panel.add(availableAttributePoints);
 
 		otherFunctions.setTextAreaList("attributePoints", availableAttributePoints);
@@ -180,55 +169,49 @@ class BuildCharacterGeneratorPage
 	}
 
 	private JPanel buildChangeAttributePanel(
-			String attributeName,
-			ActionListener decreaseListener,
-			ActionListener increaseListener)
+		String attributeName,
+		ActionListener decreaseListener,
+		ActionListener increaseListener)
 	{
 		JPanel panel = new JPanel();
 		JTextArea attributeNameTextArea;
 		JTextArea attributeValueTextArea;
-		JButton decreaseButton = new JButton();
-		JButton increaseButton = new JButton();
 		int basicAttributeValue = 1;
 
-		attributeNameTextArea = otherFunctions.buildTextArea(attributeName, otherFunctions.bigFont, 200, 40);
-		attributeNameTextArea.setToolTipText(otherFunctions.getPropertyText(attributeName.toLowerCase() + "ToolTip"));
-
-		otherFunctions.buildButton(
-				decreaseButton,
-				otherFunctions.getPropertyText("decreaseButton"),
-				otherFunctions.getPropertyText("decreaseButtonToolTip"),
-				otherFunctions.bigFont,
-				60,
-				40,
-				decreaseListener);
-
-		otherFunctions.buildButton(
-				increaseButton,
-				otherFunctions.getPropertyText("increaseButton"),
-				otherFunctions.getPropertyText("increaseButtonToolTip"),
-				otherFunctions.bigFont,
-				60,
-				40,
-				increaseListener);
-
+		attributeNameTextArea = otherFunctions.buildTextArea(
+									attributeName,
+									otherFunctions.bigFont,
+									200,
+									40);
 		attributeValueTextArea = otherFunctions.buildTextArea(
-				String.valueOf(basicAttributeValue),
-				otherFunctions.bigFont,
-				30,
-				40);
+									String.valueOf(basicAttributeValue),
+									otherFunctions.bigFont,
+									30,
+									40);
+		attributeNameTextArea.setToolTipText(otherFunctions.getPropertyText(attributeName.toLowerCase() + "ToolTip"));
 		attributeValueTextArea.setToolTipText(otherFunctions.getPropertyText("attributeValueToolTip"));
 
 		otherFunctions.setTextAreaList(attributeName.toLowerCase(), attributeValueTextArea);
-
 		otherFunctions.setPanelStyle(panel, 2);
 
 		panel.add(attributeNameTextArea);
-		panel.add(decreaseButton);
+		panel.add(otherFunctions.buildButton(
+			          otherFunctions.getPropertyText("decreaseButton"),
+			          otherFunctions.getPropertyText("decreaseButtonToolTip"),
+			          otherFunctions.bigFont,
+			          60,
+			          40,
+			          decreaseListener));
 		panel.add(Box.createRigidArea(new Dimension(20, 0)));
 		panel.add(attributeValueTextArea);
 		panel.add(Box.createRigidArea(new Dimension(15, 0)));
-		panel.add(increaseButton);
+		panel.add(otherFunctions.buildButton(
+			          otherFunctions.getPropertyText("increaseButton"),
+			          otherFunctions.getPropertyText("increaseButtonToolTip"),
+			          otherFunctions.bigFont,
+			          60,
+			          40,
+			          increaseListener));
 
 		return panel;
 	}
@@ -241,53 +224,56 @@ class BuildCharacterGeneratorPage
 		String basicStatPoints = "1";
 
 		statNameTextArea = otherFunctions.buildTextArea(
-				otherFunctions.getPropertyText(statName) + ":",
-				otherFunctions.bigFont,
-				270,
-				40);
-		statNameTextArea.setToolTipText("Current amount of the " + otherFunctions.getPropertyText(statName));
-
+								otherFunctions.getPropertyText(statName) + ":",
+								otherFunctions.bigFont,
+								270,
+								40);
 		statValueTextArea = otherFunctions.buildTextArea(
-				basicStatPoints,
-				otherFunctions.bigFont,
-				30,
-				40);
+								basicStatPoints,
+								otherFunctions.bigFont,
+								30,
+								40);
+		statNameTextArea.setToolTipText("Current amount of the " + otherFunctions.getPropertyText(statName));
 		statValueTextArea.setToolTipText(otherFunctions.getPropertyText("statValueToolTip"));
 
-		otherFunctions.setPanelStyle(statPanel, 2);
+		otherFunctions.setTextAreaList(
+			statName,
+			statValueTextArea);
+		otherFunctions.setPanelStyle(
+			statPanel,
+			2);
+
 		statPanel.add(statNameTextArea);
 		statPanel.add(statValueTextArea);
-
-		otherFunctions.setTextAreaList(statName, statValueTextArea);
 
 		return statPanel;
 	}
 
 	private void decreaseAttributeValue(String attribute)
 	{
-		JTextArea valueTextArea = otherFunctions.getTextAreaList(attribute);
-		JTextArea attributeValueTextArea = otherFunctions.getTextAreaList("attributePoints");
-		int strengthValue = Integer.valueOf(valueTextArea.getText());
+		JTextArea attributeValueTextArea = otherFunctions.getTextAreaList(attribute);
+		JTextArea availableAttributeValueTextArea = otherFunctions.getTextAreaList("attributePoints");
 		int attributeValue = Integer.valueOf(attributeValueTextArea.getText());
+		int availableAttributeValue = Integer.valueOf(availableAttributeValueTextArea.getText());
 
-		if ((strengthValue > 1))
+		if ((attributeValue > 1))
 		{
-			valueTextArea.setText(String.valueOf(strengthValue - 1));
-			attributeValueTextArea.setText(String.valueOf(attributeValue + 1));
+			attributeValueTextArea.setText(String.valueOf(attributeValue - 1));
+			availableAttributeValueTextArea.setText(String.valueOf(availableAttributeValue + 1));
 		}
 	}
 
 	private void increaseAttributeValue(String attribute)
 	{
-		JTextArea valueTextArea = otherFunctions.getTextAreaList(attribute);
-		JTextArea attributeValueTextArea = otherFunctions.getTextAreaList("attributePoints");
-		int strengthValue = Integer.valueOf(valueTextArea.getText());
+		JTextArea attributeValueTextArea = otherFunctions.getTextAreaList(attribute);
+		JTextArea availableAttributeValueTextArea = otherFunctions.getTextAreaList("attributePoints");
 		int attributeValue = Integer.valueOf(attributeValueTextArea.getText());
+		int availableAttributeValue = Integer.valueOf(availableAttributeValueTextArea.getText());
 
-		if ((attributeValue > 0))
+		if ((availableAttributeValue > 0))
 		{
-			valueTextArea.setText(String.valueOf(strengthValue + 1));
-			attributeValueTextArea.setText(String.valueOf(attributeValue - 1));
+			attributeValueTextArea.setText(String.valueOf(attributeValue + 1));
+			availableAttributeValueTextArea.setText(String.valueOf(availableAttributeValue - 1));
 		}
 
 	}
@@ -440,14 +426,14 @@ class BuildCharacterGeneratorPage
 			if ((attributeValue > 0))
 			{
 				JOptionPane.showMessageDialog(
-						null,
-						otherFunctions.getPropertyText("startGamePopUpContent"),
-						otherFunctions.getPropertyText("startGamePopUpTitle"),
-						JOptionPane.WARNING_MESSAGE);
+					null,
+					otherFunctions.getPropertyText("startGamePopUpContent"),
+					otherFunctions.getPropertyText("startGamePopUpTitle"),
+					JOptionPane.WARNING_MESSAGE);
 			}
 			else
 			{
-				System.out.println("start");
+
 			}
 		}
 	}

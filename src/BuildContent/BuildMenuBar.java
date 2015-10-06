@@ -26,26 +26,24 @@ class BuildMenuBar
 	{
 		JMenu gameMenu = new JMenu();
 
-		buildMenu(
-				gameMenu,
-				otherFunctions.getPropertyText("gameMenu"));
+		buildMenu(gameMenu, otherFunctions.getPropertyText("gameMenu"));
 
 		gameMenu.add(buildMenuItem(
-				otherFunctions.getPropertyText("newGameMenuItem"),
-				otherFunctions.getPropertyText("newGameMenuItemToolTip"),
-				new NewGameListener()));
+			             otherFunctions.getPropertyText("newGameMenuItem"),
+			             otherFunctions.getPropertyText("newGameMenuItemToolTip"),
+			             new NewGameListener()));
 		gameMenu.add(buildMenuItem(
-				otherFunctions.getPropertyText("loadGameMenuItem"),
-				otherFunctions.getPropertyText("loadGameMenuItemToolTip"),
-				new LoadGameListener()));
+			             otherFunctions.getPropertyText("loadGameMenuItem"),
+			             otherFunctions.getPropertyText("loadGameMenuItemToolTip"),
+			             new LoadGameListener()));
 		gameMenu.add(buildMenuItem(
-				otherFunctions.getPropertyText("saveGameMenuItem"),
-				otherFunctions.getPropertyText("saveGameMenuItemToolTip"),
-				new SaveGameListener()));
+			             otherFunctions.getPropertyText("saveGameMenuItem"),
+			             otherFunctions.getPropertyText("saveGameMenuItemToolTip"),
+			             new SaveGameListener()));
 		gameMenu.add(buildMenuItem(
-				otherFunctions.getPropertyText("quitMenuItem"),
-				otherFunctions.getPropertyText("quitMenuItemToolTip"),
-				new QuitGameListener()));
+			             otherFunctions.getPropertyText("quitMenuItem"),
+			             otherFunctions.getPropertyText("quitMenuItemToolTip"),
+			             new QuitGameListener()));
 
 		return gameMenu;
 	}
@@ -54,14 +52,12 @@ class BuildMenuBar
 	{
 		JMenu optionsMenu = new JMenu();
 
-		buildMenu(
-				optionsMenu,
-				otherFunctions.getPropertyText("optionsMenu"));
+		buildMenu(optionsMenu, otherFunctions.getPropertyText("optionsMenu"));
 
 		optionsMenu.add(buildMenuItem(
-				otherFunctions.getPropertyText("settingsMenuItem"),
-				otherFunctions.getPropertyText("settingsMenuItemToolTip"),
-				new SettingsListener()));
+			                otherFunctions.getPropertyText("settingsMenuItem"),
+			                otherFunctions.getPropertyText("settingsMenuItemToolTip"),
+			                new SettingsListener()));
 
 		return optionsMenu;
 	}
@@ -70,22 +66,20 @@ class BuildMenuBar
 	{
 		JMenu helpMenu = new JMenu();
 
-		buildMenu(
-				helpMenu,
-				otherFunctions.getPropertyText("helpMenu"));
+		buildMenu(helpMenu, otherFunctions.getPropertyText("helpMenu"));
 
 		helpMenu.add(buildMenuItem(
-				otherFunctions.getPropertyText("helpMenuItem"),
-				otherFunctions.getPropertyText("helpMenuItemToolTip"),
-				new HelpListener()));
+			             otherFunctions.getPropertyText("helpMenuItem"),
+			             otherFunctions.getPropertyText("helpMenuItemToolTip"),
+			             new HelpListener()));
 		helpMenu.add(buildMenuItem(
-				otherFunctions.getPropertyText("updateMenuItem"),
-				otherFunctions.getPropertyText("updateMenuItemToolTip"),
-				new UpdateListener()));
+			             otherFunctions.getPropertyText("updateMenuItem"),
+			             otherFunctions.getPropertyText("updateMenuItemToolTip"),
+			             new UpdateListener()));
 		helpMenu.add(buildMenuItem(
-				otherFunctions.getPropertyText("aboutMenuItem"),
-				otherFunctions.getPropertyText("aboutMenuItemToolTip"),
-				new AboutListener()));
+			             otherFunctions.getPropertyText("aboutMenuItem"),
+			             otherFunctions.getPropertyText("aboutMenuItemToolTip"),
+			             new AboutListener()));
 
 		return helpMenu;
 	}
@@ -143,16 +137,16 @@ class BuildMenuBar
 		public void actionPerformed(ActionEvent event)
 		{
 			int result = JOptionPane.showOptionDialog(
-					null,
-					otherFunctions.getPropertyText("quitPanelContent"),
-					otherFunctions.getPropertyText("quitPanelTitle"),
-					JOptionPane.OK_CANCEL_OPTION,
-					JOptionPane.INFORMATION_MESSAGE,
-					null,
-					new String[]{
-							otherFunctions.getPropertyText("quitPanelYesButton"),
-							otherFunctions.getPropertyText("quitPanelNoButton")},
-					otherFunctions.getPropertyText("quitPanelNoButton"));
+				null,
+				otherFunctions.getPropertyText("quitPanelContent"),
+				otherFunctions.getPropertyText("quitPanelTitle"),
+				JOptionPane.OK_CANCEL_OPTION,
+				JOptionPane.INFORMATION_MESSAGE,
+				null,
+				new String[]{
+					otherFunctions.getPropertyText("quitPanelYesButton"),
+					otherFunctions.getPropertyText("quitPanelNoButton")},
+				otherFunctions.getPropertyText("quitPanelNoButton"));
 
 			if (result == 0)
 			{
@@ -190,10 +184,10 @@ class BuildMenuBar
 		public void actionPerformed(ActionEvent event)
 		{
 			JOptionPane.showMessageDialog(
-					null,
-					otherFunctions.getPropertyText("aboutPanelContent"),
-					otherFunctions.getPropertyText("aboutPanelTitle"),
-					JOptionPane.INFORMATION_MESSAGE);
+				null,
+				otherFunctions.getPropertyText("aboutPanelContent"),
+				otherFunctions.getPropertyText("aboutPanelTitle"),
+				JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }

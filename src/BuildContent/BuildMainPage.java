@@ -27,14 +27,13 @@ class BuildMainPage
 		otherFunctions.setPanelStyle(newGamePanel, 3);
 
 		newGamePanel.add(Box.createVerticalGlue());
-		newGamePanel.add(
-				otherFunctions.buildButton(
-						otherFunctions.getPropertyText("newGameButton"),
-						otherFunctions.getPropertyText("newGameButtonToolTip"),
-						otherFunctions.bigFont,
-						250,
-						50,
-						new NewGameListener()));
+		newGamePanel.add(otherFunctions.buildButton(
+			                 otherFunctions.getPropertyText("newGameButton"),
+			                 otherFunctions.getPropertyText("newGameButtonToolTip"),
+			                 otherFunctions.bigFont,
+			                 250,
+			                 50,
+			                 new NewGameListener()));
 		newGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
 
 		return newGamePanel;
@@ -47,14 +46,13 @@ class BuildMainPage
 		otherFunctions.setPanelStyle(loadGamePanel, 3);
 
 		loadGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
-		loadGamePanel.add(
-				otherFunctions.buildButton(
-						otherFunctions.getPropertyText("loadGameButton"),
-						otherFunctions.getPropertyText("loadGameButtonToolTip"),
-						otherFunctions.bigFont,
-						250,
-						50,
-						new LoadGameListener()));
+		loadGamePanel.add(otherFunctions.buildButton(
+			                  otherFunctions.getPropertyText("loadGameButton"),
+			                  otherFunctions.getPropertyText("loadGameButtonToolTip"),
+			                  otherFunctions.bigFont,
+			                  250,
+			                  50,
+			                  new LoadGameListener()));
 
 		return loadGamePanel;
 	}

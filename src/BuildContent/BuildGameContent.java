@@ -56,8 +56,8 @@ public class BuildGameContent
 		mainFrame.getContentPane().removeAll();
 		mainFrame.repaint();
 		mainFrame.setTitle(MessageFormat.format(
-				otherFunctions.getPropertyText("mainFrameTitleGenerateRacePage"),
-				otherFunctions.getSelectedRace()));
+			                   otherFunctions.getPropertyText("mainFrameTitleGenerateRacePage"),
+			                   otherFunctions.getSelectedRace()));
 		mainFrame.getContentPane().add(characterGeneratorPage.buildCharacterGeneratorPage());
 		mainFrame.validate();
 	}

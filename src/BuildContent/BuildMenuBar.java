@@ -17,7 +17,6 @@ class BuildMenuBar
 		menuBar.add(buildGameMenu());
 		menuBar.add(buildOptionsMenu());
 		menuBar.add(buildHelpMenu());
-
 		menuBar.setBackground(Color.darkGray);
 
 		return menuBar;
@@ -26,43 +25,27 @@ class BuildMenuBar
 	private JMenu buildGameMenu()
 	{
 		JMenu gameMenu = new JMenu();
-		JMenuItem newGameMenuItem = new JMenuItem();
-		JMenuItem loadGameMenuItem = new JMenuItem();
-		JMenuItem saveGameMenuItem = new JMenuItem();
-		JMenuItem quitMenuItem = new JMenuItem();
-
-		buildMenuItem(
-				newGameMenuItem,
-				otherFunctions.getPropertyText("newGameMenuItem"),
-				otherFunctions.getPropertyText("newGameMenuItemToolTip"),
-				new NewGameListener());
-
-		buildMenuItem(
-				loadGameMenuItem,
-				otherFunctions.getPropertyText("loadGameMenuItem"),
-				otherFunctions.getPropertyText("loadGameMenuItemToolTip"),
-				new LoadGameListener());
-
-		buildMenuItem(
-				saveGameMenuItem,
-				otherFunctions.getPropertyText("saveGameMenuItem"),
-				otherFunctions.getPropertyText("saveGameMenuItemToolTip"),
-				new SaveGameListener());
-
-		buildMenuItem(
-				quitMenuItem,
-				otherFunctions.getPropertyText("quitMenuItem"),
-				otherFunctions.getPropertyText("quitMenuItemToolTip"),
-				new QuitGameListener());
 
 		buildMenu(
 				gameMenu,
 				otherFunctions.getPropertyText("gameMenu"));
 
-		gameMenu.add(newGameMenuItem);
-		gameMenu.add(loadGameMenuItem);
-		gameMenu.add(saveGameMenuItem);
-		gameMenu.add(quitMenuItem);
+		gameMenu.add(buildMenuItem(
+				otherFunctions.getPropertyText("newGameMenuItem"),
+				otherFunctions.getPropertyText("newGameMenuItemToolTip"),
+				new NewGameListener()));
+		gameMenu.add(buildMenuItem(
+				otherFunctions.getPropertyText("loadGameMenuItem"),
+				otherFunctions.getPropertyText("loadGameMenuItemToolTip"),
+				new LoadGameListener()));
+		gameMenu.add(buildMenuItem(
+				otherFunctions.getPropertyText("saveGameMenuItem"),
+				otherFunctions.getPropertyText("saveGameMenuItemToolTip"),
+				new SaveGameListener()));
+		gameMenu.add(buildMenuItem(
+				otherFunctions.getPropertyText("quitMenuItem"),
+				otherFunctions.getPropertyText("quitMenuItemToolTip"),
+				new QuitGameListener()));
 
 		return gameMenu;
 	}
@@ -70,19 +53,15 @@ class BuildMenuBar
 	private JMenu buildOptionsMenu()
 	{
 		JMenu optionsMenu = new JMenu();
-		JMenuItem settingsMenuItem = new JMenuItem();
-
-		buildMenuItem(
-				settingsMenuItem,
-				otherFunctions.getPropertyText("settingsMenuItem"),
-				otherFunctions.getPropertyText("settingsMenuItemToolTip"),
-				new SettingsListener());
 
 		buildMenu(
 				optionsMenu,
 				otherFunctions.getPropertyText("optionsMenu"));
 
-		optionsMenu.add(settingsMenuItem);
+		optionsMenu.add(buildMenuItem(
+				otherFunctions.getPropertyText("settingsMenuItem"),
+				otherFunctions.getPropertyText("settingsMenuItemToolTip"),
+				new SettingsListener()));
 
 		return optionsMenu;
 	}
@@ -90,41 +69,31 @@ class BuildMenuBar
 	private JMenu buildHelpMenu()
 	{
 		JMenu helpMenu = new JMenu();
-		JMenuItem helpMenuItem = new JMenuItem();
-		JMenuItem updateMenuItem = new JMenuItem();
-		JMenuItem aboutMenuItem = new JMenuItem();
-
-		buildMenuItem(
-				helpMenuItem,
-				otherFunctions.getPropertyText("helpMenuItem"),
-				otherFunctions.getPropertyText("helpMenuItemToolTip"),
-				new HelpListener());
-
-		buildMenuItem(
-				updateMenuItem,
-				otherFunctions.getPropertyText("updateMenuItem"),
-				otherFunctions.getPropertyText("updateMenuItemToolTip"),
-				new UpdateListener());
-
-		buildMenuItem(
-				aboutMenuItem,
-				otherFunctions.getPropertyText("aboutMenuItem"),
-				otherFunctions.getPropertyText("aboutMenuItemToolTip"),
-				new AboutListener());
 
 		buildMenu(
 				helpMenu,
 				otherFunctions.getPropertyText("helpMenu"));
 
-		helpMenu.add(helpMenuItem);
-		helpMenu.add(updateMenuItem);
-		helpMenu.add(aboutMenuItem);
+		helpMenu.add(buildMenuItem(
+				otherFunctions.getPropertyText("helpMenuItem"),
+				otherFunctions.getPropertyText("helpMenuItemToolTip"),
+				new HelpListener()));
+		helpMenu.add(buildMenuItem(
+				otherFunctions.getPropertyText("updateMenuItem"),
+				otherFunctions.getPropertyText("updateMenuItemToolTip"),
+				new UpdateListener()));
+		helpMenu.add(buildMenuItem(
+				otherFunctions.getPropertyText("aboutMenuItem"),
+				otherFunctions.getPropertyText("aboutMenuItemToolTip"),
+				new AboutListener()));
 
 		return helpMenu;
 	}
 
-	private void buildMenuItem(JMenuItem menuItem, String content, String toolTipText, ActionListener listener)
+	private JMenuItem buildMenuItem(String content, String toolTipText, ActionListener listener)
 	{
+		JMenuItem menuItem = new JMenuItem();
+
 		menuItem.setText(content);
 		menuItem.setToolTipText(toolTipText);
 		menuItem.setName(content);
@@ -133,6 +102,8 @@ class BuildMenuBar
 		menuItem.setFont(otherFunctions.smallFont);
 		menuItem.setBorder(otherFunctions.border);
 		menuItem.addActionListener(listener);
+
+		return menuItem;
 	}
 
 	private void buildMenu(JMenu menu, String content)

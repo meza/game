@@ -58,7 +58,7 @@ class OtherFunctions
 	private void setMenuItemState(int menuNumber, String menuItemName, Boolean state)
 	{
 		ArrayList<Component> menuItems = new ArrayList<>(
-				Arrays.asList(BuildGameContent.mainFrame.getJMenuBar().getMenu(menuNumber).getMenuComponents()));
+			Arrays.asList(BuildGameContent.mainFrame.getJMenuBar().getMenu(menuNumber).getMenuComponents()));
 
 		for (Component item : menuItems)
 		{
@@ -73,12 +73,12 @@ class OtherFunctions
 	}
 
 	JButton buildButton(
-			String content,
-			String toolTipText,
-			Font font,
-			int width,
-			int height,
-			ActionListener listener)
+		String content,
+		String toolTipText,
+		Font font,
+		int width,
+		int height,
+		ActionListener listener)
 	{
 		JButton button = new JButton();
 

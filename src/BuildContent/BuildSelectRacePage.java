@@ -13,71 +13,64 @@ class BuildSelectRacePage
 	JPanel buildSelectRacePage()
 	{
 		JPanel mainPanel = new JPanel(new GridLayout(1, 3));
-		JPanel vampirePanel = new JPanel();
-		JPanel dwarfPanel = new JPanel();
-		JPanel elfPanel = new JPanel();
+		JPanel dwarfPanel;
 
-		buildRacePanel(
-				vampirePanel,
-				"/StaticContent/Images/Vampire.jpg",
-				otherFunctions.getPropertyText("vampireRaceDescription"),
-				otherFunctions.getPropertyText("selectVampireButton"),
-				otherFunctions.getPropertyText("selectVampireButtonToolTip"),
-				new VampireSelectedListener());
-
-		buildRacePanel(
-				dwarfPanel,
-				"/StaticContent/Images/Dwarf.jpg",
-				otherFunctions.getPropertyText("dwarfRaceDescription"),
-				otherFunctions.getPropertyText("selectDwarfButton"),
-				otherFunctions.getPropertyText("selectDwarfButtonToolTip"),
+		dwarfPanel = buildRacePanel(
+				"Dwarf",
 				new DwarfSelectedListener());
+		dwarfPanel.setBorder(
+				BorderFactory.createMatteBorder(
+				                     0,
+				                     2,
+				                     0,
+				                     2,
+				                     Color.white));
 
-		buildRacePanel(
-				elfPanel,
-				"/StaticContent/Images/Elf.jpg",
-				otherFunctions.getPropertyText("elfRaceDescription"),
-				otherFunctions.getPropertyText("selectElfButton"),
-				otherFunctions.getPropertyText("selectElfButtonToolTip"),
-				new ElfSelectedListener());
-
-		dwarfPanel.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 2, Color.white));
-
-		mainPanel.add(vampirePanel);
+		mainPanel.add(
+				buildRacePanel(
+						"Vampire",
+						new VampireSelectedListener()));
 		mainPanel.add(dwarfPanel);
-		mainPanel.add(elfPanel);
+		mainPanel.add(
+				buildRacePanel(
+						"Elf",
+						new ElfSelectedListener()));
 
 		return mainPanel;
 	}
 
-	private void buildRacePanel(
-			JPanel panel,
-			String imageLocation,
-			String raceDescription,
-			String buttonText,
-			String buttonToolTipText,
+	private JPanel buildRacePanel(
+			String race,
 			ActionListener listener)
 	{
-		JButton button = new JButton();
+		JPanel panel = new JPanel();
 
-		otherFunctions.buildButton(
-				button,
-				buttonText,
-				buttonToolTipText,
-				otherFunctions.bigFont,
-				300,
-				50,
-				listener);
 		otherFunctions.setPanelStyle(panel, 3);
 
 		addItemsToTheRaceSelectorPanel(
 				panel,
-				otherFunctions.buildRaceImage(imageLocation),
-				otherFunctions.buildTextArea(raceDescription, otherFunctions.mediumFont, 400, 250),
-				button);
+				otherFunctions.buildRaceImage("/StaticContent/Images/" + race + ".jpg"),
+				otherFunctions.buildTextArea(
+						otherFunctions.getPropertyText(race.toLowerCase() + "RaceDescription"),
+						otherFunctions.mediumFont,
+						400,
+						250),
+				otherFunctions.buildButton(
+						otherFunctions.getPropertyText("select" + race + "Button"),
+						otherFunctions.getPropertyText("select" + race + "ButtonToolTip"),
+						otherFunctions.bigFont,
+						300,
+						50,
+						listener));
+
+		return panel;
 	}
 
-	private void addItemsToTheRaceSelectorPanel(JPanel panel, JLabel label, JTextArea description, JButton button)
+	private void addItemsToTheRaceSelectorPanel(
+			JPanel panel,
+			JLabel label,
+			JTextArea description,
+			JButton button)
 	{
 		panel.add(Box.createRigidArea(new Dimension(0, 100)));
 		panel.add(label);

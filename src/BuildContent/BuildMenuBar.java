@@ -90,7 +90,6 @@ class BuildMenuBar
 
 		menuItem.setText(content);
 		menuItem.setToolTipText(toolTipText);
-		menuItem.setName(content);
 		menuItem.setBackground(Color.darkGray);
 		menuItem.setForeground(Color.white);
 		menuItem.setFont(otherFunctions.smallFont);
@@ -105,7 +104,6 @@ class BuildMenuBar
 	private void buildMenu(JMenu menu, String content)
 	{
 		menu.setText(content);
-		menu.setName(content);
 		menu.setForeground(Color.white);
 		menu.setFont(otherFunctions.smallFont);
 	}

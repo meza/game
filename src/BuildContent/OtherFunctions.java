@@ -72,8 +72,7 @@ class OtherFunctions
 		}
 	}
 
-	void buildButton(
-			JButton button,
+	JButton buildButton(
 			String content,
 			String toolTipText,
 			Font font,
@@ -81,6 +80,8 @@ class OtherFunctions
 			int height,
 			ActionListener listener)
 	{
+		JButton button = new JButton();
+
 		button.setText(content);
 		button.setToolTipText(toolTipText);
 		button.setBackground(Color.darkGray);
@@ -93,6 +94,8 @@ class OtherFunctions
 		button.setPreferredSize(new Dimension(width, height));
 		button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		button.addActionListener(listener);
+
+		return button;
 	}
 
 	//LINE_AXIS = 2; PAGE_AXIS = 3

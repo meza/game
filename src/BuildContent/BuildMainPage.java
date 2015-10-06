@@ -14,51 +14,47 @@ class BuildMainPage
 	{
 		JPanel mainPanel = new JPanel(new GridLayout(2, 1));
 
-		mainPanel.add(buildNewGamePanel());
-		mainPanel.add(buildLoadGamePanel());
+		mainPanel.add(buildNewGameButtonPanel());
+		mainPanel.add(buildLoadGameButtonPanel());
 
 		return mainPanel;
 	}
 
-	private JPanel buildNewGamePanel()
+	private JPanel buildNewGameButtonPanel()
 	{
 		JPanel newGamePanel = new JPanel();
-		JButton newGameButton = new JButton();
-
-		otherFunctions.buildButton(
-				newGameButton,
-				otherFunctions.getPropertyText("newGameButton"),
-				otherFunctions.getPropertyText("newGameButtonToolTip"),
-				otherFunctions.bigFont,
-				250,
-				50,
-				new NewGameListener());
 
 		otherFunctions.setPanelStyle(newGamePanel, 3);
+
 		newGamePanel.add(Box.createVerticalGlue());
-		newGamePanel.add(newGameButton);
+		newGamePanel.add(
+				otherFunctions.buildButton(
+						otherFunctions.getPropertyText("newGameButton"),
+						otherFunctions.getPropertyText("newGameButtonToolTip"),
+						otherFunctions.bigFont,
+						250,
+						50,
+						new NewGameListener()));
 		newGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
 
 		return newGamePanel;
 	}
 
-	private JPanel buildLoadGamePanel()
+	private JPanel buildLoadGameButtonPanel()
 	{
 		JPanel loadGamePanel = new JPanel();
-		JButton loadGameButton = new JButton();
-
-		otherFunctions.buildButton(
-				loadGameButton,
-				otherFunctions.getPropertyText("loadGameButton"),
-				otherFunctions.getPropertyText("loadGameButtonToolTip"),
-				otherFunctions.bigFont,
-				250,
-				50,
-				new LoadGameListener());
 
 		otherFunctions.setPanelStyle(loadGamePanel, 3);
+
 		loadGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
-		loadGamePanel.add(loadGameButton);
+		loadGamePanel.add(
+				otherFunctions.buildButton(
+						otherFunctions.getPropertyText("loadGameButton"),
+						otherFunctions.getPropertyText("loadGameButtonToolTip"),
+						otherFunctions.bigFont,
+						250,
+						50,
+						new LoadGameListener()));
 
 		return loadGamePanel;
 	}

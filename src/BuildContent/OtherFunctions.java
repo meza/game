@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -17,6 +15,7 @@ class OtherFunctions
 {
 	private static final Properties LabelsProperties = new Properties();
 	private static final HashMap<String, JTextArea> attributeTextAreaList = new HashMap<>();
+	private static final HashMap<String, JMenuItem> menuItemList = new HashMap<>();
 	private static String selectedRace = "";
 	final Font smallFont = new Font("Monospaced", Font.BOLD, 15);
 	final Font mediumFont = new Font("Monospaced", Font.BOLD, 20);
@@ -47,29 +46,7 @@ class OtherFunctions
 
 	void changeMenuItemState(String menuItemName, Boolean state)
 	{
-		int numberOfTheMenus = BuildGameContent.mainFrame.getJMenuBar().getMenuCount();
-
-		for (int i = 0; i < numberOfTheMenus; i++)
-		{
-			setMenuItemState(i, menuItemName, state);
-		}
-	}
-
-	private void setMenuItemState(int menuNumber, String menuItemName, Boolean state)
-	{
-		ArrayList<Component> menuItems = new ArrayList<>(
-			Arrays.asList(BuildGameContent.mainFrame.getJMenuBar().getMenu(menuNumber).getMenuComponents()));
-
-		for (Component item : menuItems)
-		{
-			String menuItemText = item.getName();
-
-			if (menuItemName.equals(menuItemText))
-			{
-				item.setEnabled(state);
-				return;
-			}
-		}
+		getMenuItemList(menuItemName).setEnabled(state);
 	}
 
 	JButton buildButton(
@@ -135,16 +112,6 @@ class OtherFunctions
 		return textArea;
 	}
 
-	void setSelectedRace(String race)
-	{
-		selectedRace = race;
-	}
-
-	String getSelectedRace()
-	{
-		return selectedRace;
-	}
-
 	JTextField buildTextField(String content, Boolean state, int width, int height)
 	{
 		JTextField textField = new JTextField(content);
@@ -163,6 +130,16 @@ class OtherFunctions
 		return textField;
 	}
 
+	void setSelectedRace(String race)
+	{
+		selectedRace = race;
+	}
+
+	String getSelectedRace()
+	{
+		return selectedRace;
+	}
+
 	void setTextAreaList(String textAreaName, JTextArea textArea)
 	{
 		attributeTextAreaList.put(textAreaName, textArea);
@@ -171,5 +148,15 @@ class OtherFunctions
 	JTextArea getTextAreaList(String textAreaName)
 	{
 		return attributeTextAreaList.get(textAreaName);
+	}
+
+	void setMenuItemList(String menuItemName, JMenuItem menuItem)
+	{
+		menuItemList.put(menuItemName, menuItem);
+	}
+
+	JMenuItem getMenuItemList(String menuItemName)
+	{
+		return menuItemList.get(menuItemName);
 	}
 }

@@ -97,6 +97,8 @@ class BuildMenuBar
 		menuItem.setBorder(otherFunctions.border);
 		menuItem.addActionListener(listener);
 
+		otherFunctions.setMenuItemList(content, menuItem);
+
 		return menuItem;
 	}
 

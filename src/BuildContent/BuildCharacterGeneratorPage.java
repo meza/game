@@ -317,7 +317,23 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
+			String characterName = nameField.getText();
+			String correctName;
 
+			if (characterName.length() == 0)
+			{
+				nameField.setText(otherFunctions.getPropertyText(
+					                  "offered" + otherFunctions.getSelectedRace() + "CharacterName"));
+				return;
+			}
+
+			correctName = characterName.replaceAll("[^a-zA-Z0-9 ]", "");
+			if (correctName.length() > 30)
+			{
+				correctName = correctName.substring(0, 30);
+			}
+
+			nameField.setText(correctName);
 		}
 	}
 

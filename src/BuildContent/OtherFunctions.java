@@ -17,6 +17,7 @@ class OtherFunctions
 	private static final HashMap<String, JTextArea> attributeTextAreaList = new HashMap<>();
 	private static final HashMap<String, JMenuItem> menuItemList = new HashMap<>();
 	private static String selectedRace = "";
+	static JTextField nameField = new JTextField();
 	final Font smallFont = new Font("Monospaced", Font.BOLD, 15);
 	final Font mediumFont = new Font("Monospaced", Font.BOLD, 20);
 	final Font bigFont = new Font("Monospaced", Font.BOLD, 25);
@@ -128,6 +129,23 @@ class OtherFunctions
 		textField.setPreferredSize(new Dimension(width, height));
 
 		return textField;
+	}
+
+	void validateCharacterName()
+	{
+		String correctName = nameField.getText().replaceAll("[^a-zA-Z0-9 ]", "");
+
+		if (correctName.length() == 0)
+		{
+			nameField.setText(getPropertyText("offered" + getSelectedRace() + "CharacterName"));
+			return;
+		}
+		if (correctName.length() > 30)
+		{
+			correctName = correctName.substring(0, 30);
+		}
+
+		nameField.setText(correctName);
 	}
 
 	void setSelectedRace(String race)

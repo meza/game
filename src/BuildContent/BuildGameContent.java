@@ -59,7 +59,7 @@ public class BuildGameContent
 			                   otherFunctions.getPropertyText("mainFrameTitleGenerateRacePage"),
 			                   otherFunctions.getSelectedRace()));
 		mainFrame.getContentPane().add(characterGeneratorPage.buildCharacterGeneratorPage());
-		BuildCharacterGeneratorPage.nameField.requestFocus();
+		OtherFunctions.nameField.requestFocus();
 		mainFrame.validate();
 	}
 }

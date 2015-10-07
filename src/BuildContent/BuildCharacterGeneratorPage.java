@@ -9,7 +9,6 @@ class BuildCharacterGeneratorPage
 {
 	private static final OtherFunctions otherFunctions = new OtherFunctions();
 	private static final BuildGameContent gameContent = new BuildGameContent();
-	static JTextField nameField = new JTextField();
 
 	JPanel buildCharacterGeneratorPage()
 	{
@@ -28,7 +27,7 @@ class BuildCharacterGeneratorPage
 
 		otherFunctions.setPanelStyle(characterNamePanel, 3);
 
-		nameField = otherFunctions.buildTextField(
+		OtherFunctions.nameField = otherFunctions.buildTextField(
 						otherFunctions.getPropertyText("offered" + otherFunctions.getSelectedRace() + "CharacterName"),
 						true,
 						370,
@@ -43,7 +42,7 @@ class BuildCharacterGeneratorPage
 			                       otherFunctions.bigFont,
 			                       470,
 			                       80));
-		characterNamePanel.add(nameField);
+		characterNamePanel.add(OtherFunctions.nameField);
 		characterNamePanel.add(otherFunctions.buildTextArea(
 			                       otherFunctions.getPropertyText("characterNameLengthHint"),
 			                       otherFunctions.smallFont,
@@ -317,23 +316,7 @@ class BuildCharacterGeneratorPage
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			String characterName = nameField.getText();
-			String correctName;
-
-			if (characterName.length() == 0)
-			{
-				nameField.setText(otherFunctions.getPropertyText(
-					                  "offered" + otherFunctions.getSelectedRace() + "CharacterName"));
-				return;
-			}
-
-			correctName = characterName.replaceAll("[^a-zA-Z0-9 ]", "");
-			if (correctName.length() > 30)
-			{
-				correctName = correctName.substring(0, 30);
-			}
-
-			nameField.setText(correctName);
+			otherFunctions.validateCharacterName();
 		}
 	}
 

@@ -4,8 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
-class BuildCharacterGeneratorPage
+class BuildCharacterGeneratorPage implements FocusListener
 {
 	private static final OtherFunctions otherFunctions = new OtherFunctions();
 	private static final BuildGameContent gameContent = new BuildGameContent();
@@ -32,6 +34,7 @@ class BuildCharacterGeneratorPage
 						true,
 						370,
 						45);
+		OtherFunctions.nameField.addFocusListener(this);
 
 		characterNamePanel.add(Box.createRigidArea(new Dimension(0, 120)));
 		characterNamePanel.add(otherFunctions.buildRaceImage(
@@ -49,13 +52,6 @@ class BuildCharacterGeneratorPage
 			                       500,
 			                       60));
 		characterNamePanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		characterNamePanel.add(otherFunctions.buildButton(
-			                       otherFunctions.getPropertyText("validateCharacterNameButton"),
-			                       otherFunctions.getPropertyText("validateCharacterNameButtonToolTip"),
-			                       otherFunctions.mediumFont,
-			                       350,
-			                       50,
-			                       new validateCharacterNameListener()));
 		characterNamePanel.add(Box.createVerticalGlue());
 		characterNamePanel.add(otherFunctions.buildButton(
 			                       otherFunctions.getPropertyText("backButton"),
@@ -312,12 +308,16 @@ class BuildCharacterGeneratorPage
 		evasionValueTextArea.setText(String.valueOf(agilityValue));
 	}
 
-	private class validateCharacterNameListener implements ActionListener
+	@Override
+	public void focusGained(FocusEvent e)
 	{
-		public void actionPerformed(ActionEvent event)
-		{
-			otherFunctions.validateCharacterName();
-		}
+
+	}
+
+	@Override
+	public void focusLost(FocusEvent e)
+	{
+		otherFunctions.validateCharacterName();
 	}
 
 	private class backButtonListener implements ActionListener

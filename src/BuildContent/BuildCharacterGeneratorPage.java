@@ -9,6 +9,7 @@ class BuildCharacterGeneratorPage
 {
 	private static final OtherFunctions otherFunctions = new OtherFunctions();
 	private static final BuildGameContent gameContent = new BuildGameContent();
+	static JTextField nameField = new JTextField();
 
 	JPanel buildCharacterGeneratorPage()
 	{
@@ -27,6 +28,12 @@ class BuildCharacterGeneratorPage
 
 		otherFunctions.setPanelStyle(characterNamePanel, 3);
 
+		nameField = otherFunctions.buildTextField(
+						otherFunctions.getPropertyText("offered" + otherFunctions.getSelectedRace() + "CharacterName"),
+						true,
+						370,
+						45);
+
 		characterNamePanel.add(Box.createRigidArea(new Dimension(0, 120)));
 		characterNamePanel.add(otherFunctions.buildRaceImage(
 			                       "/StaticContent/Images/" + otherFunctions.getSelectedRace() + ".jpg"));
@@ -36,12 +43,7 @@ class BuildCharacterGeneratorPage
 			                       otherFunctions.bigFont,
 			                       470,
 			                       80));
-		characterNamePanel.add(otherFunctions.buildTextField(
-			                       otherFunctions.getPropertyText(
-				                       "offered" + otherFunctions.getSelectedRace() + "CharacterName"),
-			                       true,
-			                       370,
-			                       45));
+		characterNamePanel.add(nameField);
 		characterNamePanel.add(otherFunctions.buildTextArea(
 			                       otherFunctions.getPropertyText("characterNameLengthHint"),
 			                       otherFunctions.smallFont,

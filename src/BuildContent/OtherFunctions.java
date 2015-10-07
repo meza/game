@@ -155,7 +155,7 @@ class OtherFunctions
 		menuItemList.put(menuItemName, menuItem);
 	}
 
-	JMenuItem getMenuItemList(String menuItemName)
+	private JMenuItem getMenuItemList(String menuItemName)
 	{
 		return menuItemList.get(menuItemName);
 	}

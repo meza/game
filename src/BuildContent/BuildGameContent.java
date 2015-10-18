@@ -5,22 +5,17 @@ import java.text.MessageFormat;
 
 public class BuildGameContent
 {
-	private static final OtherFunctions otherFunctions = new OtherFunctions();
-	private static final JFrame mainFrame = new JFrame();
+	private final OtherFunctions otherFunctions = new OtherFunctions();
+	private static JFrame mainFrame;
 
-	public void buildMainFrame()
+    public void buildMainFrame()
 	{
-		mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		mainFrame.setSize(1200, 800);
-		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		mainFrame.setVisible(true);
-		mainFrame.setTitle(otherFunctions.getPropertyText("mainFrameTitle"));
-		mainFrame.validate();
-	}
+        mainFrame = new MainFrameBuilder(otherFunctions).build();
+    }
 
 	public void addMenuBarToTheMainFrame()
 	{
-		BuildMenuBar menuBar = new BuildMenuBar();
+		BuildMenuBar menuBar = new BuildMenuBar(otherFunctions);
 
 		mainFrame.setJMenuBar(menuBar.buildMenuBar());
 		//disable "Save game" menu item because game is not exist currently
@@ -30,7 +25,7 @@ public class BuildGameContent
 
 	public void addMainPageToTheMainFrame()
 	{
-		BuildMainPage mainPage = new BuildMainPage();
+		BuildMainPage mainPage = new BuildMainPage(otherFunctions);
 
 		mainFrame.getContentPane().add(mainPage.buildMainPage());
 		mainFrame.validate();

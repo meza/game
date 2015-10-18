@@ -2,20 +2,13 @@ package Game;
 
 import BuildContent.BuildGameContent;
 
-class Game
-{
-	public static void main(String[] args)
-	{
-		Game game = new Game();
-		game.start();
-	}
+public class Game {
 
-	private void start()
-	{
-		BuildGameContent gameContent = new BuildGameContent();
-
-		gameContent.buildMainFrame();
-		gameContent.addMenuBarToTheMainFrame();
-		gameContent.addMainPageToTheMainFrame();
-	}
+    public void start()
+    {
+        BuildGameContent gameContent = new BuildGameContent();
+        gameContent.buildMainFrame();
+        gameContent.addMenuBarToTheMainFrame();
+        gameContent.addMainPageToTheMainFrame();
+    }
 }

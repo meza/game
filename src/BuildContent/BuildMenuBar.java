@@ -7,12 +7,16 @@ import java.awt.event.ActionListener;
 
 class BuildMenuBar
 {
-	private static final OtherFunctions otherFunctions = new OtherFunctions();
+	private static OtherFunctions otherFunctions;
 	private static final BuildGameContent gameContent = new BuildGameContent();
 
-	JMenuBar buildMenuBar()
+    public BuildMenuBar(OtherFunctions otherFunctions1) {
+        otherFunctions = otherFunctions1;
+    }
+
+    JMenuBar buildMenuBar()
 	{
-		JMenuBar menuBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar()   ;
 
 		menuBar.add(buildGameMenu());
 		menuBar.add(buildOptionsMenu());

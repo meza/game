@@ -1,5 +1,7 @@
 package BuildContent;
 
+import BuildContent.Listeners.ListenerFactory;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,8 +13,9 @@ class BuildCharacterGeneratorPage implements FocusListener
 {
 	private static final OtherFunctions otherFunctions = new OtherFunctions();
 	private static final BuildGameContent gameContent = new BuildGameContent();
+    private final ListenerFactory listenerBuilder = new ListenerFactory(new ValueModifier(otherFunctions));
 
-	JPanel buildCharacterGeneratorPage()
+    JPanel buildCharacterGeneratorPage()
 	{
 		JPanel mainPanel = new JPanel(new GridLayout(1, 3));
 
@@ -65,6 +68,13 @@ class BuildCharacterGeneratorPage implements FocusListener
 		return characterNamePanel;
 	}
 
+    private void addListeners(JPanel panel, String attribute) {
+        panel.add(buildChangeAttributePanel(
+                otherFunctions.getPropertyText(attribute),
+                listenerBuilder.decreaserFor(attribute),
+                listenerBuilder.increaserFor(attribute)));
+    }
+
 	private JPanel buildCharacterAttributePanel()
 	{
 		JPanel characterAttributePanel = new JPanel();
@@ -74,31 +84,15 @@ class BuildCharacterGeneratorPage implements FocusListener
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 200)));
 		characterAttributePanel.add(buildAvailableAttributePointsPanel());
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 60)));
-		characterAttributePanel.add(buildChangeAttributePanel(
-			                            otherFunctions.getPropertyText("strength"),
-			                            new DecreaseStrengthListener(),
-			                            new IncreaseStrengthListener()));
+        addListeners(characterAttributePanel, "strength");
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
-		characterAttributePanel.add(buildChangeAttributePanel(
-			                            otherFunctions.getPropertyText("dexterity"),
-			                            new DecreaseDexterityListener(),
-			                            new IncreaseDexterityListener()));
+        addListeners(characterAttributePanel, "dexterity");
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
-		characterAttributePanel.add(buildChangeAttributePanel(
-			                            otherFunctions.getPropertyText("intelligent"),
-			                            new DecreaseIntelligentListener(),
-			                            new IncreaseIntelligentListener()));
+        addListeners(characterAttributePanel, "intelligent");
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
-		characterAttributePanel.add(buildChangeAttributePanel(
-			                            otherFunctions.getPropertyText("agility"),
-			                            new DecreaseAgilityListener(),
-			                            new IncreaseAgilityListener()));
+        addListeners(characterAttributePanel, "agility");
 		characterAttributePanel.add(Box.createRigidArea(new Dimension(0, 15)));
-		characterAttributePanel.add(buildChangeAttributePanel(
-			                            otherFunctions.getPropertyText("vitality"),
-			                            new DecreaseVitalityListener(),
-			                            new IncreaseVitalityListener()));
-
+        addListeners(characterAttributePanel, "vitality");
 		return characterAttributePanel;
 	}
 
@@ -246,68 +240,6 @@ class BuildCharacterGeneratorPage implements FocusListener
 		return statPanel;
 	}
 
-	private void decreaseAttributeValue(String attribute)
-	{
-		JTextArea attributeValueTextArea = otherFunctions.getTextAreaList(attribute);
-		JTextArea availableAttributeValueTextArea = otherFunctions.getTextAreaList("attributePoints");
-		int attributeValue = Integer.valueOf(attributeValueTextArea.getText());
-		int availableAttributeValue = Integer.valueOf(availableAttributeValueTextArea.getText());
-
-		if ((attributeValue > 1))
-		{
-			attributeValueTextArea.setText(String.valueOf(attributeValue - 1));
-			availableAttributeValueTextArea.setText(String.valueOf(availableAttributeValue + 1));
-		}
-	}
-
-	private void increaseAttributeValue(String attribute)
-	{
-		JTextArea attributeValueTextArea = otherFunctions.getTextAreaList(attribute);
-		JTextArea availableAttributeValueTextArea = otherFunctions.getTextAreaList("attributePoints");
-		int attributeValue = Integer.valueOf(attributeValueTextArea.getText());
-		int availableAttributeValue = Integer.valueOf(availableAttributeValueTextArea.getText());
-
-		if ((availableAttributeValue > 0))
-		{
-			attributeValueTextArea.setText(String.valueOf(attributeValue + 1));
-			availableAttributeValueTextArea.setText(String.valueOf(availableAttributeValue - 1));
-		}
-
-	}
-
-	private void calculateStatValues()
-	{
-		JTextArea hitPointsValueTextArea = otherFunctions.getTextAreaList("hitPoints");
-		JTextArea meleeDamageValueTextArea = otherFunctions.getTextAreaList("meleeDamage");
-		JTextArea rangedDamageValueTextArea = otherFunctions.getTextAreaList("rangedDamage");
-		JTextArea magicDamageValueTextArea = otherFunctions.getTextAreaList("magicDamage");
-		JTextArea physicalDefenseValueTextArea = otherFunctions.getTextAreaList("physicalDefense");
-		JTextArea magicDefenseValueTextArea = otherFunctions.getTextAreaList("magicDefense");
-		JTextArea attackSpeedValueTextArea = otherFunctions.getTextAreaList("attackSpeed");
-		JTextArea accuracyValueTextArea = otherFunctions.getTextAreaList("accuracy");
-		JTextArea evasionValueTextArea = otherFunctions.getTextAreaList("evasion");
-		JTextArea strengthValueTextArea = otherFunctions.getTextAreaList("strength");
-		JTextArea dexterityValueTextArea = otherFunctions.getTextAreaList("dexterity");
-		JTextArea intelligentValueTextArea = otherFunctions.getTextAreaList("intelligent");
-		JTextArea agilityValueTextArea = otherFunctions.getTextAreaList("agility");
-		JTextArea vitalityValueTextArea = otherFunctions.getTextAreaList("vitality");
-		int strengthValue = Integer.valueOf(strengthValueTextArea.getText());
-		int dexterityValue = Integer.valueOf(dexterityValueTextArea.getText());
-		int intelligentValue = Integer.valueOf(intelligentValueTextArea.getText());
-		int agilityValue = Integer.valueOf(agilityValueTextArea.getText());
-		int vitalityValue = Integer.valueOf(vitalityValueTextArea.getText());
-
-		hitPointsValueTextArea.setText(String.valueOf(strengthValue + (2 * vitalityValue)));
-		meleeDamageValueTextArea.setText(String.valueOf(2 * strengthValue));
-		rangedDamageValueTextArea.setText(String.valueOf(2 * dexterityValue));
-		magicDamageValueTextArea.setText(String.valueOf(2 * intelligentValue));
-		physicalDefenseValueTextArea.setText(String.valueOf(vitalityValue));
-		magicDefenseValueTextArea.setText(String.valueOf(intelligentValue));
-		attackSpeedValueTextArea.setText(String.valueOf(2 * agilityValue));
-		accuracyValueTextArea.setText(String.valueOf(dexterityValue));
-		evasionValueTextArea.setText(String.valueOf(agilityValue));
-	}
-
 	@Override
 	public void focusGained(FocusEvent e)
 	{
@@ -328,95 +260,6 @@ class BuildCharacterGeneratorPage implements FocusListener
 		}
 	}
 
-	private class DecreaseStrengthListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			decreaseAttributeValue("strength");
-			calculateStatValues();
-		}
-	}
-
-	private class IncreaseStrengthListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			increaseAttributeValue("strength");
-			calculateStatValues();
-		}
-	}
-
-	private class DecreaseDexterityListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			decreaseAttributeValue("dexterity");
-			calculateStatValues();
-		}
-	}
-
-	private class IncreaseDexterityListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			increaseAttributeValue("dexterity");
-			calculateStatValues();
-		}
-	}
-
-	private class DecreaseAgilityListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			decreaseAttributeValue("agility");
-			calculateStatValues();
-		}
-	}
-
-	private class IncreaseAgilityListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			increaseAttributeValue("agility");
-			calculateStatValues();
-		}
-	}
-
-	private class DecreaseIntelligentListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			decreaseAttributeValue("intelligent");
-			calculateStatValues();
-		}
-	}
-
-	private class IncreaseIntelligentListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			increaseAttributeValue("intelligent");
-			calculateStatValues();
-		}
-	}
-
-	private class DecreaseVitalityListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			decreaseAttributeValue("vitality");
-			calculateStatValues();
-		}
-	}
-
-	private class IncreaseVitalityListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			increaseAttributeValue("vitality");
-			calculateStatValues();
-		}
-	}
 
 	private class StartGameListener implements ActionListener
 	{

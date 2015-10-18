@@ -7,10 +7,14 @@ import java.awt.event.ActionListener;
 
 class BuildMainPage
 {
-	private static final OtherFunctions otherFunctions = new OtherFunctions();
+	private static OtherFunctions otherFunctions;
 	private static final BuildGameContent gameContent = new BuildGameContent();
 
-	JPanel buildMainPage()
+    public BuildMainPage(OtherFunctions otherFunctions1) {
+        otherFunctions = otherFunctions1;
+    }
+
+    JPanel buildMainPage()
 	{
 		JPanel mainPanel = new JPanel(new GridLayout(2, 1));
 
@@ -28,12 +32,12 @@ class BuildMainPage
 
 		newGamePanel.add(Box.createVerticalGlue());
 		newGamePanel.add(otherFunctions.buildButton(
-			                 otherFunctions.getPropertyText("newGameButton"),
-			                 otherFunctions.getPropertyText("newGameButtonToolTip"),
-			                 otherFunctions.bigFont,
-			                 250,
-			                 50,
-			                 new NewGameListener()));
+                otherFunctions.getPropertyText("newGameButton"),
+                otherFunctions.getPropertyText("newGameButtonToolTip"),
+                otherFunctions.bigFont,
+                250,
+                50,
+                new NewGameListener()));
 		newGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
 
 		return newGamePanel;
@@ -47,12 +51,12 @@ class BuildMainPage
 
 		loadGamePanel.add(Box.createRigidArea(new Dimension(0, 5)));
 		loadGamePanel.add(otherFunctions.buildButton(
-			                  otherFunctions.getPropertyText("loadGameButton"),
-			                  otherFunctions.getPropertyText("loadGameButtonToolTip"),
-			                  otherFunctions.bigFont,
-			                  250,
-			                  50,
-			                  new LoadGameListener()));
+                otherFunctions.getPropertyText("loadGameButton"),
+                otherFunctions.getPropertyText("loadGameButtonToolTip"),
+                otherFunctions.bigFont,
+                250,
+                50,
+                new LoadGameListener()));
 
 		return loadGamePanel;
 	}
